@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Game_Engine;
 
@@ -19,5 +20,25 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+    }
+
+    private void Open_proj(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void New_proj(object sender, RoutedEventArgs e)
+    {
+        SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+        saveFileDialog1.Filter = "Project_file|*.proj";
+        saveFileDialog1.Title = "Create a new project";
+        saveFileDialog1.ShowDialog();
+
+        if(saveFileDialog1.FileName != "")
+        {
+            System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
+
+            fs.Close();
+        }
     }
 }

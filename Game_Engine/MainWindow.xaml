@@ -6,5 +6,8 @@
         xmlns:local="clr-namespace:Game_Engine"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid/>
+    <Grid>
+        <Button Content="Open project" Click="Open_proj" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top" Height="57" Width="316"/>
+        <Button Content="New Project" Click="New_proj" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="57" Width="316"/>
+    </Grid>
 </Window>
