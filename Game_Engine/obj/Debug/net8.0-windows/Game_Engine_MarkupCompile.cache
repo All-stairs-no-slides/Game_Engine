@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\App.xaml
-11407045341
+31839418086
 
-4-964472772
+52030646952
 1981839832580
-MainWindow.xaml;
+Project_Window.xaml;StartWindow.xaml;Used_controls.xaml;
 
 False
 
