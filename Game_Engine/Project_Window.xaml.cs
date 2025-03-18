@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Game_Engine.User_controls;
 
 namespace Game_Engine
 {
@@ -42,18 +43,13 @@ namespace Game_Engine
             {
 
                 string[] files = Directory.GetFiles(dir);
-                if (parent == null)
-                {
-                    for (int i = 0; i < files.Length; i++)
-                    {
-                        sol_exp_tree.Items.Add(files[i].Split("\\").Last());
-                    }
-                    return;
-                }
-
+                
+                // it will always be the general case since dirs are dealt with first
                 for (int i = 0; i < files.Length; i++)
                 {
-                    parent.Items.Add(files[i].Split("\\").Last());
+                    TreeViewItem node = new TreeViewItem();
+                    node.Header = files[i].Split("\\").Last();
+                    parent.Items.Add(node);
                 }
             }
 
@@ -61,23 +57,37 @@ namespace Game_Engine
             {
 
                 string[] dirs = Directory.GetDirectories(dir);
+                // initial case and starting case for any reloads
                 if (parent == null)
                 {
-                    for (int i = 0; i < dirs.Length; i++)
-                    {
-                        Debug.WriteLine(dirs[i]);
 
-                        TreeViewItem node = new TreeViewItem();
-                        node.Header = dirs[i].Split("\\").Last();
-                        sol_exp_tree.Items.Add(node);
-                        add_dirs(dirs[i] + "\\", node);
+                    TreeViewItem node = new TreeViewItem();
 
-                    }
-                    add_files(dir);
+                    node.Header = "Project Solution";
+
+                    // build the right click menu
+                    ContextMenu new_menu = new ContextMenu();
+                    node.ContextMenu = new_menu;
+                    MenuItem add_item = new MenuItem();
+                    add_item.Header = "Add";
+                    MenuItem Object_add = new MenuItem();
+                    Object_add.Header = "Object";
+                    Object_add.Click += new System.Windows.RoutedEventHandler(this.Create_Game_Object);
+
+                    // finalise  context menu
+                    add_item.Items.Add(Object_add);
+                    new_menu.Items.Add(add_item);
+
+                    // add dir to the tree 
+                    sol_exp_tree.Items.Add(node);
+
+                    // callback to self and then add the files in this dir
+                    add_dirs(path_name, node);
+                    add_files(path_name, node);
                     return;
                 }
 
-                //Debug.WriteLine(Directory.GetDirectories(path_name).Length);
+                // general case for when theres a parent
                 for (int i = 0; i < dirs.Length; i++)
                 {
                     TreeViewItem node = new TreeViewItem();
@@ -92,10 +102,19 @@ namespace Game_Engine
             add_dirs(path_name);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Reload_Project_sol(object sender, RoutedEventArgs e)
         {
             sol_exp_tree.Items.Clear();
             Refresh_sol_exp(path);
+            e.Handled = true;
+        }
+
+        private void Create_Game_Object(object sender, RoutedEventArgs e)
+        {
+            // Summary:
+            // creates a game object in the file system under the folder selected
+            Debug.WriteLine("fuck ye cunt");
+
         }
     }
 }

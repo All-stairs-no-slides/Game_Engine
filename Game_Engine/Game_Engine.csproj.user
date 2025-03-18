@@ -5,5 +5,8 @@
     <Compile Update="Project_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="User_controls\sol_exp_menu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
