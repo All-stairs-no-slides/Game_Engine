@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Game_Engine.User_controls;
+using Microsoft.VisualBasic;
+
 
 namespace Game_Engine
 {
@@ -106,15 +108,20 @@ namespace Game_Engine
         {
             sol_exp_tree.Items.Clear();
             Refresh_sol_exp(path);
-            e.Handled = true;
         }
 
         private void Create_Game_Object(object sender, RoutedEventArgs e)
         {
             // Summary:
             // creates a game object in the file system under the folder selected
-            Debug.WriteLine("fuck ye cunt");
 
+            string Obj_name = Interaction.InputBox("Object Name");
+            Debug.WriteLine(Obj_name);
+            if(Obj_name == "") {
+                return;
+            }
+            Directory.CreateDirectory(path + "\\Objects\\" + Obj_name);
+            Reload_Project_sol(sender, e);
         }
     }
 }

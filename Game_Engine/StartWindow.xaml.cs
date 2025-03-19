@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -39,6 +40,11 @@ public partial class StartWindow : Window
         if(saveFileDialog1.FileName != "")
         {
             System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
+            string[] split_path = fs.Name.Split("\\");
+            Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Objects"));
+            Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Scripts"));
+            Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Assets"));
+
             Project_Window project = new Project_Window(fs);
             project.Show();
             this.Close();
