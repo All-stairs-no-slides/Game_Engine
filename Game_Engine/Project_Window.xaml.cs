@@ -24,7 +24,7 @@ namespace Game_Engine
     /// </summary>
     public partial class Project_Window : Window
     {
-        System.IO.FileStream Project_file;
+        private System.IO.FileStream Project_file;
         string path;
         public Project_Window(System.IO.FileStream Project_file)
         {
@@ -51,6 +51,11 @@ namespace Game_Engine
                 {
                     TreeViewItem node = new TreeViewItem();
                     node.Header = files[i].Split("\\").Last();
+                    if (files[i].Split("\\").Last().Split(".").Last() == "obj")
+                    {
+                        node.MouseDoubleClick += Node_MouseDoubleClick;
+                    }
+
                     parent.Items.Add(node);
                 }
             }
@@ -83,9 +88,8 @@ namespace Game_Engine
                     // add dir to the tree 
                     sol_exp_tree.Items.Add(node);
 
-                    // callback to self and then add the files in this dir
+                    // callback to self to add proper files and dirs
                     add_dirs(path_name, node);
-                    add_files(path_name, node);
                     return;
                 }
 
@@ -104,6 +108,14 @@ namespace Game_Engine
             add_dirs(path_name);
         }
 
+        private void Node_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+            TreeViewItem src_item = e.Source as TreeViewItem;
+            string obj_name = src_item.Header.ToString();
+            start_object_view(path + "\\Objects\\" + obj_name.ToString().Remove(obj_name.ToString().LastIndexOf(".")) + "\\" + obj_name);
+        }
+
         private void Reload_Project_sol(object sender, RoutedEventArgs e)
         {
             sol_exp_tree.Items.Clear();
@@ -116,12 +128,23 @@ namespace Game_Engine
             // creates a game object in the file system under the folder selected
 
             string Obj_name = Interaction.InputBox("Object Name");
-            Debug.WriteLine(Obj_name);
+            //Debug.WriteLine(Obj_name);
             if(Obj_name == "") {
                 return;
             }
             Directory.CreateDirectory(path + "\\Objects\\" + Obj_name);
+            File.Create(path + "\\Objects\\" + Obj_name + "\\" + Obj_name + ".obj");
+
             Reload_Project_sol(sender, e);
+        }
+
+        private void start_object_view(string Object_path)
+        {
+            // summary:
+            // creates the object view window for the selected object
+            ObjectViewWindow obj_window = new ObjectViewWindow(Object_path);
+            obj_window.Show();
+            
         }
     }
 }

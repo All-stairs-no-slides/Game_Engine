@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\App.xaml
-32127879401
+5-621066535
 
-6-327761664
+9-2137169434
 1981839832580
-Project_Window.xaml;StartWindow.xaml;User_controls\sol_exp_menu.xaml;
+ObjectViewWindow.xaml;Project_Window.xaml;StartWindow.xaml;User_controls\Object_Items_List.xaml;User_controls\Transform_Menu.xaml;
 
 False
 

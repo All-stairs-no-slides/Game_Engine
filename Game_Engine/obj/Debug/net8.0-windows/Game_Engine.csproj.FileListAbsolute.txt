@@ -21,5 +21,10 @@ C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\StartWindow.g.cs
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\Project_Window.baml
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\StartWindow.baml
-C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\sol_exp_menu.g.cs
-C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\sol_exp_menu.baml
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\ObjectViewWindow.g.cs
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\ObjectViewWindow.baml
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Object_Items_List.g.cs
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Object_Items_List.baml
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Transform_Menu.g.cs
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Transform_Menu.baml

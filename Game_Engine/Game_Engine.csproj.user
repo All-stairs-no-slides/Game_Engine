@@ -2,10 +2,16 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="ObjectViewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Project_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="User_controls\sol_exp_menu.xaml.cs">
+    <Compile Update="User_controls\Object_Items_List.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="User_controls\Transform_Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

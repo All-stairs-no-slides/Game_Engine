@@ -1,0 +1,20 @@
+﻿<Window x:Class="Game_Engine.ObjectViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Game_Engine"
+        xmlns:User_conts="clr-namespace:Game_Engine.User_controls"
+        mc:Ignorable="d"
+        Title="ObjectViewWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
+
+
+        </Grid.ColumnDefinitions>
+
+        <User_conts:Object_Items_List Grid.Column="0" x:Name="Components_list"/>
+    </Grid>
+</Window>
