@@ -53,7 +53,7 @@ namespace Game_Engine.User_controls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Game_Engine;V1.0.0.0;component/user_controls/transform_menu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Game_Engine;component/user_controls/transform_menu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\User_controls\Transform_Menu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

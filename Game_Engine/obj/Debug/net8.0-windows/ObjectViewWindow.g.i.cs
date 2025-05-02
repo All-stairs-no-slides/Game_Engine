@@ -62,7 +62,7 @@ namespace Game_Engine {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Game_Engine;V1.0.0.0;component/objectviewwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Game_Engine;component/objectviewwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ObjectViewWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
