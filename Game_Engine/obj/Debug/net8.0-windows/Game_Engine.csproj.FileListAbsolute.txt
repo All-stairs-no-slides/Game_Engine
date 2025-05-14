@@ -28,3 +28,6 @@ C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Object_Items_List.baml
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Transform_Menu.g.cs
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Transform_Menu.baml
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\Game_Engine.csproj.AssemblyReference.cache
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\Game_Eng.B09EA9FE.Up2Date

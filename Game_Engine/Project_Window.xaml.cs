@@ -16,7 +16,8 @@ using System.Windows.Shapes;
 using Game_Engine.User_controls;
 using Microsoft.VisualBasic;
 using Game_Engine.faux_obj_types;
-using System.Text.Json;
+using Newtonsoft.Json;
+
 
 namespace Game_Engine
 {
@@ -134,9 +135,9 @@ namespace Game_Engine
                 return;
             }
             Directory.CreateDirectory(path + "\\Objects\\" + Obj_name);
-            //File.Create(path + "\\Objects\\" + Obj_name + "\\" + Obj_name + ".obj");
             Game_obj obj = new Game_obj(Obj_name, []);
-            string json_string = JsonSerializer.Serialize(obj);
+            Debug.WriteLine(obj.components[0].type);
+            string json_string = JsonConvert.SerializeObject(obj);
             File.WriteAllText(path + "\\Objects\\" + Obj_name + "\\" + Obj_name + ".obj", json_string);
             Reload_Project_sol(sender, e);
         }
