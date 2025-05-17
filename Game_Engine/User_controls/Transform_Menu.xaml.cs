@@ -23,7 +23,7 @@ namespace Game_Engine.User_controls
     /// </summary>
     public partial class Transform_Menu : UserControl
     {
-        public Transform_Menu(int index, int x_pos, int y_pos ,int x_scale ,int y_scale )
+        public Transform_Menu(int index, int x_pos, int y_pos ,int x_scale ,int y_scale, int Rotation)
         {
 
 
@@ -32,6 +32,7 @@ namespace Game_Engine.User_controls
             this.Y_pos_prop = y_pos;
             this.X_scale_prop = x_scale;
             this.Y_scale_prop = y_scale;
+            this.Rot_prop = Rotation;
             DataContext = this;
             InitializeComponent();
         }
@@ -52,7 +53,7 @@ namespace Game_Engine.User_controls
                 //find window that this is in to update the object component list for
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
                 {
-                    Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
                     foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
                     {
                         foreach(object content in item.Items)
@@ -80,7 +81,7 @@ namespace Game_Engine.User_controls
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Y_pos_prop"));
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
                 {
-                    Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
                     foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
                     {
                         foreach (object content in item.Items)
@@ -108,7 +109,7 @@ namespace Game_Engine.User_controls
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("X_scale_prop"));
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
                 {
-                    Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
                     foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
                     {
                         foreach (object content in item.Items)
@@ -136,7 +137,7 @@ namespace Game_Engine.User_controls
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Y_scale_prop"));
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
                 {
-                    Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
                     foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
                     {
                         foreach (object content in item.Items)
@@ -145,6 +146,35 @@ namespace Game_Engine.User_controls
                             {
                                 game_component[] comps = window.the_object.components;
                                 ((transform_component)comps[Index]).y_scale = value;
+                            }
+                        }
+                    }
+
+
+                }
+                //Debug.WriteLine(Y_scale);
+            }
+        }
+
+        private int Rot;
+        public int Rot_prop
+        {
+            get { return Rot; }
+            set
+            {
+                Rot = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Rot_prop"));
+                foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
+                {
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
+                    {
+                        foreach (object content in item.Items)
+                        {
+                            if (content == this)
+                            {
+                                game_component[] comps = window.the_object.components;
+                                ((transform_component)comps[Index]).rotation = value;
                             }
                         }
                     }

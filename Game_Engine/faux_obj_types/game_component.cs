@@ -23,11 +23,18 @@ namespace Game_Engine.faux_obj_types
             switch (type)
             {
                 case "Transform":
-                    transform_component temp = new transform_component("Transform" , 0, 0, 1, 1);
-                    serializer.Populate(jsonObject.CreateReader(), temp);
-                    Debug.WriteLine(temp.x);
+                    transform_component trans_temp = new transform_component("Transform" , 0, 0, 1, 1, 0);
+                    serializer.Populate(jsonObject.CreateReader(), trans_temp);
+                    Debug.WriteLine(trans_temp.x);
 
-                    return temp;
+                    return trans_temp;
+
+                case "Sprite_renderer":
+                    Sprite_renderer spr_temp = new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, "");
+                    serializer.Populate(jsonObject.CreateReader(), spr_temp);
+                    Debug.WriteLine(spr_temp.x_offset);
+
+                    return spr_temp;
 
                 case null:
                 case "":
@@ -49,13 +56,29 @@ namespace Game_Engine.faux_obj_types
             {
 
                 case "Transform":
-                    transform_component casted_val = (transform_component)value;
-                    jo.Add("x", casted_val.x);
-                    jo.Add("y", casted_val.y);
-                    jo.Add("x_scale", casted_val.x_scale);
-                    jo.Add("y_scale", casted_val.y_scale);
+                    transform_component trans_val = (transform_component)value;
+                    jo.Add("x", trans_val.x);
+                    jo.Add("y", trans_val.y);
+                    jo.Add("x_scale", trans_val.x_scale);
+                    jo.Add("y_scale", trans_val.y_scale);
+                    jo.Add("rotation", trans_val.rotation);
+
 
                     break;
+
+                case "Sprite_renderer":
+                    Sprite_renderer sprite_val = (Sprite_renderer)value;
+                    jo.Add("x_offset", sprite_val.x_offset);
+                    jo.Add("y_offset", sprite_val.y_offset);
+                    jo.Add("x_scale", sprite_val.x_scale);
+                    jo.Add("y_scale", sprite_val.y_scale);
+                    jo.Add("Sprite_dir", sprite_val.Sprite_dir);
+                    jo.Add("rotation", sprite_val.rotation);
+
+
+                    break;
+
+
             }
             jo.WriteTo(writer);
         }
@@ -74,14 +97,35 @@ namespace Game_Engine.faux_obj_types
         public int y { get; set; }
         public int x_scale { get; set; }
         public int y_scale { get; set; }
-
-        public transform_component(string type, int X, int Y, int X_scale, int Y_scale)
+        public int rotation { get; set; }
+        public transform_component(string type, int X, int Y, int X_scale, int Y_scale, int rotation)
         {
             this.type = type;
             this.x = X;
             this.y = Y;
             this.x_scale = X_scale;
             this.y_scale = Y_scale;
+            this.rotation = rotation;
+        }
+    }
+
+    public class Sprite_renderer : game_component
+    {
+        public int x_offset { get; set; }
+        public int y_offset { get; set; }
+        public int x_scale { get; set; }
+        public int y_scale { get; set; }
+        public int rotation { get; set; }
+        public string Sprite_dir { get; set; }
+        public Sprite_renderer(string type, int x_offset, int y_offset, int x_scale, int y_scale, int rotation, string sprite_dir)
+        {
+            this.type = type;
+            this.x_offset = x_offset;
+            this.y_offset = y_offset;
+            this.x_scale = x_scale;
+            this.y_scale = y_scale;
+            this.rotation = rotation;
+            this.Sprite_dir = sprite_dir;
         }
     }
 }

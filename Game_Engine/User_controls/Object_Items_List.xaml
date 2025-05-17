@@ -17,6 +17,7 @@
                 <Menu HorizontalAlignment="Stretch">
                     <MenuItem Header="Add Elements" >
                         <MenuItem Header="Transform" Click="Add_transform"/>
+                        <MenuItem Header="Sprite Renderer" Click="Add_Sprite_Renderer"/>
 
                     </MenuItem>
                 </Menu>

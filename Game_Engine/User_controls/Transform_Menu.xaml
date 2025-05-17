@@ -18,6 +18,8 @@
             <RowDefinition Height="45*"/>
             <RowDefinition Height ="5*"/>
             <RowDefinition Height="45*"/>
+            <RowDefinition Height ="5*"/>
+            <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="x position" FontSize="8"/>
         <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding X_pos_prop, UpdateSourceTrigger=PropertyChanged}"/>
@@ -30,6 +32,9 @@
 
         <Label Grid.Row="2" Grid.Column="1" Content="y Scale" FontSize="8"/>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Y_scale_prop, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Rotation" FontSize="8"/>
+        <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding Rot_prop, UpdateSourceTrigger=PropertyChanged}"/>
 
 
     </Grid>
