@@ -53,10 +53,19 @@ namespace Game_Engine
                 {
                     TreeViewItem node = new TreeViewItem();
                     node.Header = files[i].Split("\\").Last();
+                    node.Tag = dir;
                     if (files[i].Split("\\").Last().Split(".").Last() == "obj")
                     {
-                        node.MouseDoubleClick += Node_MouseDoubleClick;
+                        node.MouseDoubleClick += Obj_MouseDoubleClick;
+                        
                     }
+                    if (files[i].Split("\\").Last().Split(".").Last() == "place")
+                    {
+                        node.MouseDoubleClick += Place_MouseDoubleClick;
+                    }
+
+                    // to drag and drop items in the solution
+                    node.MouseMove += Solution_Item_Mouse_Move;
 
                     parent.Items.Add(node);
                 }
@@ -82,9 +91,13 @@ namespace Game_Engine
                     MenuItem Object_add = new MenuItem();
                     Object_add.Header = "Object";
                     Object_add.Click += new System.Windows.RoutedEventHandler(this.Create_Game_Object);
+                    MenuItem Scene_Add = new MenuItem();
+                    Scene_Add.Header = "Place";
+                    Scene_Add.Click += new System.Windows.RoutedEventHandler(this.Create_Game_Place);
 
                     // finalise  context menu
                     add_item.Items.Add(Object_add);
+                    add_item.Items.Add(Scene_Add);
                     new_menu.Items.Add(add_item);
 
                     // add dir to the tree 
@@ -100,6 +113,7 @@ namespace Game_Engine
                 {
                     TreeViewItem node = new TreeViewItem();
                     node.Header = dirs[i].Split("\\").Last();
+                    node.Tag = dir;
                     parent.Items.Add(node);
                     add_dirs(dirs[i] + "\\", node);
 
@@ -110,12 +124,22 @@ namespace Game_Engine
             add_dirs(path_name);
         }
 
-        private void Node_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Obj_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //throw new NotImplementedException();
             TreeViewItem src_item = e.Source as TreeViewItem;
             string obj_name = src_item.Header.ToString();
             start_object_view(path + "\\Objects\\" + obj_name.ToString().Remove(obj_name.ToString().LastIndexOf(".")) + "\\" + obj_name);
+        }
+
+        private void Place_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+            TreeViewItem src_item = e.Source as TreeViewItem;
+            string place_name = src_item.Header.ToString();
+            Debug.Write(path + "\\Places\\" + place_name);
+
+            start_place_view(path + "\\Places\\" + place_name);
         }
 
         private void Reload_Project_sol(object sender, RoutedEventArgs e)
@@ -142,6 +166,25 @@ namespace Game_Engine
             Reload_Project_sol(sender, e);
         }
 
+        private void Create_Game_Place(object sender, RoutedEventArgs e)
+        {
+            // Summary:
+            // creates a game object in the file system under the folder selected
+
+            string Place_Name = Interaction.InputBox("Place Name");
+            //Debug.WriteLine(Obj_name);
+            if (Place_Name == "")
+            {
+                return;
+            }
+
+            Game_Place place = new Game_Place(Place_Name, []);
+            string json_string = JsonConvert.SerializeObject(place);
+
+            File.WriteAllText(path + "\\Places\\" +  Place_Name + ".place", json_string);
+            Reload_Project_sol(sender, e);
+        }
+
         private void start_object_view(string Object_path)
         {
             // summary:
@@ -150,5 +193,25 @@ namespace Game_Engine
             obj_window.Show();
             
         }
+
+        private void start_place_view(string Place_path)
+        {
+            PlaceViewWindow Place_window = new PlaceViewWindow();
+            Place_window.Show();
+        }
+
+
+        private void Solution_Item_Mouse_Move(object sender, MouseEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                //Debug.WriteLine(sender.GetType());
+                TreeViewItem Item = sender as TreeViewItem;
+                string path = Item.Tag.ToString() + "\\" + Item.Header.ToString();
+                DragDrop.DoDragDrop((TreeViewItem)sender, new DataObject(path), DragDropEffects.Copy);
+            }
+        }
+
+        
     }
 }

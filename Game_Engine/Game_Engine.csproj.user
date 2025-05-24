@@ -5,10 +5,16 @@
     <Compile Update="ObjectViewWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="PlaceViewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Project_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="User_controls\Object_Items_List.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="User_controls\Places_Window_conts\Place_Instances_List.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="User_controls\Sprite_renderer_menu.xaml.cs">

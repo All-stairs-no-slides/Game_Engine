@@ -3,36 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\object_items_list.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\object_items_list.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\sprite_renderer_menu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\sprite_renderer_menu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\faux_obj_types\\game_component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\faux_obj_types\\game_component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\sprite_renderer_menu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\sprite_renderer_menu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\startwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\startwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\project_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\project_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\transform_menu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\transform_menu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\project_window.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\project_window.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\object_items_list.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\object_items_list.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\places_window_conts\\place_instances_list.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\places_window_conts\\place_instances_list.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\placeviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\placeviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\placeviewwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\placeviewwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\objectviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\objectviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\main\\desktop\\projects\\game_engine\\game_engine\\user_controls\\places_window_conts\\place_instances_list.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\user_controls\\places_window_conts\\place_instances_list.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,99 +42,91 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "game_component.cs",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\game_component.cs",
-              "RelativeDocumentMoniker": "Game_Engine\\faux_obj_types\\game_component.cs",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\game_component.cs",
-              "RelativeToolTip": "Game_Engine\\faux_obj_types\\game_component.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwEsAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T06:14:25.032Z"
+              "DocumentIndex": 1,
+              "Title": "Project_Window.xaml",
+              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml",
+              "RelativeDocumentMoniker": "Game_Engine\\Project_Window.xaml",
+              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml",
+              "RelativeToolTip": "Game_Engine\\Project_Window.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-24T15:05:02.241Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Object_Items_List.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Object_Items_List.xaml.cs",
-              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Object_Items_List.xaml.cs",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Object_Items_List.xaml.cs",
-              "RelativeToolTip": "Game_Engine\\User_controls\\Object_Items_List.xaml.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAQwF4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T06:13:23.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Sprite_renderer_menu.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Sprite_renderer_menu.xaml.cs",
-              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Sprite_renderer_menu.xaml.cs",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Sprite_renderer_menu.xaml.cs",
-              "RelativeToolTip": "Game_Engine\\User_controls\\Sprite_renderer_menu.xaml.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAAAuwD8AAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T05:22:17.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Object_Items_List.xaml",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Object_Items_List.xaml",
-              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Object_Items_List.xaml",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Object_Items_List.xaml",
-              "RelativeToolTip": "Game_Engine\\User_controls\\Object_Items_List.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-17T06:29:04.193Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "Project_Window.xaml.cs",
               "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml.cs",
               "RelativeDocumentMoniker": "Game_Engine\\Project_Window.xaml.cs",
               "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml.cs",
               "RelativeToolTip": "Game_Engine\\Project_Window.xaml.cs",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAYwNEAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T05:51:49.036Z"
+              "WhenOpened": "2025-05-23T18:45:25.945Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "StartWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\StartWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Game_Engine\\StartWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\StartWindow.xaml.cs",
-              "RelativeToolTip": "Game_Engine\\StartWindow.xaml.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADAAAAAaAAAAAAAAAA==",
+              "Title": "PlaceViewWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml",
+              "RelativeDocumentMoniker": "Game_Engine\\PlaceViewWindow.xaml",
+              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml",
+              "RelativeToolTip": "Game_Engine\\PlaceViewWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-24T15:00:13.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Place_Instances_List.xaml",
+              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml",
+              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml",
+              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml",
+              "RelativeToolTip": "Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-24T14:57:48.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ObjectViewWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\ObjectViewWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Game_Engine\\ObjectViewWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\ObjectViewWindow.xaml.cs",
+              "RelativeToolTip": "Game_Engine\\ObjectViewWindow.xaml.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T05:50:57.677Z"
+              "WhenOpened": "2025-05-22T15:43:36.121Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Sprite_renderer_menu.xaml",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Sprite_renderer_menu.xaml",
-              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Sprite_renderer_menu.xaml",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Sprite_renderer_menu.xaml",
-              "RelativeToolTip": "Game_Engine\\User_controls\\Sprite_renderer_menu.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-17T06:18:26.25Z"
+              "Title": "PlaceViewWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Game_Engine\\PlaceViewWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml.cs",
+              "RelativeToolTip": "Game_Engine\\PlaceViewWindow.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T15:43:02.806Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Transform_Menu.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Transform_Menu.xaml.cs",
-              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Transform_Menu.xaml.cs",
-              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Transform_Menu.xaml.cs",
-              "RelativeToolTip": "Game_Engine\\User_controls\\Transform_Menu.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACMAAAAfAAAAAAAAAA==",
+              "Title": "Place_Instances_List.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml.cs",
+              "RelativeDocumentMoniker": "Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml.cs",
+              "ToolTip": "C:\\Users\\main\\Desktop\\projects\\Game_Engine\\Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml.cs",
+              "RelativeToolTip": "Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAqwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T11:56:35.079Z"
+              "WhenOpened": "2025-05-20T10:05:17.94Z",
+              "EditorCaption": ""
             }
           ]
         }

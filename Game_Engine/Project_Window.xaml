@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:Game_Engine"
         
         mc:Ignorable="d"
-        Title="Project_Window" Height="450" Width="800">
-    <Grid>
+        Title="Project_Window" Height="450" Width="800"
+        >
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="85*"/>
@@ -19,11 +20,11 @@
 
             <TreeView Name="sol_exp_tree" Canvas.Top="20">
             </TreeView>
-            <Button Content="reload" Click="Reload_Project_sol"/>
+            <Button Content="reload" Click="Reload_Project_sol" />
         </Canvas>
 
 
-        <Canvas Name="operating_canvas" Grid.Column="1">
+        <Canvas Name="operating_canvas" Grid.Column="1" >
 
             <Canvas.RenderTransform>
                 <ScaleTransform ScaleX="1"/>

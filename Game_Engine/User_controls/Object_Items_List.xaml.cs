@@ -78,6 +78,7 @@ namespace Game_Engine.User_controls
 
         private void add_blank_component(game_component blank)
         {
+            // the template for each buttonpress for adding a component's consequences
             if (components != null)
             {
                 //find window that this is in to update the object component list for
@@ -87,7 +88,7 @@ namespace Game_Engine.User_controls
                     {
                         ((ObjectViewWindow)window).the_object.components = ((ObjectViewWindow)window).the_object.components.Append(blank).ToArray();
                         Add_component_element(blank, ((ObjectViewWindow)window).the_object.components.Length - 1);
-
+                        components = ((ObjectViewWindow)window).the_object.components;
                         break;
                     }
                 }

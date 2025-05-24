@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\App.xaml
-61167555502
+8-1635206535
 
-13-1018081161
+16-60773135
 199-553578441
-ObjectViewWindow.xaml;Project_Window.xaml;StartWindow.xaml;User_controls\Object_Items_List.xaml;User_controls\Sprite_renderer_menu.xaml;User_controls\Transform_Menu.xaml;
+ObjectViewWindow.xaml;PlaceViewWindow.xaml;Project_Window.xaml;StartWindow.xaml;User_controls\Object_Items_List.xaml;User_controls\Places_Window_conts\Place_Instances_List.xaml;User_controls\Sprite_renderer_menu.xaml;User_controls\Transform_Menu.xaml;
 
 False
 

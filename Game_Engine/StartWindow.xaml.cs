@@ -44,6 +44,8 @@ public partial class StartWindow : Window
             Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Objects"));
             Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Scripts"));
             Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Assets"));
+            Directory.CreateDirectory(fs.Name.Replace(split_path.Last(), "Places"));
+
 
             Project_Window project = new Project_Window(fs);
             project.Show();

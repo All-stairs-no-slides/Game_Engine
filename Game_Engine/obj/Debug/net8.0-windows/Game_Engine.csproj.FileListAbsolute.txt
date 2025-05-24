@@ -33,3 +33,7 @@ C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\Game_Eng.B09EA9FE.Up2Date
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Sprite_renderer_menu.g.cs
 C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Sprite_renderer_menu.baml
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\PlaceViewWindow.g.cs
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\PlaceViewWindow.baml
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Places_Window_conts\Place_Instances_List.g.cs
+C:\Users\main\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Places_Window_conts\Place_Instances_List.baml
