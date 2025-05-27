@@ -23,7 +23,7 @@ namespace Game_Engine.faux_obj_types
             switch (type)
             {
                 case "Transform":
-                    transform_component trans_temp = new transform_component("Transform" , 0, 0, 1, 1, 0);
+                    transform_component trans_temp = new transform_component("Transform" , 0, 0, 1, 1, 0, 0);
                     serializer.Populate(jsonObject.CreateReader(), trans_temp);
                     Debug.WriteLine(trans_temp.x);
 
@@ -59,6 +59,7 @@ namespace Game_Engine.faux_obj_types
                     transform_component trans_val = (transform_component)value;
                     jo.Add("x", trans_val.x);
                     jo.Add("y", trans_val.y);
+                    jo.Add("z", trans_val.z);
                     jo.Add("x_scale", trans_val.x_scale);
                     jo.Add("y_scale", trans_val.y_scale);
                     jo.Add("rotation", trans_val.rotation);
@@ -95,14 +96,16 @@ namespace Game_Engine.faux_obj_types
     {
         public int x { get; set; }
         public int y { get; set; }
+        public int z { get; set; }
         public int x_scale { get; set; }
         public int y_scale { get; set; }
         public int rotation { get; set; }
-        public transform_component(string type, int X, int Y, int X_scale, int Y_scale, int rotation)
+        public transform_component(string type, int X, int Y, int X_scale, int Y_scale, int rotation, int Z)
         {
             this.type = type;
             this.x = X;
             this.y = Y;
+            this.z = Z;
             this.x_scale = X_scale;
             this.y_scale = Y_scale;
             this.rotation = rotation;

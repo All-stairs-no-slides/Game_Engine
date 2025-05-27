@@ -35,7 +35,7 @@ namespace Game_Engine
             path = Project_file.Name;
             this.Project_file.Close();
 
-            path = path.Remove(path.LastIndexOf("\\"));
+            path = path.Remove(path.LastIndexOf("\\") + 1);
             // init solution explorer
             Refresh_sol_exp(path);
         }
@@ -137,9 +137,9 @@ namespace Game_Engine
             //throw new NotImplementedException();
             TreeViewItem src_item = e.Source as TreeViewItem;
             string place_name = src_item.Header.ToString();
-            Debug.Write(path + "\\Places\\" + place_name);
+            Debug.Write(path + "Places\\" + place_name);
 
-            start_place_view(path + "\\Places\\" + place_name);
+            start_place_view(path + "Places\\" + place_name);
         }
 
         private void Reload_Project_sol(object sender, RoutedEventArgs e)
@@ -196,7 +196,7 @@ namespace Game_Engine
 
         private void start_place_view(string Place_path)
         {
-            PlaceViewWindow Place_window = new PlaceViewWindow();
+            PlaceViewWindow Place_window = new PlaceViewWindow(Place_path);
             Place_window.Show();
         }
 
@@ -207,7 +207,7 @@ namespace Game_Engine
             {
                 //Debug.WriteLine(sender.GetType());
                 TreeViewItem Item = sender as TreeViewItem;
-                string path = Item.Tag.ToString() + "\\" + Item.Header.ToString();
+                string path = Item.Tag.ToString() + Item.Header.ToString();
                 DragDrop.DoDragDrop((TreeViewItem)sender, new DataObject(path), DragDropEffects.Copy);
             }
         }

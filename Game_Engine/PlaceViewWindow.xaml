@@ -9,7 +9,8 @@
         Title="PlaceViewWindow" Height="450" Width="800"
         AllowDrop="True"
         Drop="Place_Window_Drop"
-        >
+        KeyDown="Key_pressed">
+        
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
@@ -18,6 +19,6 @@
 
         </Grid.ColumnDefinitions>
 
-        <Place_conts:Place_Instances_List/>
+        <Place_conts:Place_Instances_List x:Name="Instance_list"/>
     </Grid>
 </Window>

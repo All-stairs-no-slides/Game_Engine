@@ -36,6 +36,9 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Rotation" FontSize="8"/>
         <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding Rot_prop, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <Label Grid.Row="4" Grid.Column="1" Content="depth" FontSize="8"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Z_pos_prop, UpdateSourceTrigger=PropertyChanged}"/>
+
 
     </Grid>
     

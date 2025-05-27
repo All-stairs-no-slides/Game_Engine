@@ -58,7 +58,7 @@ namespace Game_Engine.User_controls
                     
                     Transform_menu.Header = "Transform";
                     // populate menu
-                    Transform_Menu trans_content = new Transform_Menu(index, trans_component.x, trans_component.y, trans_component.x_scale, trans_component.y_scale, trans_component.rotation);
+                    Transform_Menu trans_content = new Transform_Menu(index, trans_component.x, trans_component.y, trans_component.x_scale, trans_component.y_scale, trans_component.rotation, trans_component.z);
                     Transform_menu.Items.Add(trans_content);
                     Tree_Parent.Items.Add(Transform_menu);
                     break;
@@ -98,7 +98,7 @@ namespace Game_Engine.User_controls
 
         private void Add_transform(object sender, RoutedEventArgs e)
         {
-            add_blank_component(new transform_component("Transform", 0, 0, 1, 1, 0));
+            add_blank_component(new transform_component("Transform", 0, 0, 1, 1, 0, 0));
         }
 
         private void Add_Sprite_Renderer(object sender, RoutedEventArgs e)

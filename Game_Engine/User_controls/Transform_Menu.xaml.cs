@@ -23,13 +23,14 @@ namespace Game_Engine.User_controls
     /// </summary>
     public partial class Transform_Menu : UserControl
     {
-        public Transform_Menu(int index, int x_pos, int y_pos ,int x_scale ,int y_scale, int Rotation)
+        public Transform_Menu(int index, int x_pos, int y_pos ,int x_scale ,int y_scale, int Rotation, int z_pos)
         {
 
 
             this.Index = index;
             this.X_pos_prop = x_pos;
             this.Y_pos_prop = y_pos;
+            this.Z_pos_prop = z_pos;
             this.X_scale_prop = x_scale;
             this.Y_scale_prop = y_scale;
             this.Rot_prop = Rotation;
@@ -97,6 +98,36 @@ namespace Game_Engine.User_controls
 
                 }
                 //Debug.WriteLine(Y_pos);
+            }
+        }
+
+        private int Z_pos;
+
+        public int Z_pos_prop
+        {
+            get { return Z_pos; }
+            set
+            {
+                Z_pos = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Z_pos_prop"));
+                foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
+                {
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
+                    {
+                        foreach (object content in item.Items)
+                        {
+                            if (content == this)
+                            {
+                                game_component[] comps = window.the_object.components;
+                                ((transform_component)comps[Index]).z = value;
+                            }
+                        }
+                    }
+
+
+                }
+                //Debug.WriteLine(Z_pos);
             }
         }
 

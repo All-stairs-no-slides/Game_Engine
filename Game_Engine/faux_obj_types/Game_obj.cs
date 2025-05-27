@@ -17,7 +17,7 @@ namespace Game_Engine.faux_obj_types
             this.components = components;
             if (components.Length == 0)
             {
-                transform_component initial_comp = new transform_component("Transform", 0, 0, 1, 1, 0);
+                transform_component initial_comp = new transform_component("Transform", 0, 0, 1, 1, 0, 0);
                 initial_comp.type = "Transform";
                 this.components = [initial_comp];
             }
