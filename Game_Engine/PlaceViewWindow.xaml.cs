@@ -111,6 +111,16 @@ namespace Game_Engine
             {
                 Save_Place();
             }
+            else if (e.Key == Key.Delete)
+            {
+                if (Instance_list.Tree_Parent.SelectedItem != null)
+                {
+                    TreeViewItem deletion_item = (TreeViewItem)Instance_list.Tree_Parent.SelectedItem;
+                    int deletion_index = (int)deletion_item.Tag;
+                    Place.Instances = Place.Instances.Where((val, i) => i != deletion_index).ToArray();
+                    Instance_list.Tree_Parent.Items.Remove(Instance_list.Tree_Parent.SelectedItem);
+                }
+            }
         }
     }
 }

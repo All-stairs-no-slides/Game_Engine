@@ -85,6 +85,15 @@ namespace Game_Engine
             if(Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
             {
                 Save_Object();
+            } else if (e.Key == Key.Delete)
+            {
+                if(Components_list.Tree_Parent.SelectedItem != null)
+                {
+                    return;
+                    the_object.components = the_object.components.Where((val, i) => );
+
+                    Components_list.Tree_Parent.Items.Remove(Components_list.Tree_Parent.SelectedItem);
+                }
             }
         }
     }

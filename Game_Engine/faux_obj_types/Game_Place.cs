@@ -15,11 +15,11 @@ namespace Game_Engine.faux_obj_types
             this.Instances = instances;
             this.Place_name = name;
 
-            if (instances.Length == 0)
-            {
-                Game_obj background = new Game_obj("background", []);
-                this.Instances = [background];
-            }
+            //if (instances.Length == 0)
+            //{
+            //    Game_obj background = new Game_obj("background", []);
+            //    this.Instances = [background];
+            //}
         }
     }
 }
