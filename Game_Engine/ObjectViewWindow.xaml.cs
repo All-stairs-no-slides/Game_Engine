@@ -89,10 +89,15 @@ namespace Game_Engine
             {
                 if(Components_list.Tree_Parent.SelectedItem != null)
                 {
-                    return;
-                    the_object.components = the_object.components.Where((val, i) => );
+                    TreeViewItem deletion_item = (TreeViewItem)Components_list.Tree_Parent.SelectedItem;
+                    int deletion_index = (int)deletion_item.Tag;
+
+                    the_object.components = the_object.components.Where((val, i) => i != deletion_index).ToArray();
 
                     Components_list.Tree_Parent.Items.Remove(Components_list.Tree_Parent.SelectedItem);
+                    Components_list.Reload_components();
+                    return;
+
                 }
             }
         }

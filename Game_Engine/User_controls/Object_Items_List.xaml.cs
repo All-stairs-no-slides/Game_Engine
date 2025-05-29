@@ -41,6 +41,7 @@ namespace Game_Engine.User_controls
                     break;
                 }
             int index = 0;
+            Tree_Parent.Items.Clear();
             foreach (game_component comp in components)
             {
                 Add_component_element(comp, index);
@@ -50,28 +51,31 @@ namespace Game_Engine.User_controls
 
         private void Add_component_element(game_component comp, int index)
         {
+            // create the base menu that will be populated
+            TreeViewItem The_menu = new TreeViewItem();
+
+            The_menu.Header = comp.type;
+            The_menu.Tag = index;
+
+            // populate the menu
             switch (comp.type)
             {
                 case "Transform":
                     transform_component trans_component = (transform_component)comp;
-                    TreeViewItem Transform_menu = new TreeViewItem();
                     
-                    Transform_menu.Header = "Transform";
                     // populate menu
                     Transform_Menu trans_content = new Transform_Menu(index, trans_component.x, trans_component.y, trans_component.x_scale, trans_component.y_scale, trans_component.rotation, trans_component.z);
-                    Transform_menu.Items.Add(trans_content);
-                    Tree_Parent.Items.Add(Transform_menu);
+                    The_menu.Items.Add(trans_content);
+                    Tree_Parent.Items.Add(The_menu);
                     break;
 
                 case "Sprite_renderer":
                     Sprite_renderer spr_component = (Sprite_renderer)comp;
-                    TreeViewItem Sprite_Menu = new TreeViewItem();
 
-                    Sprite_Menu.Header = "Sprite_renderer";
                     // populate menu
                     Sprite_renderer_menu spr_content = new Sprite_renderer_menu(index, spr_component.x_offset, spr_component.y_offset, spr_component.x_scale, spr_component.y_scale, spr_component.rotation, spr_component.Sprite_dir);
-                    Sprite_Menu.Items.Add(spr_content);
-                    Tree_Parent.Items.Add(Sprite_Menu);
+                    The_menu.Items.Add(spr_content);
+                    Tree_Parent.Items.Add(The_menu);
                     break;
             }
         }
