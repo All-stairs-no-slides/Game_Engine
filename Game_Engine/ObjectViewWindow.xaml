@@ -16,5 +16,9 @@
         </Grid.ColumnDefinitions>
 
         <User_conts:Object_Items_List Grid.Column="0" x:Name="Components_list"/>
+        <Canvas x:Name="Object_display" Grid.Column="1">
+            <User_conts:Object_display Width="150" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Canvas.Left="213" Canvas.Top="157"></User_conts:Object_display>
+
+        </Canvas>
     </Grid>
 </Window>

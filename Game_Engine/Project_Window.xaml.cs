@@ -63,6 +63,10 @@ namespace Game_Engine
                     {
                         node.MouseDoubleClick += Place_MouseDoubleClick;
                     }
+                    if (files[i].Split("\\").Last().Split(".").Last() == "spr")
+                    {
+                        node.MouseDoubleClick += Sprite_MouseDoubleClick;
+                    }
 
                     // to drag and drop items in the solution
                     node.MouseMove += Solution_Item_Mouse_Move;
@@ -94,10 +98,15 @@ namespace Game_Engine
                     MenuItem Scene_Add = new MenuItem();
                     Scene_Add.Header = "Place";
                     Scene_Add.Click += new System.Windows.RoutedEventHandler(this.Create_Game_Place);
+                    MenuItem Sprite_Add = new MenuItem();
+                    Sprite_Add.Header = "Sprite";
+                    Sprite_Add.Click += new System.Windows.RoutedEventHandler(this.Create_Game_Sprite);
 
                     // finalise  context menu
                     add_item.Items.Add(Object_add);
                     add_item.Items.Add(Scene_Add);
+                    add_item.Items.Add(Sprite_Add);
+
                     new_menu.Items.Add(add_item);
 
                     // add dir to the tree 
@@ -130,6 +139,14 @@ namespace Game_Engine
             TreeViewItem src_item = e.Source as TreeViewItem;
             string obj_name = src_item.Header.ToString();
             start_object_view(path + "\\Objects\\" + obj_name.ToString().Remove(obj_name.ToString().LastIndexOf(".")) + "\\" + obj_name);
+        }
+
+        private void Sprite_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+            TreeViewItem src_item = e.Source as TreeViewItem;
+            string spr_name = src_item.Header.ToString();
+            start_sprite_view(path + "\\Assets\\" + spr_name.ToString().Remove(spr_name.ToString().LastIndexOf(".")) + "\\" + spr_name);
         }
 
         private void Place_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -166,6 +183,25 @@ namespace Game_Engine
             Reload_Project_sol(sender, e);
         }
 
+        private void Create_Game_Sprite(object sender, RoutedEventArgs e)
+        {
+            // Summary:
+            // creates a game object in the file system under the folder selected
+
+            string Sprite_name = Interaction.InputBox("Sprite Name");
+            //Debug.WriteLine(Obj_name);
+            if (Sprite_name == "")
+            {
+                return;
+            }
+            Directory.CreateDirectory(path + "\\Assets\\" + Sprite_name);
+            Game_Sprite Sprite = new Game_Sprite(new List<float> { }, new List<string> { }, Sprite_name);
+            //Debug.WriteLine(obj.components[0].type);
+            string json_string = JsonConvert.SerializeObject(Sprite);
+            File.WriteAllText(path + "\\Assets\\" + Sprite_name + "\\" + Sprite_name + ".spr", json_string);
+            Reload_Project_sol(sender, e);
+        }
+
         private void Create_Game_Place(object sender, RoutedEventArgs e)
         {
             // Summary:
@@ -198,6 +234,12 @@ namespace Game_Engine
         {
             PlaceViewWindow Place_window = new PlaceViewWindow(Place_path);
             Place_window.Show();
+        }
+
+        private void start_sprite_view(string sprite_path)
+        {
+            SpriteViewWindow Sprite_Window = new SpriteViewWindow(sprite_path);
+            Sprite_Window.Show();
         }
 
 

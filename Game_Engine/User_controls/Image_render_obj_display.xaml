@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Game_Engine.User_controls.Image_render_obj_display"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Game_Engine.User_controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Border Background="Gray" />
+
+        <Viewbox Stretch="Fill">
+
+            <Image x:Name="image"></Image>
+
+
+        </Viewbox>
+        <Thumb x:Name="SW_Thumb" Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNESW"></Thumb>
+        <Thumb x:Name="SE_Thumb" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNWSE"></Thumb>
+        <Thumb x:Name="NW_Thumb" Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNWSE"></Thumb>
+        <Thumb x:Name="NE_Thumb" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" 
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNESW"></Thumb>
+
+    </Grid>
+</UserControl>
