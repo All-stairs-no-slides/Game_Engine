@@ -102,12 +102,25 @@ namespace Game_Engine.User_controls
 
         private void Add_transform(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < components.Length; i++) {
+                if (components[i].GetType() == typeof(transform_component)) {
+                    return;
+                }
+            }
             add_blank_component(new transform_component("Transform", 0, 0, 1, 1, 0, 0));
         }
 
         private void Add_Sprite_Renderer(object sender, RoutedEventArgs e)
         {
-            add_blank_component(new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, ""));
+            for (int i = 0; i < components.Length; i++)
+            {
+                if (components[i].GetType() == typeof(transform_component))
+                {
+                    add_blank_component(new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, ""));
+                    return;
+                }
+            }
+            MessageBox.Show("you need a transform component to have a sprite renderer");
             
         }
     }
