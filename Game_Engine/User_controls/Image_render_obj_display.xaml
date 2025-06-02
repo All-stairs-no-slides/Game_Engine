@@ -9,7 +9,7 @@
     <Grid>
         <Border Background="Gray" />
 
-        <Viewbox Stretch="Fill">
+        <Viewbox Stretch="Fill" x:Name="sprite_viewbox">
 
             <Image x:Name="image"></Image>
 
