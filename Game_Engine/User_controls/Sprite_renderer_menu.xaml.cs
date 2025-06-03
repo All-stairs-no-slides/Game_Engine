@@ -25,7 +25,7 @@ namespace Game_Engine.User_controls
     /// </summary>
     public partial class Sprite_renderer_menu : UserControl
     {
-        public Sprite_renderer_menu(int Index, int x_offset, int y_offset, int x_scale, int y_scale, int rotation, string sprite_path)
+        public Sprite_renderer_menu(int Index, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, string sprite_path)
         {
             this.Index = Index;
             this.X_offset_prop = x_offset;
@@ -55,9 +55,9 @@ namespace Game_Engine.User_controls
 
         private int Index;
 
-        private int rotation;
+        private double rotation;
         
-        public int Rot_prop
+        public double Rot_prop
         {
             get { return rotation; }
             set { rotation = value;
@@ -140,9 +140,9 @@ namespace Game_Engine.User_controls
             }
         }
 
-        private int x_scale;
+        private double x_scale;
 
-        public int X_scale_prop
+        public double X_scale_prop
         {
             get { return x_scale; }
             set { x_scale = value;
@@ -168,9 +168,9 @@ namespace Game_Engine.User_controls
             }
         }
 
-        private int y_scale;
+        private double y_scale;
 
-        public int Y_scale_prop
+        public double Y_scale_prop
         {
             get { return y_scale; }
             set { y_scale = value;

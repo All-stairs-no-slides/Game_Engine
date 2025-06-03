@@ -33,7 +33,8 @@
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Y_scale_prop, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="4" Grid.Column="0" Content="Rotation" FontSize="8"/>
-        <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding Rot_prop, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding Rot_prop, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, 
+                        NotifyOnValidationError=True}"/>
 
         <Button Content="Select Sprite" Click="Sprite_Selection" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" />
 

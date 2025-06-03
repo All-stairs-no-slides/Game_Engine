@@ -116,11 +116,11 @@ namespace Game_Engine.faux_obj_types
     {
         public int x_offset { get; set; }
         public int y_offset { get; set; }
-        public int x_scale { get; set; }
-        public int y_scale { get; set; }
-        public int rotation { get; set; }
+        public double x_scale { get; set; }
+        public double y_scale { get; set; }
+        public double rotation { get; set; }
         public string Sprite_dir { get; set; }
-        public Sprite_renderer(string type, int x_offset, int y_offset, int x_scale, int y_scale, int rotation, string sprite_dir)
+        public Sprite_renderer(string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, string sprite_dir)
         {
             this.type = type;
             this.x_offset = x_offset;

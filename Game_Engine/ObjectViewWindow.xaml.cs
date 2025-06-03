@@ -73,11 +73,13 @@ namespace Game_Engine
                     }
                     string json_string = File.ReadAllText(((Sprite_renderer)component).Sprite_dir);
                     Game_Sprite the_sprite = JsonConvert.DeserializeObject<Game_Sprite>(json_string);
-                    Image_render_obj_display image_render_display = new Image_render_obj_display();
 
-                    // Create Image Element
-                    Image myImage = new Image();
-                    //myImage.Width = 200;
+                    if (the_sprite.Images_location.Count == 0) {
+                        continue;
+                    }
+
+
+                    Image_render_obj_display image_render_display = new Image_render_obj_display();
 
                     // Create source
                     BitmapImage myBitmapImage = new BitmapImage();
@@ -85,20 +87,11 @@ namespace Game_Engine
                     // BitmapImage.UriSource must be in a BeginInit/EndInit block
                     myBitmapImage.BeginInit();
                     myBitmapImage.UriSource = new Uri(the_sprite.Images_location[0]);
-
-                    // To save significant application memory, set the DecodePixelWidth or
-                    // DecodePixelHeight of the BitmapImage value of the image source to the desired
-                    // height or width of the rendered image. If you don't do this, the application will
-                    // cache the image as though it were rendered as its normal size rather than just
-                    // the size that is displayed.
-                    // Note: In order to preserve aspect ratio, set DecodePixelWidth
-                    // or DecodePixelHeight but not both.
-                    //myBitmapImage.DecodePixelWidth = 200;
                     myBitmapImage.EndInit();
 
                     image_render_display.image.Source = myBitmapImage;
-                    image_render_display.sprite_viewbox.Width = myBitmapImage.Width * zoom;
-                    image_render_display.sprite_viewbox.Height = myBitmapImage.Height * zoom;
+                    image_render_display.sprite_viewbox.Width = (myBitmapImage.Width * zoom) * ((Sprite_renderer)component).x_scale;
+                    image_render_display.sprite_viewbox.Height = (myBitmapImage.Height * zoom) * ((Sprite_renderer)component).y_scale;
                     Canvas.SetLeft(image_render_display, ((Sprite_renderer)component).x_offset);
                     Object_display.Children.Add(image_render_display);
                 }
