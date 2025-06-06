@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -62,6 +63,8 @@ namespace Game_Engine
 
         private void Load_obj_visuals()
         {
+            // the position in the components array so each element can easily be refered to
+            int index = 0;
             foreach (game_component component in Components_list.components) 
             {
                 // display a sprite
@@ -69,12 +72,14 @@ namespace Game_Engine
                     if(((Sprite_renderer)component).Sprite_dir == "") 
                     {
                         //location has yet to be assigned 4 this sprite
+                        index++;
                         continue;
                     }
                     string json_string = File.ReadAllText(((Sprite_renderer)component).Sprite_dir);
                     Game_Sprite the_sprite = JsonConvert.DeserializeObject<Game_Sprite>(json_string);
 
                     if (the_sprite.Images_location.Count == 0) {
+                        index++;
                         continue;
                     }
 
@@ -93,8 +98,13 @@ namespace Game_Engine
                     image_render_display.sprite_viewbox.Width = (myBitmapImage.Width * zoom) * ((Sprite_renderer)component).x_scale;
                     image_render_display.sprite_viewbox.Height = (myBitmapImage.Height * zoom) * ((Sprite_renderer)component).y_scale;
                     Canvas.SetLeft(image_render_display, ((Sprite_renderer)component).x_offset);
+                    Canvas.SetTop(image_render_display, ((Sprite_renderer)component).y_offset);
+
+                    image_render_display.Tag = index;
                     Object_display.Children.Add(image_render_display);
                 }
+                index++;
+
             }
         }
 
@@ -142,6 +152,30 @@ namespace Game_Engine
                     return;
 
                 }
+            }
+        }
+
+        private void Object_display_DragOver(object sender, DragEventArgs e)
+        {
+
+            if (e.Data.GetDataPresent(typeof(Image_render_obj_display)))
+            {
+                //Debug.WriteLine(sender.GetType());
+                //Canvas.GetLeft(sender);
+                Image_render_obj_display data = e.Data.GetData(typeof(Image_render_obj_display)) as Image_render_obj_display;
+                Debug.WriteLine(e.Source);
+                if (e.Source.GetType() == typeof(Canvas)) 
+                {
+                    foreach (UIElement child in Object_display.Children)
+                    {
+                        if (child == data)
+                        {
+                            Canvas.SetLeft(child, 0);
+                        }
+                    }
+                }
+                    //Canvas.SetLeft(((Image_render_obj_display)e.Source).image, 0);
+                
             }
         }
     }
