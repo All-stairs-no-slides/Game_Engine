@@ -11,18 +11,18 @@
 
         <Viewbox Stretch="Fill" x:Name="sprite_viewbox">
 
-            <Image x:Name="image"></Image>
+            <Image x:Name="image" MouseMove="image_MouseMove"></Image>
 
 
         </Viewbox>
         <Thumb x:Name="SW_Thumb" Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
             Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNESW" MouseMove="Thumb_MouseMove"></Thumb>
         <Thumb x:Name="SE_Thumb" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNWSE"></Thumb>
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNWSE" MouseMove="Thumb_MouseMove"></Thumb>
         <Thumb x:Name="NW_Thumb" Width="10" Height="10" HorizontalAlignment="Left" VerticalAlignment="Top" 
-            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNWSE"></Thumb>
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNWSE" MouseMove="Thumb_MouseMove"></Thumb>
         <Thumb x:Name="NE_Thumb" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" 
-            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNESW"></Thumb>
+            Margin="0,0,0,0" Background="DarkGray" Cursor="SizeNESW" MouseMove="Thumb_MouseMove"></Thumb>
 
     </Grid>
 </UserControl>

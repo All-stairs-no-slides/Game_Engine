@@ -35,8 +35,17 @@ namespace Game_Engine.User_controls
             {
                 Thumb thumb = sender as Thumb;
                 string name = thumb.Name;
-                //Debug.WriteLine(name);
-                DragDrop.DoDragDrop(thumb, this, DragDropEffects.Move);
+                Debug.WriteLine(name);
+                DragDrop.DoDragDrop(thumb, new object[] { thumb.Name, this, "Image_scale" }, DragDropEffects.Move);
+            }
+        }
+
+        private void image_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                //Debug.WriteLine("nonoono");
+                DragDrop.DoDragDrop(sender as UIElement, new object[] { e.GetPosition(this), this, "Image_move" }, DragDropEffects.Move);
             }
         }
     }
