@@ -36,6 +36,10 @@
         <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding Rot_prop, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, 
                         NotifyOnValidationError=True}"/>
 
+        <Label Grid.Row="4" Grid.Column="1" Content="Depth" FontSize="8"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Depth_prop, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True, 
+                NotifyOnValidationError=True}"/>
+
         <Button Content="Select Sprite" Click="Sprite_Selection" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" />
 
 

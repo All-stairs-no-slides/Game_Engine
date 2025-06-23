@@ -25,8 +25,9 @@ namespace Game_Engine.User_controls
     /// </summary>
     public partial class Sprite_renderer_menu : UserControl
     {
-        public Sprite_renderer_menu(int Index, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, string sprite_path)
+        public Sprite_renderer_menu(int Index, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, string sprite_path, int depth)
         {
+            this.init = true;
             this.Index = Index;
             this.X_offset_prop = x_offset;
             this.Y_offset_prop = y_offset;
@@ -34,9 +35,12 @@ namespace Game_Engine.User_controls
             this.Y_scale_prop = y_scale;
             this.Sprite_path_prop = sprite_path;
             this.Rot_prop = rotation;
+            this.Depth_prop = depth;
+            this.init = false;
             DataContext = this;
             InitializeComponent();
         }
+        private bool init;
 
         private void Sprite_Selection(object sender, RoutedEventArgs e)
         {
@@ -54,6 +58,50 @@ namespace Game_Engine.User_controls
         public event PropertyChangedEventHandler PropertyChanged;
 
         private int Index;
+
+        private int depth;
+
+        public int Depth_prop
+        {
+            get { return depth; }
+            set
+            {
+                depth = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Depth_prop"));
+                //find window that this is in to update the object component list for
+                foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
+                {
+                    //Debug.WriteLine(((ObjectViewWindow)window).Components_list.Tree_Parent.Items);
+                    foreach (TreeViewItem item in ((ObjectViewWindow)window).Components_list.Tree_Parent.Items)
+                    {
+                        foreach (object content in item.Items)
+                        {
+                            if (content == this)
+                            {
+                                game_component[] comps = window.the_object.components;
+                                ((Sprite_renderer)comps[Index]).depth = value;
+                            }
+                        }
+                    }
+
+                    // set the visuals for the sprite renderer if the textbox feild is set
+                    foreach (UIElement item in ((ObjectViewWindow)window).Object_display.Children)
+                    {
+                        // look through only Image renderers
+                        if(item.GetType() != typeof(Image_render_obj_display))
+                        {
+                            continue;
+                        }
+                        // identify the correct sprite renderer
+                        if((int)((Image_render_obj_display)item).Tag == Index)
+                        {
+                            Canvas.SetZIndex(item, value);  
+                        }
+                    }
+
+                }
+            }
+        }
 
         private double rotation;
         
@@ -107,6 +155,26 @@ namespace Game_Engine.User_controls
                         }
                     }
 
+                    // set the visuals for the sprite renderer if the textbox feild is set
+                    foreach (UIElement item in ((ObjectViewWindow)window).Object_display.Children)
+                    {
+                        // look through only Image renderers
+                        if (item.GetType() != typeof(Image_render_obj_display))
+                        {
+                            continue;
+                        }
+                        // identify the correct sprite renderer
+                        if ((int)((Image_render_obj_display)item).Tag == Index)
+                        {
+                            if (init == true)
+                            {
+                                // for the initial set
+                                continue;
+                            }
+                            Canvas.SetLeft(item, value);
+                        }
+                    }
+
 
                 }
             }
@@ -135,6 +203,25 @@ namespace Game_Engine.User_controls
                         }
                     }
 
+                    // set the visuals for the sprite renderer if the textbox feild is set
+                    foreach (UIElement item in ((ObjectViewWindow)window).Object_display.Children)
+                    {
+                        // look through only Image renderers
+                        if (item.GetType() != typeof(Image_render_obj_display))
+                        {
+                            continue;
+                        }
+                        // identify the correct sprite renderer
+                        if ((int)((Image_render_obj_display)item).Tag == Index)
+                        {
+                            if (init == true)
+                            {
+                                // for the initial set
+                                continue;
+                            }
+                            Canvas.SetTop(item, value);
+                        }
+                    }
 
                 }
             }
@@ -145,7 +232,7 @@ namespace Game_Engine.User_controls
         public double X_scale_prop
         {
             get { return x_scale; }
-            set { x_scale = value;
+            set { 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("X_scale_prop"));
                 //find window that this is in to update the object component list for
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
@@ -163,8 +250,30 @@ namespace Game_Engine.User_controls
                         }
                     }
 
+                    // set the visuals for the sprite renderer if the textbox feild is set
+                    foreach (UIElement item in ((ObjectViewWindow)window).Object_display.Children)
+                    {
+                        // look through only Image renderers
+                        if (item.GetType() != typeof(Image_render_obj_display))
+                        {
+                            continue;
+                        }
+                        // identify the correct sprite renderer
+                        if ((int)((Image_render_obj_display)item).Tag == Index)
+                        {
+                            if (init == true)
+                            {
+                                // for the initial set
+                                continue;
+                            }
+                            ((Image_render_obj_display)item).Width = (((Image_render_obj_display)item).Width / x_scale) * value;
+                            ((Image_render_obj_display)item).sprite_viewbox.Width = (((Image_render_obj_display)item).sprite_viewbox.Width / x_scale) * value;
+                        }
+                    }
+
 
                 }
+                x_scale = value;
             }
         }
 
@@ -173,7 +282,7 @@ namespace Game_Engine.User_controls
         public double Y_scale_prop
         {
             get { return y_scale; }
-            set { y_scale = value;
+            set { 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Y_scale_prop"));
                 //find window that this is in to update the object component list for
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
@@ -191,8 +300,29 @@ namespace Game_Engine.User_controls
                         }
                     }
 
+                    // set the visuals for the sprite renderer if the textbox feild is set
+                    foreach (UIElement item in ((ObjectViewWindow)window).Object_display.Children)
+                    {
+                        // look through only Image renderers
+                        if (item.GetType() != typeof(Image_render_obj_display))
+                        {
+                            continue;
+                        }
+                        // identify the correct sprite renderer
+                        if ((int)((Image_render_obj_display)item).Tag == Index)
+                        {
+                            if(init == true)
+                            {
+                                // for the initial set
+                                continue;
+                            }
+                            ((Image_render_obj_display)item).Height = (((Image_render_obj_display)item).Height / y_scale) * value;
+                            ((Image_render_obj_display)item).sprite_viewbox.Height = (((Image_render_obj_display)item).sprite_viewbox.Height / y_scale) * value;
+                        }
+                    }
 
                 }
+                y_scale = value;
             }
         }
 

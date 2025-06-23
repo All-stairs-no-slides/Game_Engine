@@ -30,7 +30,7 @@ namespace Game_Engine.faux_obj_types
                     return trans_temp;
 
                 case "Sprite_renderer":
-                    Sprite_renderer spr_temp = new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, "");
+                    Sprite_renderer spr_temp = new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, "", 1);
                     serializer.Populate(jsonObject.CreateReader(), spr_temp);
                     Debug.WriteLine(spr_temp.x_offset);
 
@@ -75,6 +75,7 @@ namespace Game_Engine.faux_obj_types
                     jo.Add("y_scale", sprite_val.y_scale);
                     jo.Add("Sprite_dir", sprite_val.Sprite_dir);
                     jo.Add("rotation", sprite_val.rotation);
+                    jo.Add("depth", sprite_val.depth);
 
 
                     break;
@@ -120,7 +121,8 @@ namespace Game_Engine.faux_obj_types
         public double y_scale { get; set; }
         public double rotation { get; set; }
         public string Sprite_dir { get; set; }
-        public Sprite_renderer(string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, string sprite_dir)
+        public int depth { get; set; }
+        public Sprite_renderer(string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, string sprite_dir, int depth)
         {
             this.type = type;
             this.x_offset = x_offset;
@@ -129,6 +131,7 @@ namespace Game_Engine.faux_obj_types
             this.y_scale = y_scale;
             this.rotation = rotation;
             this.Sprite_dir = sprite_dir;
+            this.depth = depth;
         }
     }
 }

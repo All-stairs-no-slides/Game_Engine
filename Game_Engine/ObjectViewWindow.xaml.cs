@@ -99,6 +99,7 @@ namespace Game_Engine
                     image_render_display.sprite_viewbox.Height = (myBitmapImage.Height * zoom) * ((Sprite_renderer)component).y_scale;
                     Canvas.SetLeft(image_render_display, ((Sprite_renderer)component).x_offset);
                     Canvas.SetTop(image_render_display, ((Sprite_renderer)component).y_offset);
+                    Canvas.SetZIndex(image_render_display, ((Sprite_renderer)component).depth);
 
                     image_render_display.Tag = index;
                     Object_display.Children.Add(image_render_display);
@@ -290,9 +291,14 @@ namespace Game_Engine
 
         private void Object_display_DragOver(object sender, DragEventArgs e)
         {
+            if (!e.Data.GetDataPresent(typeof(object[])))
+            {
+                return;
+            }
             // registers the dragover events on the main canvas
             object[] data = e.Data.GetData(typeof(object[])) as object[];
             Point move_to = e.GetPosition(Object_display);
+            //Debug.WriteLine(sender);
             switch (data[data.Length - 1])
             {
                 case "Image_scale":
@@ -322,6 +328,11 @@ namespace Game_Engine
             {
                 if (child == data[1])
                 {
+                    
+
+
+
+
                     // change the actual data values that get saved
                     ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).x_offset = (int)Canvas.GetLeft((Image_render_obj_display)child);
                     ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).y_offset = (int)Canvas.GetTop((Image_render_obj_display)child);
@@ -355,6 +366,8 @@ namespace Game_Engine
             {
                 if (child == data[1])
                 {
+                    
+
                     // change the actual data values that get saved
                     ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).x_offset = (int)Canvas.GetLeft((Image_render_obj_display)child);
                     ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).y_offset = (int)Canvas.GetTop((Image_render_obj_display)child);

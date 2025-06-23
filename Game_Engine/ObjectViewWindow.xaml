@@ -15,7 +15,7 @@
 
         </Grid.ColumnDefinitions>
 
-        <User_conts:Object_Items_List Grid.Column="0" x:Name="Components_list"/>
-        <Canvas x:Name="Object_display" Grid.Column="1" AllowDrop="True" Drop="Object_display_Drop" DragOver="Object_display_DragOver" Background="Transparent"/>
+        <User_conts:Object_Items_List Grid.Column="0" x:Name="Components_list" Panel.ZIndex="0" Background="Transparent"/>
+        <Canvas x:Name="Object_display" Grid.Column="1" AllowDrop="True" Drop="Object_display_Drop" DragOver="Object_display_DragOver" Background="Transparent" Panel.ZIndex="2"/>
     </Grid>
 </Window>

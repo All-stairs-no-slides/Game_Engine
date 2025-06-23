@@ -73,7 +73,7 @@ namespace Game_Engine.User_controls
                     Sprite_renderer spr_component = (Sprite_renderer)comp;
 
                     // populate menu
-                    Sprite_renderer_menu spr_content = new Sprite_renderer_menu(index, spr_component.x_offset, spr_component.y_offset, spr_component.x_scale, spr_component.y_scale, spr_component.rotation, spr_component.Sprite_dir);
+                    Sprite_renderer_menu spr_content = new Sprite_renderer_menu(index, spr_component.x_offset, spr_component.y_offset, spr_component.x_scale, spr_component.y_scale, spr_component.rotation, spr_component.Sprite_dir, spr_component.depth);
                     The_menu.Items.Add(spr_content);
                     Tree_Parent.Items.Add(The_menu);
                     break;
@@ -82,7 +82,7 @@ namespace Game_Engine.User_controls
 
         private void add_blank_component(game_component blank)
         {
-            // the template for each buttonpress for adding a component's consequences
+            // the template for each buttonpress for adding a new component to the object
             if (components != null)
             {
                 //find window that this is in to update the object component list for
@@ -116,7 +116,7 @@ namespace Game_Engine.User_controls
             {
                 if (components[i].GetType() == typeof(transform_component))
                 {
-                    add_blank_component(new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, ""));
+                    add_blank_component(new Sprite_renderer("Sprite_renderer", 0, 0, 1, 1, 0, "", 1));
                     return;
                 }
             }

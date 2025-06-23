@@ -27,6 +27,7 @@ namespace Game_Engine.User_controls
             InitializeComponent();
         }
 
+        
         private void Thumb_MouseMove(object sender, MouseEventArgs e)
         {
             
