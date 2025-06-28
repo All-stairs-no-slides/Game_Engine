@@ -26,8 +26,8 @@ namespace game_components {
         double x_scale, y_scale, rotation;
 
         transform_component() = default;
-        transform_component(std::string type, int x, int y, int z, double x_scale, double y_scale, double rotation)
-            : Game_Component(type), x(x), y(y), z(z), x_scale(x_scale), y_scale(y_scale), rotation(rotation) {
+        transform_component(std::string type, int x, int y, int z, double x_scale, double y_scale, double rotation) : Game_Component(type), x(x), y(y), z(z), x_scale(x_scale), y_scale(y_scale), rotation(rotation) 
+        {
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(transform_component, type, x, y, z, x_scale, y_scale, rotation)
@@ -41,10 +41,8 @@ namespace game_components {
         int depth;
 
         sprite_renderer() = default;
-        sprite_renderer(std::string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation,
-            std::string Sprite_dir, int depth)
-            : Game_Component(type), x_offset(x_offset), y_offset(y_offset), x_scale(x_scale), y_scale(y_scale),
-            rotation(rotation), Sprite_dir(Sprite_dir), depth(depth) {
+        sprite_renderer(std::string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, std::string Sprite_dir, int depth) : Game_Component(type), x_offset(x_offset), y_offset(y_offset), x_scale(x_scale), y_scale(y_scale), rotation(rotation), Sprite_dir(Sprite_dir), depth(depth) 
+        {
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(sprite_renderer, type, x_offset, y_offset, x_scale, y_scale, rotation, Sprite_dir, depth)
