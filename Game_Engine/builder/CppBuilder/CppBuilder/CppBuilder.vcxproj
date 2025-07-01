@@ -23,6 +23,7 @@
     <ClCompile Include="Game_Object.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Shader_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="Game_Component.h" />
     <ClInclude Include="Game_Object.h" />
+    <ClInclude Include="Shader_Utilities.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

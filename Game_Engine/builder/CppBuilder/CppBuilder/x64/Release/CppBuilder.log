@@ -1,7 +1,8 @@
-﻿  main.cpp
+﻿  Shader_utils.cpp
+  main.cpp
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  2 of 1725 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  4 of 1737 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
