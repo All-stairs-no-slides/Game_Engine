@@ -1,13 +1,20 @@
 #pragma once
 #include <string>
+#include <iostream>
 #include <nlohmann/json.hpp>
+#include "Sprite_Asset.h"
 
 namespace game_components {
 
     class Game_Component {
     public:
+        // settup for deserialisation
+        // ------------------------------------------------------------------
         std::string type;  // For polymorphic deserialization
-        Game_Component(std::string type) : type(type) {}
+        Game_Component(std::string type) : type(type) 
+        {
+            std::cout << "yoyoyo" << std::endl;
+        }
         Game_Component() = default;
 
         virtual ~Game_Component() = default;  // Virtual destructor for polymorphism
@@ -17,7 +24,14 @@ namespace game_components {
         }
 
         // Make sure the base class has the correct serialization macro
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Game_Component, type)
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Game_Component, type);
+
+        // Object functions
+        // ------------------------------------------------------------------
+        void Initialisation() {
+            std::cout << "initialising component" << std::endl;
+        }
+
     };
 
     class transform_component : public Game_Component {
@@ -45,6 +59,11 @@ namespace game_components {
         {
         }
 
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(sprite_renderer, type, x_offset, y_offset, x_scale, y_scale, rotation, Sprite_dir, depth)
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(sprite_renderer, type, x_offset, y_offset, x_scale, y_scale, rotation, Sprite_dir, depth);
+
+        void Initialisation();
+
+    private:
+        Sprite::Sprite sprite;
     };
 }

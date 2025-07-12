@@ -1,8 +1,8 @@
 ﻿  main.cpp
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  2 of 1892 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 2242 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    11 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CppBuilder.vcxproj -> C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Release\CppBuilder.exe

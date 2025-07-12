@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <nlohmann/json.hpp>
 #include "Game_Object.h"
+#include "Place.h"
 // glad must come before glfw
 #include <glad/glad.h>
 #include <glfw3.h>
@@ -16,11 +17,6 @@
 
 using json = nlohmann::json;
 
-
-
-
-
-
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	// resizing func
@@ -30,17 +26,19 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 int main()
 {
 
-	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Objects\nnn\nnn.obj)");
+	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\ppp.place)");
 	json plain_json = json::parse(f);
 	std::cout << "Current path is: " << plain_json << std::endl;
-	game_object::Game_Object obj = game_object::Game_Object::from_json(plain_json);
+	Place::Place place;
+	place = place.from_json(plain_json);
 
-	// Accessing the deserialized components
-	std::cout << "Game Object: " << obj.Name << "\n";
+	//std::cout << place.Place_name << std::endl;
+	// test accessing the deserialize d components
+	/*std::cout << "Game Object: " << obj.Name << "\n";
 	for (const auto& comp : obj.components) {
 
 		std::cout << "Component Type: " << comp->type << "\n";
-	}
+	}*/
 
 	// setup window
 	glfwInit();
@@ -50,7 +48,7 @@ int main()
 
 	
 	// start window
-	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "placeholder, remember to fix dumbass", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -115,7 +113,7 @@ int main()
 		1, 2, 3    // second triangle
 	};
 
-	
+	Shader_utils::Shader Basic_Shader(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Shaders\Basic_Shader\Basic.vsh)", R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Shaders\Basic_Shader\Basic.fsh)");
 
 	// vertex data stored in a buffer to be moved to GPU
 	unsigned int VBO;
@@ -147,41 +145,9 @@ int main()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	// the 
+	// the texcoords
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 	glEnableVertexAttribArray(2);
-
-	const char* vert_shader = "#version 330 core\n"
-		"layout(location = 0) in vec3 aPos;\n"
-		"layout(location = 1) in vec3 aColor; \n"
-		"layout(location = 2) in vec2 aTexCoord; \n"
-
-		"out vec3 ourColor; \n"
-		"	out vec2 TexCoord; \n"
-		"void main()\n"
-		"{ \n"
-		"		gl_Position = vec4(aPos, 1.0); \n"
-		"ourColor = aColor; \n"
-		"	TexCoord = aTexCoord; \n"
-	"}";
-
-	const char* frag_shader = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"in vec3 ourColor;\n"
-		"in vec2 TexCoord;\n"
-		"uniform sampler2D ourTexture;\n"
-
-		"void main()\n"
-		"{\n"
-		"FragColor = texture(ourTexture, TexCoord);\n"
-		"}\n";
-
-	Shader_utils::Shader Basic_Shader(vert_shader, frag_shader);
-
-	Basic_Shader.use(); // don't forget to activate the shader before setting uniforms!  
-	//glUniform1i(glGetUniformLocation(Basic_Shader.ID, "ourTexture"), 0); // set it manually
-
-	
 
 	// render loop
 	while (!glfwWindowShouldClose(window))

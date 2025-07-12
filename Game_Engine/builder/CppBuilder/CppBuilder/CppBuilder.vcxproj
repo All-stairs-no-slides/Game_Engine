@@ -32,7 +32,9 @@
   <ItemGroup>
     <ClInclude Include="Game_Component.h" />
     <ClInclude Include="Game_Object.h" />
+    <ClInclude Include="Place.h" />
     <ClInclude Include="Shader_Utilities.h" />
+    <ClInclude Include="Sprite_Asset.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
