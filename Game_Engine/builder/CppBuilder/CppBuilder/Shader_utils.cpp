@@ -7,6 +7,9 @@
 #include <sstream>
 #include <iostream>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 using namespace Shader_utils;
 
 
@@ -112,3 +115,11 @@ void Shader::setFloat(const std::string& name, float value) const
 {
     glUniform1f(glGetUniformLocation(Shader::ID, name.c_str()), value);
 };
+void Shader::setMatrix4(const std::string& name, const glm::mat4& matrix) const
+{
+    glUniformMatrix4fv(glGetUniformLocation(Shader::ID, name.c_str()), 1, false, glm::value_ptr(matrix));
+};
+void Shader::SetVector3f(const char* name, const glm::vec3& value) const
+{
+    glUniform3f(glGetUniformLocation(Shader::ID, name), value.x, value.y, value.z);
+}

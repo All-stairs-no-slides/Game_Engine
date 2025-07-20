@@ -25,6 +25,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shader_utils.cpp" />
     <ClCompile Include="STB_image_implementation.cpp" />
+    <ClCompile Include="Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -35,6 +36,7 @@
     <ClInclude Include="Place.h" />
     <ClInclude Include="Shader_Utilities.h" />
     <ClInclude Include="Sprite_Asset.h" />
+    <ClInclude Include="Textures.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

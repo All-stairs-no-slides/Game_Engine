@@ -3,6 +3,21 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include "Sprite_Asset.h"
+#include "Shader_Utilities.h"
+#include "Textures.h"
+
+// glad must come before glfw
+#include <glad/glad.h>
+#include <glfw3.h>
+// gl mathematics
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "Shader_Utilities.h"
+
+// texture loading
+#include "stb_image.h"
+
 
 namespace game_components {
 
@@ -53,6 +68,7 @@ namespace game_components {
         double x_scale, y_scale, rotation;
         std::string Sprite_dir;
         int depth;
+        Shader_utils::Shader shader = Shader_utils::Shader(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Shaders\Basic_Shader\Basic.vsh)", R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Shaders\Basic_Shader\Basic.fsh)");
 
         sprite_renderer() = default;
         sprite_renderer(std::string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, std::string Sprite_dir, int depth) : Game_Component(type), x_offset(x_offset), y_offset(y_offset), x_scale(x_scale), y_scale(y_scale), rotation(rotation), Sprite_dir(Sprite_dir), depth(depth) 
@@ -63,7 +79,13 @@ namespace game_components {
 
         void Initialisation();
 
+        void DrawSelf(Textures::Texture2D& texture, glm::vec2 position,
+            glm::vec2 size = glm::vec2(10.0f, 10.0f), float rotate = 0.0f,
+            glm::vec3 color = glm::vec3(1.0f));
+
     private:
         Sprite::Sprite sprite;
+        unsigned int VAO;
+
     };
 }

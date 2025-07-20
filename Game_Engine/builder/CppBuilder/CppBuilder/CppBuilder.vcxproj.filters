@@ -13,25 +13,34 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\utility_files">
+      <UniqueIdentifier>{8cc5e7f1-6ccf-4c3b-8b94-7ffd825bf6f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game classes">
+      <UniqueIdentifier>{35c3c34f-3d86-4ace-b622-e1e5a0d2ff3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game_Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game_Component.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\game classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game_Object.cpp">
+      <Filter>Source Files\game classes</Filter>
     </ClCompile>
     <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader_utils.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\utility_files</Filter>
     </ClCompile>
     <ClCompile Include="STB_image_implementation.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\utility_files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader_utils.cpp">
+      <Filter>Source Files\utility_files</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Source Files\game classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Place.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
