@@ -55,6 +55,10 @@ int main()
 
 	// set viewport
 	glViewport(0, 0, 800, 600);
+
+	// transparency
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	// normalisation vector used to normalise coordinates within the screen
 	glm::mat4 norm_vec = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
@@ -69,12 +73,6 @@ int main()
 	Place::Place place;
 	place = place.from_json(plain_json);
 
-	// width height and colour channels
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Assets\awesomeface.png)", &width, &height, &nrChannels, 0);
-	
-	Textures::Texture2D texture = Textures::Texture2D();
-	texture.Generate(width, height, data);
 
 	for (const auto& comp : place.Instances[0].components) {
 		if (comp->type == "Sprite_renderer") {
@@ -86,17 +84,23 @@ int main()
 
 		}
 	}
-
-	// render loop
+	int lswitch = 1;
+	// Game loop
 	while (!glfwWindowShouldClose(window))
 	{
-
-
+		// clear screen
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
+		glClear(GL_COLOR_BUFFER_BIT);
+		// render loop
 		for (const auto& comp : place.Instances[0].components) {
+			
 			if (comp->type == "Sprite_renderer") {
+				lswitch += 1;
+				lswitch = lswitch % 2;
 				std::shared_ptr<game_components::sprite_renderer> spr_renderer = std::dynamic_pointer_cast<game_components::sprite_renderer>(comp);
+
 				if (spr_renderer) {
-					spr_renderer->DrawSelf(texture, glm::vec2(10.0f, 10.0f), glm::vec2(10.0f, 10.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+					spr_renderer->DrawSelf(glm::vec2(10.0f + (200.0 * lswitch), 10.0f), glm::vec2(80.0f, 80.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
 				}
 
 			}

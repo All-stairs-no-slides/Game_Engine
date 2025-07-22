@@ -33,6 +33,7 @@ void sprite_renderer::Initialisation()
 	plain_json.at("name").get_to(spr.Name);
 	plain_json.at("durations").get_to(spr.durations);
 	plain_json.at("Images_location").get_to(spr.Image_location);
+    spr.Initialise();
 	this->sprite = spr;
 
 	// initialise render data
@@ -64,7 +65,7 @@ void sprite_renderer::Initialisation()
 }
 
 
-void sprite_renderer::DrawSelf(Textures::Texture2D& texture, glm::vec2 position,
+void sprite_renderer::DrawSelf(glm::vec2 position,
     glm::vec2 size, float rotate, glm::vec3 color)
 {
     // prepare transformations
@@ -82,7 +83,8 @@ void sprite_renderer::DrawSelf(Textures::Texture2D& texture, glm::vec2 position,
     this->shader.SetVector3f("spriteColor", color);
 
     glActiveTexture(GL_TEXTURE0);
-    texture.Bind();
+    Textures::Texture2D tex = this->sprite.Get_Current_texture();
+    tex.Bind();
 
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);

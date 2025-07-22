@@ -52,7 +52,7 @@ namespace Game_Engine
             // for creating a window from a Place's instance to edit for said place
 
             Instance_path = [Place_window_index, Instance_arr_pos];
-
+            this.zoom = 0.5;
             path = "";
             the_object = Instance;
             InitializeComponent();
