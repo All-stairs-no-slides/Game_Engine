@@ -15,6 +15,11 @@
 #include "Textures.h"
 // texture loading
 #include "stb_image.h"
+// python
+#include <Python.h>
+#include <pybind11/pybind11.h>
+
+namespace py = pybind11;
 
 using json = nlohmann::json;
 
@@ -84,24 +89,38 @@ int main()
 
 		}
 	}
-	int lswitch = 1;
+	
 	// Game loop
 	while (!glfwWindowShouldClose(window))
 	{
 		// clear screen
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 		glClear(GL_COLOR_BUFFER_BIT);
+		game_components::transform_component current_transform;
 		// render loop
 		for (const auto& comp : place.Instances[0].components) {
-			
+
+			if (comp->type == "Transform") {
+				std::shared_ptr<game_components::transform_component> Transform = std::dynamic_pointer_cast<game_components::transform_component>(comp);
+
+				if (Transform) {
+					current_transform = *Transform.get();
+				}
+				continue;
+
+			}
 			if (comp->type == "Sprite_renderer") {
-				lswitch += 1;
-				lswitch = lswitch % 2;
 				std::shared_ptr<game_components::sprite_renderer> spr_renderer = std::dynamic_pointer_cast<game_components::sprite_renderer>(comp);
 
 				if (spr_renderer) {
-					spr_renderer->DrawSelf(glm::vec2(10.0f + (200.0 * lswitch), 10.0f), glm::vec2(80.0f, 80.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+
+					spr_renderer->DrawSelf(
+						glm::vec2((float)current_transform.x + (float)spr_renderer->x_offset, (float)current_transform.y + (float)spr_renderer->y_offset), // position
+						glm::vec2(current_transform.x_scale * spr_renderer->x_scale, current_transform.y_scale * spr_renderer->y_scale), // scale
+						current_transform.rotation + spr_renderer->rotation, // rotation
+						glm::vec3(1.0f, 1.0f, 1.0f)); // colour
 				}
+				continue;
 
 			}
 		}

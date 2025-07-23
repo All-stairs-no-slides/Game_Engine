@@ -92,8 +92,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\include;C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13;C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\libs;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -148,6 +148,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\python313.dll" "$(OutDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

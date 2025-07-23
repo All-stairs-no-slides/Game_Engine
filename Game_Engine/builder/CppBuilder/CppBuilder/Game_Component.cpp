@@ -66,8 +66,15 @@ void sprite_renderer::Initialisation()
 
 
 void sprite_renderer::DrawSelf(glm::vec2 position,
-    glm::vec2 size, float rotate, glm::vec3 color)
+    glm::vec2 scale, float rotate, glm::vec3 color)
 {
+    // prep texture
+    glActiveTexture(GL_TEXTURE0);
+    Textures::Texture2D tex = this->sprite.Get_Current_texture();
+    tex.Bind();
+
+    glm::vec2 size = glm::vec2(tex.Width * scale.x, tex.Height * scale.y);
+
     // prepare transformations
     this->shader.use();
     glm::mat4 model = glm::mat4(1.0f);
@@ -82,9 +89,7 @@ void sprite_renderer::DrawSelf(glm::vec2 position,
     this->shader.setMatrix4("model", model);
     this->shader.SetVector3f("spriteColor", color);
 
-    glActiveTexture(GL_TEXTURE0);
-    Textures::Texture2D tex = this->sprite.Get_Current_texture();
-    tex.Bind();
+    
 
     glBindVertexArray(this->VAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
