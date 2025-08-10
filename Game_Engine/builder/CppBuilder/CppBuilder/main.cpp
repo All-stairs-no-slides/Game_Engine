@@ -17,9 +17,10 @@
 #include "stb_image.h"
 // python
 #include <Python.h>
-#include <pybind11/pybind11.h>
+#include <pybind11/embed.h>
 
 namespace py = pybind11;
+using namespace py::literals;
 
 using json = nlohmann::json;
 
@@ -29,8 +30,29 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
+namespace gc = game_components;
+
+
+
 int main()
 {
+	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+	//py::object scope = py::module_::import("__main__").attr("__dict__");
+
+	py::module_ sys = py::module_::import("sys");
+	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts)");
+	//py::eval_file(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts\Test_1.py)", scope);
+
+	py::module_ mymodule = py::module_::import("Test_1");
+
+	// Create a dummy module at runtime
+	auto main_module = py::module_::import("__main__");
+
+	// register the class
+	py::class_<gc::Game_Component, std::shared_ptr<gc::Game_Component>>(main_module, "Game_Component")
+		.def(py::init<>())
+		.def_readwrite("type", &gc::Game_Component::type);
+
 	// setup window
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -84,10 +106,47 @@ int main()
 			std::shared_ptr<game_components::sprite_renderer> spr_renderer = std::dynamic_pointer_cast<game_components::sprite_renderer>(comp);
 			if (spr_renderer) {
 				spr_renderer->Initialisation();
-				std::cout << "Component Type: " << "hihihihihihihihihihihihihihihihhihihhihihihhhhhhhhhhhhhhhhhhhhh" << "\n";
 			}
 
 		}
+	}
+
+	// Get the class
+	py::object MyClass = mymodule.attr("test");
+
+	// Create an instance
+	py::object instance = MyClass();
+	// check that the file both has the intended method name and that it is indeed a function
+	if (py::hasattr(instance, "hi")) {
+		py::object method = instance.attr("hi");
+
+		// Confirm it's actually callable
+		if (py::isinstance<py::function>(method)) {
+			std::cout << "the method exists and is callable.\n";
+			//py::function olla = instance["hi"];
+			//std::shared_ptr<gc::transform_component> Trans = std::dynamic_pointer_cast<gc::transform_component>(place.Instances[0].components[0]);
+			auto Trans = std::make_shared<gc::Game_Component>();
+			Trans->type = "me";
+			auto casted = py::cast(Trans);
+			if (!casted) {
+				std::cerr << "py::cast returned null\n";
+				return 0;
+			}
+			std::cout << "Python sees:" << py::str(casted).cast<std::string>() << std::endl;
+			try {
+				method(casted);
+			}
+			catch (py::cast_error e) {
+				std::cout << "fuck " << e.what() << std::endl;
+			}
+
+		}
+		else {
+			std::cout << "the method exists but is not callable.\n";
+		}
+	}
+	else {
+		std::cout << "the method does NOT exist.\n";
 	}
 	
 	// Game loop

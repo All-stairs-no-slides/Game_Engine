@@ -6,6 +6,8 @@
 #include "Shader_Utilities.h"
 #include "Textures.h"
 
+#include <pybind11/embed.h>
+
 // glad must come before glfw
 #include <glad/glad.h>
 #include <glfw3.h>
@@ -17,6 +19,10 @@
 
 // texture loading
 #include "stb_image.h"
+
+namespace py = pybind11;
+
+
 
 
 namespace game_components {
@@ -47,6 +53,19 @@ namespace game_components {
             std::cout << "initialising component" << std::endl;
         }
 
+    };
+
+    class script_component : public Game_Component {
+    public:
+        std::string script_name;
+        std::string scope_exposure; // can be local, room, or global
+
+        script_component() = default;
+        script_component(std::string type, std::string script_name, std::string scope_exposure) : Game_Component(type), script_name(script_name), scope_exposure(scope_exposure)
+        {
+        }
+
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(script_component, type, script_name, scope_exposure)
     };
 
     class transform_component : public Game_Component {

@@ -28,6 +28,7 @@ namespace game_object {
             }
             j.at("type").get_to(type);  // Extract the type field
 
+            // else if because its more simple than making an enum for a switch statement
             if (type == "Transform") {
                 game_components::transform_component comp = j.get<game_components::transform_component>();
                 comp.Initialisation();
@@ -39,6 +40,12 @@ namespace game_object {
                 game_components::sprite_renderer comp = j.get<game_components::sprite_renderer>();
                 comp.Initialisation();
                 auto ret = std::make_shared<game_components::sprite_renderer>(comp);
+                return ret;
+            }
+            else if (type == "Script") {
+                game_components::script_component comp = j.get<game_components::script_component>();
+                comp.Initialisation();
+                auto ret = std::make_shared<game_components::script_component>(comp);
                 return ret;
             }
 

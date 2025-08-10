@@ -183,6 +183,23 @@ namespace Game_Engine
             Reload_Project_sol(sender, e);
         }
 
+        private void Create_Script(object sender, RoutedEventArgs e)
+        {
+            // Summary:
+            // creates a python script for later use via an object or instance
+
+            string Script_name = Interaction.InputBox("Script Name");
+
+            if(Script_name == "")
+            {
+                return;
+            }
+            Directory.CreateDirectory(path + "\\Objects\\" + Script_name);
+
+
+
+        }
+
         private void Create_Game_Sprite(object sender, RoutedEventArgs e)
         {
             // Summary:
