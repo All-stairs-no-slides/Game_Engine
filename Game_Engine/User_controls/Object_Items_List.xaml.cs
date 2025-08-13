@@ -77,6 +77,15 @@ namespace Game_Engine.User_controls
                     The_menu.Items.Add(spr_content);
                     Tree_Parent.Items.Add(The_menu);
                     break;
+
+                case "Script":
+                    script_component script_component = (script_component)comp;
+
+                    // populate menu
+                    Script_Menu script_content = new Script_Menu(index, script_component.path, script_component.scope);
+                    The_menu.Items.Add(script_content);
+                    Tree_Parent.Items.Add(The_menu);
+                    break;
             }
         }
 
@@ -122,6 +131,12 @@ namespace Game_Engine.User_controls
             }
             MessageBox.Show("you need a transform component to have a sprite renderer");
             
+        }
+
+        private void Add_Script(object sender, RoutedEventArgs e)
+        {
+            add_blank_component(new script_component("Script", "", "Local"));
+            return;
         }
     }
 }

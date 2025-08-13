@@ -101,11 +101,16 @@ namespace Game_Engine
                     MenuItem Sprite_Add = new MenuItem();
                     Sprite_Add.Header = "Sprite";
                     Sprite_Add.Click += new System.Windows.RoutedEventHandler(this.Create_Game_Sprite);
+                    MenuItem Script_Add = new MenuItem();
+                    Script_Add.Header = "Script";
+                    Script_Add.Click += new System.Windows.RoutedEventHandler(this.Create_Script);
+
 
                     // finalise  context menu
                     add_item.Items.Add(Object_add);
                     add_item.Items.Add(Scene_Add);
                     add_item.Items.Add(Sprite_Add);
+                    add_item.Items.Add(Script_Add);
 
                     new_menu.Items.Add(add_item);
 
@@ -194,10 +199,7 @@ namespace Game_Engine
             {
                 return;
             }
-            Directory.CreateDirectory(path + "\\Objects\\" + Script_name);
-
-
-
+            Directory.CreateDirectory(path + "\\Scripts\\" + Script_name + ".py");
         }
 
         private void Create_Game_Sprite(object sender, RoutedEventArgs e)

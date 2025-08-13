@@ -26,6 +26,9 @@
     <Compile Update="User_controls\Places_Window_conts\Place_Instances_List.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="User_controls\Script_Menu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="User_controls\Sprite_renderer_menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

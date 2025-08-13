@@ -36,6 +36,13 @@ namespace Game_Engine.faux_obj_types
 
                     return spr_temp;
 
+                case "Script":
+                    script_component script_temp = new script_component("Script", "", "Local");
+                    serializer.Populate(jsonObject.CreateReader(), script_temp);
+                    Debug.WriteLine(script_temp.path);
+
+                    return script_temp;
+
                 case null:
                 case "":
                     throw new JsonSerializationException("Missing or empty 'type' field in component.");
@@ -80,6 +87,13 @@ namespace Game_Engine.faux_obj_types
 
                     break;
 
+                case "Script":
+                    script_component script_val = (script_component)value;
+                    jo.Add("path", script_val.path);
+                    jo.Add("scope", script_val.scope);
+                    break;
+
+
 
             }
             jo.WriteTo(writer);
@@ -93,6 +107,17 @@ namespace Game_Engine.faux_obj_types
         
     }
 
+    public class script_component : game_component {
+        public string path { get; set; }
+        public string scope { get; set; }
+
+        public script_component(string type, string path, string scope)
+        {
+            this.type = type;
+            this.path = path;
+            this.scope = scope;
+        }
+    }
     public class transform_component : game_component
     {
         public int x { get; set; }

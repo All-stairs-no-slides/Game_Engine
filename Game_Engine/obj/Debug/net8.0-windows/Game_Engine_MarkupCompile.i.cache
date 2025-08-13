@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\App.xaml
-11-2011415980
+1223844424
 
-23-744190584
+231054942373
 1991214883188
-ObjectViewWindow.xaml;PlaceViewWindow.xaml;Project_Window.xaml;SpriteViewWindow.xaml;StartWindow.xaml;User_controls\Image_render_obj_display.xaml;User_controls\Object_display.xaml;User_controls\Object_Items_List.xaml;User_controls\Places_Window_conts\Place_Instances_List.xaml;User_controls\Sprite_renderer_menu.xaml;User_controls\Transform_Menu.xaml;
+ObjectViewWindow.xaml;PlaceViewWindow.xaml;Project_Window.xaml;SpriteViewWindow.xaml;StartWindow.xaml;User_controls\Image_render_obj_display.xaml;User_controls\Object_display.xaml;User_controls\Object_Items_List.xaml;User_controls\Places_Window_conts\Place_Instances_List.xaml;User_controls\Script_Menu.xaml;User_controls\Sprite_renderer_menu.xaml;User_controls\Transform_Menu.xaml;
 
 False
 
