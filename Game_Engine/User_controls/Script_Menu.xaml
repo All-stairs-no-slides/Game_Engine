@@ -17,12 +17,13 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="45*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Script location" FontSize="8"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Script location"/>
         <Button Grid.Row="1" Grid.Column="0" Content="Choose Script" Click="Script_selection"/>
+        <Label x:Name="Script_name_label" Grid.Row="1" Grid.Column="1" Content="{Binding Path_prop, UpdateSourceTrigger=PropertyChanged}" FontSize="8"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Script Scope" />
         <ComboBox Grid.Column="0" Grid.Row="3" SelectionChanged="scope_changed">
-            <ComboBoxItem Background="LightCoral" Foreground="Red" Content="Local" FontFamily="Verdana" FontSize="12" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
-            <ComboBoxItem Background="LightGray" Foreground="Black" Content="Global" FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem x:Name="Local_Item" Background="LightCoral" Foreground="Red" Content="Local" FontFamily="Verdana" FontSize="12" FontWeight="Bold" IsSelected="True"></ComboBoxItem>
+            <ComboBoxItem x:Name="Global_Item" Background="LightGray" Foreground="Black" Content="Global" FontFamily="Georgia" FontSize="14" FontWeight="Bold"></ComboBoxItem>
         </ComboBox>
 
 

@@ -46,7 +46,7 @@ namespace Game_Engine.User_controls
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Sprite File|*.spr";
-            openFileDialog.Title = "Open a sprite";
+            openFileDialog.Title = "Choose a sprite";
             openFileDialog.ShowDialog();
 
             if (openFileDialog.FileName != "")

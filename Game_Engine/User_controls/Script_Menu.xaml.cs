@@ -1,4 +1,5 @@
 ﻿using Game_Engine.faux_obj_types;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,12 +29,28 @@ namespace Game_Engine.User_controls
             this.Index = index;
             this.Path_prop = path;
             this.Scope_prop = scope;
+            DataContext = this;
             InitializeComponent();
+
+            if(scope == "Global")
+            {
+                Global_Item.IsSelected = true;
+            }
         }
 
         private void Script_selection(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Python Script File|*.py";
+            openFileDialog.Title = "Choose a script";
+            openFileDialog.ShowDialog();
 
+            if (openFileDialog.FileName != "")
+            {
+                System.IO.FileStream fs = (System.IO.FileStream)openFileDialog.OpenFile();
+                string[] segmented = fs.Name.Split("\\");
+                this.Path_prop = segmented.Last();
+            }
         }
 
         private void scope_changed(object sender, SelectionChangedEventArgs e)
@@ -82,8 +99,8 @@ namespace Game_Engine.User_controls
             get { return scope; }
             set
             {
-                path = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Scope_prop"));
+                scope = value;
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Scope_prop"));
                 //find window that this is in to update the object component list for
                 foreach (ObjectViewWindow window in Application.Current.Windows.OfType<ObjectViewWindow>())
                 {
