@@ -122,5 +122,13 @@ namespace Game_Engine
                 }
             }
         }
+
+        private void set_as_start(object sender, RoutedEventArgs e)
+        {
+            foreach(Project_Window win in Application.Current.Windows.OfType<Project_Window>())
+            {
+                
+            }
+        }
     }
 }

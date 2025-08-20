@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Game_Engine.faux_obj_types;
+using Game_Engine.User_controls;
+using Microsoft.VisualBasic;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,10 +18,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Game_Engine.User_controls;
-using Microsoft.VisualBasic;
-using Game_Engine.faux_obj_types;
-using Newtonsoft.Json;
 
 
 namespace Game_Engine
@@ -26,18 +27,36 @@ namespace Game_Engine
     /// </summary>
     public partial class Project_Window : Window
     {
-        private System.IO.FileStream Project_file;
-        string path;
+        public Project project = new Project("", "");
+        public string path;
         public Project_Window(System.IO.FileStream Project_file)
         {
             InitializeComponent();
-            this.Project_file = Project_file;
-            path = Project_file.Name;
-            this.Project_file.Close();
 
+            path = Project_file.Name;
+            Project_file.Close();
+
+
+
+            project.Name = path.Remove(0, path.LastIndexOf("\\") + 1);
             path = path.Remove(path.LastIndexOf("\\") + 1);
             // init solution explorer
             Refresh_sol_exp(path);
+        }
+
+        private void Save_project()
+        {
+            string json_string = JsonConvert.SerializeObject(project);
+            File.WriteAllText(path + "\\" + project.Name, json_string);
+        }
+
+        private void Key_pressed(object sender, KeyEventArgs e)
+        {
+            // check for save kepress
+            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+            {
+                Save_project();
+            }
         }
 
         private void Refresh_sol_exp(string path_name)

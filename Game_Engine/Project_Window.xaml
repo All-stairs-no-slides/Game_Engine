@@ -7,6 +7,7 @@
         
         mc:Ignorable="d"
         Title="Project_Window" Height="450" Width="200"
+        KeyDown="Key_pressed"
         >
     <Grid >
         <Grid.ColumnDefinitions>
