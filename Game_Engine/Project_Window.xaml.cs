@@ -29,12 +29,11 @@ namespace Game_Engine
     {
         public Project project = new Project("", "");
         public string path;
-        public Project_Window(System.IO.FileStream Project_file)
+        public Project_Window(string path)
         {
             InitializeComponent();
 
-            path = Project_file.Name;
-            Project_file.Close();
+            this.path = path;
 
 
 
@@ -292,6 +291,9 @@ namespace Game_Engine
             }
         }
 
-        
+        private void Build_project(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

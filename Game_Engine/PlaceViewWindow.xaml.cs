@@ -127,7 +127,7 @@ namespace Game_Engine
         {
             foreach(Project_Window win in Application.Current.Windows.OfType<Project_Window>())
             {
-                
+                win.project.Start_place = this.Place.Place_name;
             }
         }
     }

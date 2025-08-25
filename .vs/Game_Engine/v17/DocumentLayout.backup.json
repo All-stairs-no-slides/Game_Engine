@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\startwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\startwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\project_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\project_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\faux_obj_types\\game_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\faux_obj_types\\game_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\project_window.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\project_window.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\faux_obj_types\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\faux_obj_types\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\faux_obj_types\\game_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\faux_obj_types\\game_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\placeviewwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\placeviewwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\placeviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\placeviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\faux_obj_types\\game_place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,8 +46,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StartWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\StartWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Game_Engine\\StartWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\StartWindow.xaml.cs",
+              "RelativeToolTip": "Game_Engine\\StartWindow.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAIwEoAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T03:27:44.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Project_Window.xaml",
+              "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml",
+              "RelativeDocumentMoniker": "Game_Engine\\Project_Window.xaml",
+              "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml",
+              "RelativeToolTip": "Game_Engine\\Project_Window.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-20T05:26:17.534Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -47,20 +88,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Game_Place.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\Game_Place.cs",
               "RelativeDocumentMoniker": "Game_Engine\\faux_obj_types\\Game_Place.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\Game_Place.cs",
               "RelativeToolTip": "Game_Engine\\faux_obj_types\\Game_Place.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-19T14:06:49.715Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "game_component.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\game_component.cs",
               "RelativeDocumentMoniker": "Game_Engine\\faux_obj_types\\game_component.cs",
@@ -73,28 +114,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Project.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\Project.cs",
               "RelativeDocumentMoniker": "Game_Engine\\faux_obj_types\\Project.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\Project.cs",
               "RelativeToolTip": "Game_Engine\\faux_obj_types\\Project.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-19T14:05:55.581Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Project_Window.xaml.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml.cs",
               "RelativeDocumentMoniker": "Game_Engine\\Project_Window.xaml.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml.cs",
               "RelativeToolTip": "Game_Engine\\Project_Window.xaml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAQwBwAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAwwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-19T12:38:46.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlaceViewWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml",
+              "RelativeDocumentMoniker": "Game_Engine\\PlaceViewWindow.xaml",
+              "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml",
+              "RelativeToolTip": "Game_Engine\\PlaceViewWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-20T05:25:13.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlaceViewWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Game_Engine\\PlaceViewWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml.cs",
+              "RelativeToolTip": "Game_Engine\\PlaceViewWindow.xaml.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAqwIEAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T05:20:48.633Z",
               "EditorCaption": ""
             }
           ]

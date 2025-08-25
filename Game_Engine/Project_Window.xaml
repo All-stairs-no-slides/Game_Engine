@@ -22,6 +22,7 @@
             <TreeView Name="sol_exp_tree" Canvas.Top="20">
             </TreeView>
             <Button Content="reload" Click="Reload_Project_sol" />
+            <Button Content="build" Click="Build_project" HorizontalAlignment="Left" Canvas.Left="38" VerticalAlignment="Center" />
         </Canvas>
 
 
