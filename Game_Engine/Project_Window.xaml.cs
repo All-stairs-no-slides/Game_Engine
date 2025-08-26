@@ -27,20 +27,31 @@ namespace Game_Engine
     /// </summary>
     public partial class Project_Window : Window
     {
-        public Project project = new Project("", "");
+        public Project project;
         public string path;
         public Project_Window(string path)
         {
             InitializeComponent();
 
             this.path = path;
+            string jsonString = File.ReadAllText(path);
 
+            try{ 
+                this.project = JsonConvert.DeserializeObject<Project>(jsonString);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Broken project file");
+                Debug.WriteLine(e);
+                project = new Project("", "");
 
+            }
 
             project.Name = path.Remove(0, path.LastIndexOf("\\") + 1);
-            path = path.Remove(path.LastIndexOf("\\") + 1);
+
+            this.path = path.Remove(path.LastIndexOf("\\") + 1);
             // init solution explorer
-            Refresh_sol_exp(path);
+            Refresh_sol_exp(this.path);
         }
 
         private void Save_project()
@@ -293,7 +304,11 @@ namespace Game_Engine
 
         private void Build_project(object sender, RoutedEventArgs e)
         {
-            
+            string builder_folder_location = "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\builder\\CppBuilder\\x64\\Release";
+
+            Directory.CreateDirectory(path + "\\build\\" + project.num_of_builds);
+            project.num_of_builds += 1;
+            Save_project();
         }
     }
 }
