@@ -302,13 +302,46 @@ namespace Game_Engine
             }
         }
 
+        private void Copy_Directory(string source_dir, string final_dir, string[] exclude)
+        {
+            string[] dirs = Directory.GetDirectories(source_dir);
+            string[] files = Directory.GetFiles(source_dir);
+            foreach(string f in files)
+            {
+                if(exclude.Contains(f)){
+                    continue;
+                }
+                string[] split_path = f.Split("\\");
+                File.Copy(f, final_dir + "\\" + split_path.Last());
+
+            }
+
+            foreach(string dir in dirs)
+            {
+                if(exclude.Contains(dir)){
+                    continue;
+                }
+                string[] split_dir = dir.Split("\\");
+                Directory.CreateDirectory(final_dir + "\\" + split_dir.Last());
+                Copy_Directory(dir, final_dir + "\\" + split_dir.Last(), exclude);
+            }
+
+        }
+
         private void Build_project(object sender, RoutedEventArgs e)
         {
             string builder_folder_location = "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\builder\\CppBuilder\\x64\\Release";
 
             Directory.CreateDirectory(path + "\\build\\" + project.num_of_builds);
+
+            Copy_Directory(builder_folder_location, path + "\\build\\" + project.num_of_builds, []);
+            //File.Copy(builder_folder_location, path + "\\build\\" + project.num_of_builds);
+            Directory.CreateDirectory(path + "\\build\\" + project.num_of_builds + "\\game_files");
+            Copy_Directory(path, path + "\\build\\" + project.num_of_builds + "\\game_files", [path + "build"]);
+
             project.num_of_builds += 1;
             Save_project();
+
         }
     }
 }
