@@ -44,7 +44,8 @@ namespace Game_Engine
 
             Components_list.components = the_object.components;
             Components_list.Reload_components();
-            Load_obj_visuals();
+
+            this.Loaded += Load_obj_visuals;
 
         }
         public ObjectViewWindow(Game_obj Instance, int Instance_arr_pos, int Place_window_index)
@@ -58,11 +59,26 @@ namespace Game_Engine
             InitializeComponent();
             Components_list.components = the_object.components;
             Components_list.Reload_components();
-            Load_obj_visuals();
+            this.Loaded += Load_obj_visuals;
         }
 
-        private void Load_obj_visuals()
+        private void Load_obj_visuals(object sender, RoutedEventArgs e)
         {
+            // for converting from piels to dots per inch
+            PresentationSource psource = PresentationSource.FromVisual(Object_display);
+            double x_dpi_scale;
+            double y_dpi_scale;
+            if (psource != null)
+            {
+                Matrix dpi_trans = psource.CompositionTarget.TransformToDevice;
+                x_dpi_scale = dpi_trans.M11;
+                y_dpi_scale = dpi_trans.M22;
+            }
+            else {
+                Debug.Write("an issue with dpi source (not found)");
+                return;
+            }
+
             // the position in the components array so each element can easily be refered to
             int index = 0;
             foreach (game_component component in Components_list.components) 
@@ -94,11 +110,13 @@ namespace Game_Engine
                     myBitmapImage.UriSource = new Uri(the_sprite.Images_location[0]);
                     myBitmapImage.EndInit();
 
+                    
+
                     image_render_display.image.Source = myBitmapImage;
-                    image_render_display.sprite_viewbox.Width = (myBitmapImage.Width * zoom) * ((Sprite_renderer)component).x_scale;
-                    image_render_display.sprite_viewbox.Height = (myBitmapImage.Height * zoom) * ((Sprite_renderer)component).y_scale;
-                    Canvas.SetLeft(image_render_display, ((Sprite_renderer)component).x_offset);
-                    Canvas.SetTop(image_render_display, ((Sprite_renderer)component).y_offset);
+                    image_render_display.sprite_viewbox.Width = ((myBitmapImage.PixelWidth / x_dpi_scale) * zoom) * ((Sprite_renderer)component).x_scale;
+                    image_render_display.sprite_viewbox.Height = ((myBitmapImage.PixelHeight / y_dpi_scale) * zoom) * ((Sprite_renderer)component).y_scale;
+                    Canvas.SetLeft(image_render_display, ((((Sprite_renderer)component).x_offset / x_dpi_scale) * zoom));
+                    Canvas.SetTop(image_render_display, ((((Sprite_renderer)component).y_offset / y_dpi_scale) * zoom));
                     Canvas.SetZIndex(image_render_display, ((Sprite_renderer)component).depth);
 
                     image_render_display.Tag = index;

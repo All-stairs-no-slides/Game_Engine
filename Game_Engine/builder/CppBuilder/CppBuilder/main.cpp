@@ -173,6 +173,16 @@ int main()
 
 				if (spr_renderer) {
 
+					//std::cout << spr_renderer->Sprite_dir << std::endl;
+
+					/*std::cout << current_transform.x_scale << std::endl;
+					std::cout << current_transform.y_scale << std::endl;
+
+					std::cout << "renderer" << std::endl;
+
+					std::cout << spr_renderer->x_scale << std::endl;
+					std::cout << spr_renderer->y_scale << std::endl;*/
+
 					spr_renderer->DrawSelf(
 						glm::vec2((float)current_transform.x + (float)spr_renderer->x_offset, (float)current_transform.y + (float)spr_renderer->y_offset), // position
 						glm::vec2(current_transform.x_scale * spr_renderer->x_scale, current_transform.y_scale * spr_renderer->y_scale), // scale

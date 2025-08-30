@@ -75,6 +75,7 @@ void sprite_renderer::DrawSelf(glm::vec2 position,
 
     glm::vec2 size = glm::vec2(tex.Width * scale.x, tex.Height * scale.y);
 
+    //std::cout << tex.Width << std::endl << tex.Height << std::endl;
     // prepare transformations
     this->shader.use();
     glm::mat4 model = glm::mat4(1.0f);
