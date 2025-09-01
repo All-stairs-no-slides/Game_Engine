@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include "Game_Object.h"
 #include "Place.h"
+#include "Game_project.h"
 // glad must come before glfw
 #include <glad/glad.h>
 #include <glfw3.h>
@@ -92,6 +93,14 @@ int main()
 
 	// allow for window resizing
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// load project
+
+	std::ifstream file(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\test.proj)");
+	json proj_json = json::parse(file);
+	std::cout << "proj: " << proj_json << std::endl;
+	Game_project::Game_project proj;
+	proj = proj.from_json(proj_json);
 
 	// load places
 	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\ppp.place)");

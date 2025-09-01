@@ -34,6 +34,7 @@
   <ItemGroup>
     <ClInclude Include="Game_Component.h" />
     <ClInclude Include="Game_Object.h" />
+    <ClInclude Include="Game_project.h" />
     <ClInclude Include="Place.h" />
     <ClInclude Include="Shader_Utilities.h" />
     <ClInclude Include="Sprite_Asset.h" />
