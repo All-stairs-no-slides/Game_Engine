@@ -95,12 +95,44 @@ int main()
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	// load project
+	Game_project::Game_project project;
+	bool project_found = false;
+	std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
+	for (auto f : std::filesystem::directory_iterator(path)) {
+		//std::cout << f.path().filename().string() << std::endl;
+		// find final suffix
+		std::string p = f.path().filename().string();
+		int suffix_innit = -1;
+		for (int i = 0; i < p.length(); i++) {
+			if (p[i] == '.') {
+				suffix_innit = i;
+			}
+		}
+		//std::cout << p.substr(suffix_innit) << std::endl;
+		if (suffix_innit == -1) {
+			continue;
+		}
+		if (p.substr(suffix_innit) == ".proj") {
+			std::cout << f.path().string();
+			std::ifstream file(f.path().string());
+			json proj_json = json::parse(file);
+			std::cout << "proj: " << proj_json << std::endl;
+			project = project.from_json(proj_json);
+			project_found = true;
+			break;
+		}
+		
+	 }
 
-	std::ifstream file(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\test.proj)");
-	json proj_json = json::parse(file);
-	std::cout << "proj: " << proj_json << std::endl;
-	Game_project::Game_project proj;
-	proj = proj.from_json(proj_json);
+	if (project_found == false) {
+		std::cerr << "there is no project file";
+		throw;
+	}
+	
+
+	
+
+	
 
 	// load places
 	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\ppp.place)");
