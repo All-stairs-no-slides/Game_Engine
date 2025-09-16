@@ -128,11 +128,7 @@ int main()
 		std::cerr << "there is no project file";
 		throw;
 	}
-	
 
-	
-
-	
 
 	// load places
 	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\ppp.place)");
@@ -164,8 +160,6 @@ int main()
 		// Confirm it's actually callable
 		if (py::isinstance<py::function>(method)) {
 			std::cout << "the method exists and is callable.\n";
-			//py::function olla = instance["hi"];
-			//std::shared_ptr<gc::transform_component> Trans = std::dynamic_pointer_cast<gc::transform_component>(place.Instances[0].components[0]);
 			auto Trans = std::make_shared<gc::Game_Component>();
 			Trans->type = "me";
 			auto casted = py::cast(Trans);
@@ -196,44 +190,9 @@ int main()
 		// clear screen
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 		glClear(GL_COLOR_BUFFER_BIT);
-		game_components::transform_component current_transform;
 		// render loop
-		for (const auto& comp : place.Instances[0].components) {
+		place.Instances[0].Components_Loop();
 
-			if (comp->type == "Transform") {
-				std::shared_ptr<game_components::transform_component> Transform = std::dynamic_pointer_cast<game_components::transform_component>(comp);
-
-				if (Transform) {
-					current_transform = *Transform.get();
-				}
-				continue;
-
-			}
-			if (comp->type == "Sprite_renderer") {
-				std::shared_ptr<game_components::sprite_renderer> spr_renderer = std::dynamic_pointer_cast<game_components::sprite_renderer>(comp);
-
-				if (spr_renderer) {
-
-					//std::cout << spr_renderer->Sprite_dir << std::endl;
-
-					/*std::cout << current_transform.x_scale << std::endl;
-					std::cout << current_transform.y_scale << std::endl;
-
-					std::cout << "renderer" << std::endl;
-
-					std::cout << spr_renderer->x_scale << std::endl;
-					std::cout << spr_renderer->y_scale << std::endl;*/
-
-					spr_renderer->DrawSelf(
-						glm::vec2((float)current_transform.x + (float)spr_renderer->x_offset, (float)current_transform.y + (float)spr_renderer->y_offset), // position
-						glm::vec2(current_transform.x_scale * spr_renderer->x_scale, current_transform.y_scale * spr_renderer->y_scale), // scale
-						current_transform.rotation + spr_renderer->rotation, // rotation
-						glm::vec3(1.0f, 1.0f, 1.0f)); // colour
-				}
-				continue;
-
-			}
-		}
 	
 		glfwSwapBuffers(window);
 		glfwPollEvents();

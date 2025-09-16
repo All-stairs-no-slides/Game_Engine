@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>enum — Support for enumerations &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enum — Support for enumerations &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -128,7 +128,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/enum.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/enum.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -165,7 +165,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -371,6 +371,9 @@ for details.</p>
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">__format__()</span></code>, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">__reduce__()</span></code> methods on the
 final <em>enum</em>, as well as creating the enum members, properly handling
 duplicates, providing iteration over the enum class, etc.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.11: </span>Before 3.11 <code class="docutils literal notranslate"><span class="pre">EnumType</span></code> was called <code class="docutils literal notranslate"><span class="pre">EnumMeta</span></code>, which is still available as an alias.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="enum.EnumType.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enum.EnumType.__call__" title="Link to this definition">¶</a></dt>
@@ -433,12 +436,12 @@ does not have any members):</p>
 <span class="go">True</span>
 </pre></div>
 </div>
-</dd></dl>
-
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.12: </span>Before Python 3.12, a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> is raised if a
 non-Enum-member is used in a containment check.</p>
 </div>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="enum.EnumType.__dir__">
 <span class="sig-name descname"><span class="pre">__dir__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enum.EnumType.__dir__" title="Link to this definition">¶</a></dt>
@@ -496,23 +499,6 @@ names of the members in <em>cls</em>:</p>
 </div>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="enum.EnumType._add_alias_">
-<span class="sig-name descname"><span class="pre">_add_alias_</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enum.EnumType._add_alias_" title="Link to this definition">¶</a></dt>
-<dd><p>Adds a new name as an alias to an existing member.  Raises a
-<a class="reference internal" href="exceptions.html#NameError" title="NameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NameError</span></code></a> if the name is already assigned to a different member.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="enum.EnumType._add_value_alias_">
-<span class="sig-name descname"><span class="pre">_add_value_alias_</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enum.EnumType._add_value_alias_" title="Link to this definition">¶</a></dt>
-<dd><p>Adds a new value as an alias to an existing member.  Raises a
-<a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if the value is already linked with a different member.</p>
-</dd></dl>
-
-<div class="versionadded">
-<p><span class="versionmodified added">Added in version 3.11: </span>Before 3.11 <code class="docutils literal notranslate"><span class="pre">EnumType</span></code> was called <code class="docutils literal notranslate"><span class="pre">EnumMeta</span></code>, which is still available as an alias.</p>
-</div>
 </dd></dl>
 
 <dl class="py class">
@@ -767,6 +753,36 @@ starting with <code class="docutils literal notranslate"><span class="pre">1</sp
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 3.12: </span>Added <a class="reference internal" href="../howto/enum.html#enum-dataclass-support"><span class="std std-ref">Dataclass support</span></a></p>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="enum.Enum._add_alias_">
+<span class="sig-name descname"><span class="pre">_add_alias_</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enum.Enum._add_alias_" title="Link to this definition">¶</a></dt>
+<dd><p>Adds a new name as an alias to an existing member:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">_add_alias_</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="o">.</span><span class="n">ERROR</span>
+<span class="go">&lt;Color.RED: 1&gt;</span>
+</pre></div>
+</div>
+<p>Raises a <a class="reference internal" href="exceptions.html#NameError" title="NameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NameError</span></code></a> if the name is already assigned to a different member.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.13.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="enum.Enum._add_value_alias_">
+<span class="sig-name descname"><span class="pre">_add_value_alias_</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#enum.Enum._add_value_alias_" title="Link to this definition">¶</a></dt>
+<dd><p>Adds a new value as an alias to an existing member:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">_add_value_alias_</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="go">&lt;Color.RED: 1&gt;</span>
+</pre></div>
+</div>
+<p>Raises a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> if the value is already linked with a different member.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.13.</span></p>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -806,15 +822,31 @@ better support the <em>replacement of existing constants</em> use-case.
 <dl class="py class">
 <dt class="sig sig-object py" id="enum.StrEnum">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enum.</span></span><span class="sig-name descname"><span class="pre">StrEnum</span></span><a class="headerlink" href="#enum.StrEnum" title="Link to this definition">¶</a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">StrEnum</span></code> is the same as <a class="reference internal" href="#enum.Enum" title="enum.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a>, but its members are also strings and can be used
-in most of the same places that a string can be used.  The result of any string
-operation performed on or with a <em>StrEnum</em> member is not part of the enumeration.</p>
+<dd><p><em>StrEnum</em> is the same as <a class="reference internal" href="#enum.Enum" title="enum.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a>, but its members are also strings and
+can be used in most of the same places that a string can be used. The result
+of any string operation performed on or with a <em>StrEnum</em> member is not part
+of the enumeration.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span><span class="p">,</span> <span class="n">auto</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Color</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">RED</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+<span class="gp">... </span>    <span class="n">GREEN</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span>
+<span class="gp">... </span>    <span class="n">BLUE</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
+<span class="gp">... </span>    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span>
+<span class="go">&lt;Color.RED: &#39;r&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Color</span><span class="o">.</span><span class="n">UNKNOWN</span>
+<span class="go">&lt;Color.UNKNOWN: &#39;unknown&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">)</span>
+<span class="go">&#39;unknown&#39;</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There are places in the stdlib that check for an exact <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
 instead of a <a class="reference internal" href="stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> subclass (i.e. <code class="docutils literal notranslate"><span class="pre">type(unknown)</span> <span class="pre">==</span> <span class="pre">str</span></code>
 instead of <code class="docutils literal notranslate"><span class="pre">isinstance(unknown,</span> <span class="pre">str)</span></code>), and in those locations you
-will need to use <code class="docutils literal notranslate"><span class="pre">str(StrEnum.member)</span></code>.</p>
+will need to use <code class="docutils literal notranslate"><span class="pre">str(MyStrEnum.MY_MEMBER)</span></code>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1229,10 +1261,6 @@ Once all the members are created it is no longer used.</p>
 <section id="supported-sunder-names">
 <h3>Supported <code class="docutils literal notranslate"><span class="pre">_sunder_</span></code> names<a class="headerlink" href="#supported-sunder-names" title="Link to this heading">¶</a></h3>
 <ul>
-<li><p><a class="reference internal" href="#enum.EnumType._add_alias_" title="enum.EnumType._add_alias_"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_add_alias_()</span></code></a> – adds a new name as an alias to an existing
-member.</p></li>
-<li><p><a class="reference internal" href="#enum.EnumType._add_value_alias_" title="enum.EnumType._add_value_alias_"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_add_value_alias_()</span></code></a> – adds a new value as an alias to an
-existing member.</p></li>
 <li><p><a class="reference internal" href="#enum.Enum._name_" title="enum.Enum._name_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">_name_</span></code></a> – name of the member</p></li>
 <li><p><a class="reference internal" href="#enum.Enum._value_" title="enum.Enum._value_"><code class="xref py py-attr docutils literal notranslate"><span class="pre">_value_</span></code></a> – value of the member; can be set in <code class="docutils literal notranslate"><span class="pre">__new__</span></code></p></li>
 <li><p><a class="reference internal" href="#enum.Enum._missing_" title="enum.Enum._missing_"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_missing_()</span></code></a> – a lookup function used when a value is not found;
@@ -1252,6 +1280,10 @@ value seen incremented by one.</p>
 power-of-two.</p>
 </div>
 </li>
+<li><p><a class="reference internal" href="#enum.Enum._add_alias_" title="enum.Enum._add_alias_"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_add_alias_()</span></code></a> – adds a new name as an alias to an existing
+member.</p></li>
+<li><p><a class="reference internal" href="#enum.Enum._add_value_alias_" title="enum.Enum._add_value_alias_"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_add_value_alias_()</span></code></a> – adds a new value as an alias to an
+existing member.</p></li>
 <li><p>While <code class="docutils literal notranslate"><span class="pre">_sunder_</span></code> names are generally reserved for the further development
 of the <a class="reference internal" href="#enum.Enum" title="enum.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> class and can not be used, some are explicitly allowed:</p>
 <ul class="simple">
@@ -1463,7 +1495,7 @@ base class by mixing in the <code class="docutils literal notranslate"><span cla
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/enum.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/enum.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -1503,7 +1535,7 @@ base class by mixing in the <code class="docutils literal notranslate"><span cla
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -1555,7 +1587,7 @@ base class by mixing in the <code class="docutils literal notranslate"><span cla
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     

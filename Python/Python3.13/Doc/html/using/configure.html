@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>3. Configure Python &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Configure Python &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -167,7 +167,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/using/configure.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/using/configure.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -204,7 +204,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Setup and Usage</a> &#187;</li>
@@ -255,6 +255,8 @@ floating-point numbers and <a class="reference external" href="https://en.wikipe
 minimum version for the <a class="reference internal" href="../library/ssl.html#module-ssl" title="ssl: TLS/SSL wrapper for socket objects"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ssl</span></code></a> and <a class="reference internal" href="../library/hashlib.html#module-hashlib" title="hashlib: Secure hash and message digest algorithms."><code class="xref py py-mod docutils literal notranslate"><span class="pre">hashlib</span></code></a> extension modules.</p></li>
 <li><p>SQLite 3.15.2 for the <a class="reference internal" href="../library/sqlite3.html#module-sqlite3" title="sqlite3: A DB-API 2.0 implementation using SQLite 3.x."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sqlite3</span></code></a> extension module.</p></li>
 <li><p>Tcl/Tk 8.5.12 for the <a class="reference internal" href="../library/tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> module.</p></li>
+<li><p><a class="reference external" href="https://www.bytereef.org/mpdecimal/doc/libmpdec/">libmpdec</a> 2.5.0
+for the <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> module.</p></li>
 <li><p>Autoconf 2.71 and aclocal 1.16.5 are required to regenerate the
 <code class="file docutils literal notranslate"><span class="pre">configure</span></code> script.</p></li>
 </ul>
@@ -1144,7 +1146,10 @@ variable.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-with-address-sanitizer">
 <span class="sig-name descname"><span class="pre">--with-address-sanitizer</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-with-address-sanitizer" title="Link to this definition">¶</a></dt>
-<dd><p>Enable AddressSanitizer memory error detector, <code class="docutils literal notranslate"><span class="pre">asan</span></code> (default is no).</p>
+<dd><p>Enable AddressSanitizer memory error detector, <code class="docutils literal notranslate"><span class="pre">asan</span></code> (default is no).
+To improve ASan detection capabilities you may also want to combine this
+with <a class="reference internal" href="#cmdoption-without-pymalloc"><code class="xref std std-option docutils literal notranslate"><span class="pre">--without-pymalloc</span></code></a> to disable the specialized small-object
+allocator whose allocations are not tracked by ASan.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">Added in version 3.6.</span></p>
 </div>
@@ -2050,7 +2055,7 @@ new, uncommitted work.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/using/configure.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/using/configure.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -2090,7 +2095,7 @@ new, uncommitted work.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Python Setup and Usage</a> &#187;</li>
@@ -2141,7 +2146,7 @@ new, uncommitted work.</p>
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     

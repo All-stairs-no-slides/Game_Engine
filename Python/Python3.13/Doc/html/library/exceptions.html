@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>Built-in Exceptions &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Built-in Exceptions &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -130,7 +130,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/exceptions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/exceptions.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -167,7 +167,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">The Python Standard Library</a> &#187;</li>
@@ -398,12 +398,22 @@ can be raised directly by <a class="reference internal" href="codecs.html#codecs
 <dd><p>Raised when an attribute reference (see <a class="reference internal" href="../reference/expressions.html#attribute-references"><span class="std std-ref">Attribute references</span></a>) or
 assignment fails.  (When an object does not support attribute references or
 attribute assignments at all, <a class="reference internal" href="#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a> is raised.)</p>
-<p>The <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">obj</span></code> attributes can be set using keyword-only
-arguments to the constructor. When set they represent the name of the attribute
-that was attempted to be accessed and the object that was accessed for said
-attribute, respectively.</p>
+<p>The optional <em>name</em> and <em>obj</em> keyword-only arguments
+set the corresponding attributes:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AttributeError.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#AttributeError.name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the attribute that was attempted to be accessed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="AttributeError.obj">
+<span class="sig-name descname"><span class="pre">obj</span></span><a class="headerlink" href="#AttributeError.obj" title="Link to this definition">¶</a></dt>
+<dd><p>The object that was accessed for the named attribute.</p>
+</dd></dl>
+
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.10: </span>Added the <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">obj</span></code> attributes.</p>
+<p><span class="versionmodified changed">Changed in version 3.10: </span>Added the <a class="reference internal" href="#AttributeError.name" title="AttributeError.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> and <a class="reference internal" href="#AttributeError.obj" title="AttributeError.obj"><code class="xref py py-attr docutils literal notranslate"><span class="pre">obj</span></code></a> attributes.</p>
 </div>
 </dd></dl>
 
@@ -411,7 +421,7 @@ attribute, respectively.</p>
 <dt class="sig sig-object py" id="EOFError">
 <em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EOFError</span></span><a class="headerlink" href="#EOFError" title="Link to this definition">¶</a></dt>
 <dd><p>Raised when the <a class="reference internal" href="functions.html#input" title="input"><code class="xref py py-func docutils literal notranslate"><span class="pre">input()</span></code></a> function hits an end-of-file condition (EOF)
-without reading any data. (N.B.: the <code class="xref py py-meth docutils literal notranslate"><span class="pre">io.IOBase.read()</span></code> and
+without reading any data. (Note: the <code class="xref py py-meth docutils literal notranslate"><span class="pre">io.IOBase.read()</span></code> and
 <a class="reference internal" href="io.html#io.IOBase.readline" title="io.IOBase.readline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">io.IOBase.readline()</span></code></a> methods return an empty string when they hit EOF.)</p>
 </dd></dl>
 
@@ -517,11 +527,15 @@ case a run-away program was the cause.</p>
 <dd><p>Raised when a local or global name is not found.  This applies only to
 unqualified names.  The associated value is an error message that includes the
 name that could not be found.</p>
-<p>The <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> attribute can be set using a keyword-only argument to the
-constructor. When set it represent the name of the variable that was attempted
-to be accessed.</p>
+<p>The optional <em>name</em> keyword-only argument sets the attribute:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="NameError.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#NameError.name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the variable that was attempted to be accessed.</p>
+</dd></dl>
+
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.10: </span>Added the <code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code> attribute.</p>
+<p><span class="versionmodified changed">Changed in version 3.10: </span>Added the <a class="reference internal" href="#NameError.name" title="NameError.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> attribute.</p>
 </div>
 </dd></dl>
 
@@ -1329,7 +1343,7 @@ these fields do not need to be updated by <a class="reference internal" href="#B
 subclasses that need a different constructor signature need to
 override that rather than <a class="reference internal" href="../reference/datamodel.html#object.__init__" title="object.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__init__()</span></code></a>. For example, the following
 defines an exception group subclass which accepts an exit_code and
-and constructs the group’s message from it.</p>
+constructs the group’s message from it.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Errors</span><span class="p">(</span><span class="n">ExceptionGroup</span><span class="p">):</span>
    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">exit_code</span><span class="p">):</span>
       <span class="bp">self</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Errors</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;exit code: </span><span class="si">{</span><span class="n">exit_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
@@ -1466,7 +1480,7 @@ is also a subclass of <a class="reference internal" href="#Exception" title="Exc
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/exceptions.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/exceptions.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -1506,7 +1520,7 @@ is also a subclass of <a class="reference internal" href="#Exception" title="Exc
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -1557,7 +1571,7 @@ is also a subclass of <a class="reference internal" href="#Exception" title="Exc
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     

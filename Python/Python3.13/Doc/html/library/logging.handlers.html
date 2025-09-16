@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>logging.handlers — Logging handlers &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logging.handlers — Logging handlers &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -136,7 +136,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/logging.handlers.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/logging.handlers.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -173,7 +173,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -1345,6 +1345,15 @@ have the task tracking API, which means that you can use
 <p>If you are using <a class="reference internal" href="multiprocessing.html#module-multiprocessing" title="multiprocessing: Process-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a>, you should avoid using
 <a class="reference internal" href="queue.html#queue.SimpleQueue" title="queue.SimpleQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleQueue</span></code></a> and instead use <a class="reference internal" href="multiprocessing.html#multiprocessing.Queue" title="multiprocessing.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code></a>.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <a class="reference internal" href="multiprocessing.html#module-multiprocessing" title="multiprocessing: Process-based parallelism."><code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module uses an internal logger created and
+accessed via <a class="reference internal" href="multiprocessing.html#multiprocessing.get_logger" title="multiprocessing.get_logger"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_logger()</span></code></a>.
+<a class="reference internal" href="multiprocessing.html#multiprocessing.Queue" title="multiprocessing.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code></a> will log <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> level messages upon
+items being queued. If those log messages are processed by a
+<a class="reference internal" href="#logging.handlers.QueueHandler" title="logging.handlers.QueueHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueueHandler</span></code></a> using the same <a class="reference internal" href="multiprocessing.html#multiprocessing.Queue" title="multiprocessing.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">multiprocessing.Queue</span></code></a> instance,
+it will cause a deadlock or infinite recursion.</p>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="logging.handlers.QueueHandler.emit">
 <span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#logging.handlers.QueueHandler.emit" title="Link to this definition">¶</a></dt>
@@ -1572,7 +1581,7 @@ implementations.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/logging.handlers.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/logging.handlers.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -1612,7 +1621,7 @@ implementations.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -1664,7 +1673,7 @@ implementations.</p>
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     

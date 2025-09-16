@@ -67,6 +67,35 @@ namespace game_object {
             return obj;
         }
 
+        void Components_Loop() {
+            for (const auto& comp : components) {
+                game_components::transform_component current_transform;
+                if (comp->type == "Transform") {
+                    std::shared_ptr<game_components::transform_component> Transform = std::dynamic_pointer_cast<game_components::transform_component>(comp);
+
+                    if (Transform) {
+                        current_transform = *Transform.get();
+                    }
+                    continue;
+
+                }
+                if (comp->type == "Sprite_renderer") {
+                    std::shared_ptr<game_components::sprite_renderer> spr_renderer = std::dynamic_pointer_cast<game_components::sprite_renderer>(comp);
+
+                    if (spr_renderer) {
+
+                        spr_renderer->DrawSelf(
+                            glm::vec2((float)current_transform.x + (float)spr_renderer->x_offset, (float)current_transform.y + (float)spr_renderer->y_offset), // position
+                            glm::vec2(current_transform.x_scale * spr_renderer->x_scale, current_transform.y_scale * spr_renderer->y_scale), // scale
+                            current_transform.rotation + spr_renderer->rotation, // rotation
+                            glm::vec3(1.0f, 1.0f, 1.0f)); // colour
+                    }
+                    continue;
+
+                }
+            }
+        }
+
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(Game_Object, Name, components);
     };
 

@@ -27,24 +27,17 @@ from test.support import threading_helper
 from http.client import HTTPException
 
 
-default_builtin_hashes = {'md5', 'sha1', 'sha256', 'sha512', 'sha3', 'blake2'}
+default_builtin_hashes = {'md5', 'sha1', 'sha2', 'sha3', 'blake2'}
 # --with-builtin-hashlib-hashes override
 builtin_hashes = sysconfig.get_config_var("PY_BUILTIN_HASHLIB_HASHES")
 if builtin_hashes is None:
     builtin_hashes = default_builtin_hashes
 else:
-    builtin_hashes = {
-        m.strip() for m in builtin_hashes.strip('"').lower().split(",")
-    }
+    builtin_hash_names = builtin_hashes.strip('"').lower().split(",")
+    builtin_hashes = set(map(str.strip, builtin_hash_names))
 
-# hashlib with and without OpenSSL backend for PBKDF2
-# only import builtin_hashlib when all builtin hashes are available.
-# Otherwise import prints noise on stderr
+# Public 'hashlib' module with OpenSSL backend for PBKDF2.
 openssl_hashlib = import_fresh_module('hashlib', fresh=['_hashlib'])
-if builtin_hashes == default_builtin_hashes:
-    builtin_hashlib = import_fresh_module('hashlib', blocked=['_hashlib'])
-else:
-    builtin_hashlib = None
 
 try:
     from _hashlib import HASH, HASHXOF, openssl_md_meth_names, get_fips_mode
@@ -264,7 +257,10 @@ class HashLibTestCase(unittest.TestCase):
                 hashlib.new(digest_name, b'')
                 hashlib.new(digest_name, data=b'')
                 hashlib.new(digest_name, string=b'')
-                if self._hashlib:
+                # Make sure that _hashlib contains the constructor
+                # to test when using a combination of libcrypto and
+                # interned hash implementations.
+                if self._hashlib and digest_name in self._hashlib._constructors:
                     self._hashlib.new(digest_name, b'')
                     self._hashlib.new(digest_name, data=b'')
                     self._hashlib.new(digest_name, string=b'')
@@ -316,7 +312,8 @@ class HashLibTestCase(unittest.TestCase):
                 with self.subTest(digest_name, args=args, kwds=kwds):
                     with self.assertRaisesRegex(TypeError, errmsg):
                         hashlib.new(digest_name, *args, **kwds)
-                    if self._hashlib:
+                    if (self._hashlib and
+                            digest_name in self._hashlib._constructors):
                         with self.assertRaisesRegex(TypeError, errmsg):
                             self._hashlib.new(digest_name, *args, **kwds)
 

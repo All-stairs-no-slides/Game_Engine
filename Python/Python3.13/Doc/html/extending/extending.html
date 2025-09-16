@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>1. Extending Python with C or C++ &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Extending Python with C or C++ &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -138,7 +138,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/extending/extending.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/extending/extending.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -175,7 +175,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Extending and Embedding the Python Interpreter</a> &#187;</li>
@@ -266,12 +266,38 @@ It is not necessary since Python 3.13, but we keep it here for backward compatib
 See <a class="reference internal" href="../c-api/arg.html#arg-parsing-string-and-buffers"><span class="std std-ref">Strings and buffers</span></a> for a description of this macro.</p>
 </div>
 <p>All user-visible symbols defined by <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> have a prefix of <code class="docutils literal notranslate"><span class="pre">Py</span></code> or
-<code class="docutils literal notranslate"><span class="pre">PY</span></code>, except those defined in standard header files. For convenience, and
-since they are used extensively by the Python interpreter, <code class="docutils literal notranslate"><span class="pre">&quot;Python.h&quot;</span></code>
-includes a few standard header files: <code class="docutils literal notranslate"><span class="pre">&lt;stdio.h&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;string.h&gt;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">&lt;errno.h&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&lt;stdlib.h&gt;</span></code>.  If the latter header file does not exist on
-your system, it declares the functions <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code>, <code class="xref c c-func docutils literal notranslate"><span class="pre">free()</span></code> and
-<code class="xref c c-func docutils literal notranslate"><span class="pre">realloc()</span></code> directly.</p>
+<code class="docutils literal notranslate"><span class="pre">PY</span></code>, except those defined in standard header files.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For backward compatibility, <code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> includes several standard header files.
+C extensions should include the standard headers that they use,
+and should not rely on these implicit includes.
+If using the limited C API version 3.13 or newer, the implicit includes are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;assert.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;intrin.h&gt;</span></code> (on Windows)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;inttypes.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;limits.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;math.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;stdarg.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;wchar.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;sys/types.h&gt;</span></code> (if present)</p></li>
+</ul>
+<p>If <a class="reference internal" href="../c-api/stable.html#c.Py_LIMITED_API" title="Py_LIMITED_API"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code></a> is not defined, or is set to version 3.12 or older,
+the headers below are also included:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;ctype.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;unistd.h&gt;</span></code> (on POSIX)</p></li>
+</ul>
+<p>If <a class="reference internal" href="../c-api/stable.html#c.Py_LIMITED_API" title="Py_LIMITED_API"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code></a> is not defined, or is set to version 3.10 or older,
+the headers below are also included:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;errno.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;stdio.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;stdlib.h&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;string.h&gt;</span></code></p></li>
+</ul>
+</div>
 <p>The next thing we add to our module file is the C function that will be called
 when the Python expression <code class="docutils literal notranslate"><span class="pre">spam.system(string)</span></code> is evaluated (we’ll see
 shortly how it ends up being called):</p>
@@ -321,7 +347,7 @@ to know about them to understand how errors are passed around.</p>
 <p>The Python API defines a number of functions to set various types of exceptions.</p>
 <p>The most common one is <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetString" title="PyErr_SetString"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetString()</span></code></a>.  Its arguments are an exception
 object and a C string.  The exception object is usually a predefined object like
-<code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code>.  The C string indicates the cause of the error
+<a class="reference internal" href="../c-api/exceptions.html#c.PyExc_ZeroDivisionError" title="PyExc_ZeroDivisionError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code></a>.  The C string indicates the cause of the error
 and is converted to a Python string object and stored as the “associated value”
 of the exception.</p>
 <p>Another useful function is <a class="reference internal" href="../c-api/exceptions.html#c.PyErr_SetFromErrno" title="PyErr_SetFromErrno"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyErr_SetFromErrno()</span></code></a>, which only takes an
@@ -367,13 +393,13 @@ or zero for success and <code class="docutils literal notranslate"><span class="
 an error indicator!</p>
 <p>The choice of which exception to raise is entirely yours.  There are predeclared
 C objects corresponding to all built-in Python exceptions, such as
-<code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code>, which you can use directly. Of course, you
-should choose exceptions wisely — don’t use <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code> to mean
-that a file couldn’t be opened (that should probably be <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_OSError</span></code>).
+<a class="reference internal" href="../c-api/exceptions.html#c.PyExc_ZeroDivisionError" title="PyExc_ZeroDivisionError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ZeroDivisionError</span></code></a>, which you can use directly. Of course, you
+should choose exceptions wisely — don’t use <a class="reference internal" href="../c-api/exceptions.html#c.PyExc_TypeError" title="PyExc_TypeError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code></a> to mean
+that a file couldn’t be opened (that should probably be <a class="reference internal" href="../c-api/exceptions.html#c.PyExc_OSError" title="PyExc_OSError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_OSError</span></code></a>).
 If something’s wrong with the argument list, the <a class="reference internal" href="../c-api/arg.html#c.PyArg_ParseTuple" title="PyArg_ParseTuple"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyArg_ParseTuple()</span></code></a>
-function usually raises <code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code>.  If you have an argument whose
+function usually raises <a class="reference internal" href="../c-api/exceptions.html#c.PyExc_TypeError" title="PyExc_TypeError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code></a>.  If you have an argument whose
 value must be in a particular range or must satisfy other conditions,
-<code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ValueError</span></code> is appropriate.</p>
+<a class="reference internal" href="../c-api/exceptions.html#c.PyExc_ValueError" title="PyExc_ValueError"><code class="xref c c-data docutils literal notranslate"><span class="pre">PyExc_ValueError</span></code></a> is appropriate.</p>
 <p>You can also define a new exception that is unique to your module.
 The simplest way to do this is to declare a static global object variable at
 the beginning of the file:</p>
@@ -385,7 +411,7 @@ the beginning of the file:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">SpamError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyErr_NewException</span><span class="p">(</span><span class="s">&quot;spam.error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Since <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code> is a global variable, it will be overwitten every time
+<p>Since <code class="xref c c-data docutils literal notranslate"><span class="pre">SpamError</span></code> is a global variable, it will be overwritten every time
 the module is reinitialized, when the <a class="reference internal" href="../c-api/module.html#c.Py_mod_exec" title="Py_mod_exec"><code class="xref c c-data docutils literal notranslate"><span class="pre">Py_mod_exec</span></code></a> function is called.</p>
 <p>For now, let’s avoid the issue: we will block repeated initialization by raising an
 <a class="reference internal" href="../library/exceptions.html#ImportError" title="ImportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a>:</p>
@@ -1481,7 +1507,7 @@ this is still found in much existing code.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/extending/extending.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/extending/extending.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -1521,7 +1547,7 @@ this is still found in much existing code.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >Extending and Embedding the Python Interpreter</a> &#187;</li>
@@ -1572,7 +1598,7 @@ this is still found in much existing code.</p>
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     

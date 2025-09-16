@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>sys.monitoring — Execution event monitoring &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sys.monitoring — Execution event monitoring &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -141,7 +141,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/sys.monitoring.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/sys.monitoring.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -178,7 +178,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -546,12 +546,12 @@ for all tools.</p>
 <p>If another callback was registered for the given <em>tool_id</em> and <em>event</em>,
 it is unregistered and returned.
 Otherwise <a class="reference internal" href="#sys.monitoring.register_callback" title="sys.monitoring.register_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_callback()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p class="audit-hook">Raises an <a class="reference internal" href="sys.html#auditing"><span class="std std-ref">auditing event</span></a> <code class="docutils literal notranslate"><span class="pre">sys.monitoring.register_callback</span></code> with argument <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p>
 </dd></dl>
 
 <p>Functions can be unregistered by calling
 <code class="docutils literal notranslate"><span class="pre">sys.monitoring.register_callback(tool_id,</span> <span class="pre">event,</span> <span class="pre">None)</span></code>.</p>
 <p>Callback functions can be registered and unregistered at any time.</p>
-<p>Registering or unregistering a callback function will generate a <a class="reference internal" href="sys.html#sys.audit" title="sys.audit"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.audit()</span></code></a> event.</p>
 <section id="callback-function-arguments">
 <h3>Callback function arguments<a class="headerlink" href="#callback-function-arguments" title="Link to this heading">¶</a></h3>
 <dl class="py data">
@@ -661,7 +661,7 @@ the branch.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/sys.monitoring.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/sys.monitoring.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -701,7 +701,7 @@ the branch.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -753,7 +753,7 @@ the branch.</p>
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     

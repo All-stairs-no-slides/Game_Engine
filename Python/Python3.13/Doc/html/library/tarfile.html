@@ -16,21 +16,21 @@
 <meta property="og:image:width" content="200">
 <meta property="og:image:height" content="200">
 
-    <title>tarfile — Read and write tar archive files &#8212; Python 3.13.5 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tarfile — Read and write tar archive files &#8212; Python 3.13.7 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=234b1a7c" />
     <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?v=5ff89526" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
     
-    <script src="../_static/documentation_options.js?v=32a6def9"></script>
+    <script src="../_static/documentation_options.js?v=a126d08a"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <script src="../_static/sidebar.js"></script>
     
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Python 3.13.5 documentation"
+          title="Search within Python 3.13.7 documentation"
           href="../_static/opensearch.xml"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -114,7 +114,11 @@
 <li><a class="reference internal" href="#command-line-options">Command-line options</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#reading-examples">Reading examples</a></li>
+<li><a class="reference internal" href="#writing-examples">Writing examples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#supported-tar-formats">Supported tar formats</a></li>
 <li><a class="reference internal" href="#unicode-issues">Unicode issues</a></li>
 </ul>
@@ -137,7 +141,7 @@
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/tarfile.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/tarfile.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -174,7 +178,7 @@
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -255,7 +259,8 @@ to <code class="docutils literal notranslate"><span class="pre">'r'</span></code
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'r'</span> <span class="pre">or</span> <span class="pre">'r:*'</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'r'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'r:*'</span></code></p></td>
 <td><p>Open for reading with transparent
 compression (recommended).</p></td>
 </tr>
@@ -294,11 +299,13 @@ if it already exists.</p></td>
 Raise a <a class="reference internal" href="exceptions.html#FileExistsError" title="FileExistsError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">FileExistsError</span></code></a> exception
 if it already exists.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'a'</span> <span class="pre">or</span> <span class="pre">'a:'</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'a'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'a:'</span></code></p></td>
 <td><p>Open for appending with no compression. The
 file is created if it does not exist.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'w'</span> <span class="pre">or</span> <span class="pre">'w:'</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'w'</span></code> or
+<code class="docutils literal notranslate"><span class="pre">'w:'</span></code></p></td>
 <td><p>Open for uncompressed writing.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'w:gz'</span></code></p></td>
@@ -1557,6 +1564,8 @@ and <code class="docutils literal notranslate"><span class="pre">data</span></co
 </section>
 <section id="examples">
 <span id="tar-examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<section id="reading-examples">
+<h3>Reading examples<a class="headerlink" href="#reading-examples" title="Link to this heading">¶</a></h3>
 <p>How to extract an entire tar archive to the current working directory:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tarfile</span>
 <span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;sample.tar.gz&quot;</span><span class="p">)</span>
@@ -1579,6 +1588,23 @@ a generator function instead of a list:</p>
 <span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>How to read a gzip compressed tar archive and display some member information:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tarfile</span>
+<span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;sample.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;r:gz&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">tarinfo</span> <span class="ow">in</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tarinfo</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;bytes in size and is &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">isreg</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a regular file.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a directory.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;something else.&quot;</span><span class="p">)</span>
+<span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-examples">
+<h3>Writing examples<a class="headerlink" href="#writing-examples" title="Link to this heading">¶</a></h3>
 <p>How to create an uncompressed tar archive from a list of filenames:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tarfile</span>
 <span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;sample.tar&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
@@ -1594,18 +1620,14 @@ a generator function instead of a list:</p>
         <span class="n">tar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>How to read a gzip compressed tar archive and display some member information:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tarfile</span>
-<span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;sample.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;r:gz&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">tarinfo</span> <span class="ow">in</span> <span class="n">tar</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">tarinfo</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="s2">&quot;bytes in size and is &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">isreg</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a regular file.&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">isdir</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a directory.&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;something else.&quot;</span><span class="p">)</span>
-<span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<p>How to create and write an archive to stdout using
+<a class="reference internal" href="sys.html#sys.stdout" title="sys.stdout"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.stdout.buffer</span></code></a> in the <em>fileobj</em> parameter
+in <a class="reference internal" href="#tarfile.TarFile.add" title="tarfile.TarFile.add"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TarFile.add()</span></code></a>:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tarfile</span>
+<span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;sample.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;w|gz&quot;</span><span class="p">,</span> <span class="n">fileobj</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">buffer</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;quux&quot;</span><span class="p">]:</span>
+        <span class="n">tar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>How to create an archive and reset the user information using the <em>filter</em>
@@ -1620,6 +1642,7 @@ parameter in <a class="reference internal" href="#tarfile.TarFile.add" title="ta
 <span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="supported-tar-formats">
 <span id="tar-formats"></span><h2>Supported tar formats<a class="headerlink" href="#supported-tar-formats" title="Link to this heading">¶</a></h2>
@@ -1714,7 +1737,11 @@ surrogate characters are stored.</p>
 <li><a class="reference internal" href="#command-line-options">Command-line options</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#reading-examples">Reading examples</a></li>
+<li><a class="reference internal" href="#writing-examples">Writing examples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#supported-tar-formats">Supported tar formats</a></li>
 <li><a class="reference internal" href="#unicode-issues">Unicode issues</a></li>
 </ul>
@@ -1737,7 +1764,7 @@ surrogate characters are stored.</p>
     <ul class="this-page-menu">
       <li><a href="../bugs.html">Report a bug</a></li>
       <li>
-        <a href="https://github.com/python/cpython/blob/main/Doc/library/tarfile.rst"
+        <a href="https://github.com/python/cpython/blob/main/Doc/library/tarfile.rst?plain=1"
             rel="nofollow">Show source
         </a>
       </li>
@@ -1777,7 +1804,7 @@ surrogate characters are stored.</p>
               
           </li>
     <li id="cpython-language-and-version">
-      <a href="../index.html">3.13.5 Documentation</a> &#187;
+      <a href="../index.html">3.13.7 Documentation</a> &#187;
     </li>
 
           <li class="nav-item nav-item-1"><a href="index.html" >The Python Standard Library</a> &#187;</li>
@@ -1829,7 +1856,7 @@ surrogate characters are stored.</p>
 <a href="https://www.python.org/psf/donations/">Please donate.</a>
 <br>
     <br>
-      Last updated on Jun 11, 2025 (15:56 UTC).
+      Last updated on Aug 14, 2025 (14:04 UTC).
     
       <a href="/bugs.html">Found a bug</a>?
     
