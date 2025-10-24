@@ -20,6 +20,7 @@
 #include <Python.h>
 #include <pybind11/embed.h>
 
+
 namespace py = pybind11;
 using namespace py::literals;
 
@@ -37,22 +38,11 @@ namespace gc = game_components;
 
 int main()
 {
-	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
-	//py::object scope = py::module_::import("__main__").attr("__dict__");
 
-	py::module_ sys = py::module_::import("sys");
-	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts)");
-	//py::eval_file(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts\Test_1.py)", scope);
+	//============================================================
+	// Window stuff
+	//============================================================
 
-	py::module_ mymodule = py::module_::import("Test_1");
-
-	// Create a dummy module at runtime
-	auto main_module = py::module_::import("__main__");
-
-	// register the class
-	py::class_<gc::Game_Component, std::shared_ptr<gc::Game_Component>>(main_module, "Game_Component")
-		.def(py::init<>())
-		.def_readwrite("type", &gc::Game_Component::type);
 
 	// setup window
 	glfwInit();
@@ -94,7 +84,11 @@ int main()
 	// allow for window resizing
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+
+	//============================================================
 	// load project
+	//============================================================
+
 	Game_project::Game_project project;
 	bool project_found = false;
 	std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
@@ -129,8 +123,10 @@ int main()
 		throw;
 	}
 
+	//============================================================
+	// load instances from initial place
+	//============================================================
 
-	// load places
 	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\ppp.place)");
 	json plain_json = json::parse(f);
 	std::cout << "Current path is: " << plain_json << std::endl;
@@ -147,6 +143,21 @@ int main()
 
 		}
 	}
+	//============================================================
+	// SCRIPTING
+	//============================================================
+
+	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
+
+	py::module_ sys = py::module_::import("sys");
+	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts)");
+
+	py::module_ mymodule = py::module_::import("Test_1");
+
+	// register the class
+	py::class_<gc::Game_Component, std::shared_ptr<gc::Game_Component>>(mymodule, "Game_Component")
+		.def(py::init<>())
+		.def_readwrite("type", &gc::Game_Component::type);
 
 	// Get the class
 	py::object MyClass = mymodule.attr("test");
@@ -163,13 +174,16 @@ int main()
 			auto Trans = std::make_shared<gc::Game_Component>();
 			Trans->type = "me";
 			auto casted = py::cast(Trans);
+			py::object hoi;
 			if (!casted) {
 				std::cerr << "py::cast returned null\n";
 				return 0;
 			}
 			std::cout << "Python sees:" << py::str(casted).cast<std::string>() << std::endl;
 			try {
-				method(casted);
+				hoi = method(casted);
+				auto no = hoi.cast<std::shared_ptr<gc::Game_Component>>();
+				std::cout << "py sees: " << no.get()[0].type << std::endl;
 			}
 			catch (py::cast_error e) {
 				std::cout << "fuck " << e.what() << std::endl;
@@ -184,7 +198,10 @@ int main()
 		std::cout << "the method does NOT exist.\n";
 	}
 	
+	//============================================================
 	// Game loop
+	//============================================================
+
 	while (!glfwWindowShouldClose(window))
 	{
 		// clear screen
@@ -200,5 +217,6 @@ int main()
 	
 	// exit app
 	glfwTerminate();
+
 	return 0;
 }
