@@ -1,10 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "mMg0qTj7ckU=",
+  "dgSpecHash": "ezkWlprQWpQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Game_Engine.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amcd1\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Game_Engine.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Game_Engine.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

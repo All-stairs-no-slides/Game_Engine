@@ -1,7 +1,8 @@
 class test:    
-    def hi(self, hi):
-        import Test_1
-        base = Test_1.Game_Component()
-        print(type(hi))
-        base.type = hi.type
-        return base
+    def step(self, hi):
+        print("bools suck")
+        hi.__class__ = Game_Object 
+        hi.components[1].x_offset += 1
+
+        
+        hi.Name = "yello"

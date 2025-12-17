@@ -70,6 +70,7 @@ namespace game_object {
         void Components_Loop() {
             for (const auto& comp : components) {
                 game_components::transform_component current_transform;
+
                 if (comp->type == "Transform") {
                     std::shared_ptr<game_components::transform_component> Transform = std::dynamic_pointer_cast<game_components::transform_component>(comp);
 

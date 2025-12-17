@@ -19,6 +19,8 @@
 // python
 #include <Python.h>
 #include <pybind11/embed.h>
+#include <pybind11/stl.h>
+#include <pybind11/stl_bind.h>
 
 
 namespace py = pybind11;
@@ -154,49 +156,31 @@ int main()
 
 	py::module_ mymodule = py::module_::import("Test_1");
 
-	// register the class
+	// register the classes
 	py::class_<gc::Game_Component, std::shared_ptr<gc::Game_Component>>(mymodule, "Game_Component")
 		.def(py::init<>())
-		.def_readwrite("type", &gc::Game_Component::type);
+		.def_readonly("type", &gc::Game_Component::type);
 
-	// Get the class
-	py::object MyClass = mymodule.attr("test");
+	py::class_<gc::sprite_renderer, gc::Game_Component, std::shared_ptr<gc::sprite_renderer>>(mymodule, "sprite_renderer")
+		.def(py::init<>())
+		.def_readonly("type", &gc::sprite_renderer::type)
+		.def_readwrite("x_offset", &gc::sprite_renderer::x_offset)
+		.def_readwrite("y_offset", &gc::sprite_renderer::y_offset)
+		.def_readwrite("x_scale", &gc::sprite_renderer::x_scale)
+		.def_readwrite("y_scale", &gc::sprite_renderer::y_scale)
+		.def_readwrite("rotation", &gc::sprite_renderer::rotation)
+		.def_readwrite("depth", &gc::sprite_renderer::depth)
+		.def_readwrite("shader", &gc::sprite_renderer::shader)
+		.def_readwrite("sprite_dir", &gc::sprite_renderer::Sprite_dir);
 
-	// Create an instance
-	py::object instance = MyClass();
-	// check that the file both has the intended method name and that it is indeed a function
-	if (py::hasattr(instance, "hi")) {
-		py::object method = instance.attr("hi");
+	py::bind_vector<std::vector<std::shared_ptr<gc::Game_Component>>>(mymodule, "ComponentVector");
 
-		// Confirm it's actually callable
-		if (py::isinstance<py::function>(method)) {
-			std::cout << "the method exists and is callable.\n";
-			auto Trans = std::make_shared<gc::Game_Component>();
-			Trans->type = "me";
-			auto casted = py::cast(Trans);
-			py::object hoi;
-			if (!casted) {
-				std::cerr << "py::cast returned null\n";
-				return 0;
-			}
-			std::cout << "Python sees:" << py::str(casted).cast<std::string>() << std::endl;
-			try {
-				hoi = method(casted);
-				auto no = hoi.cast<std::shared_ptr<gc::Game_Component>>();
-				std::cout << "py sees: " << no.get()[0].type << std::endl;
-			}
-			catch (py::cast_error e) {
-				std::cout << "fuck " << e.what() << std::endl;
-			}
+	py::class_<game_object::Game_Object>(mymodule, "Game_Object")
+		.def(py::init<>())
+		.def_readwrite("Name", &game_object::Game_Object::Name)
+		.def_readwrite("components", &game_object::Game_Object::components);
 
-		}
-		else {
-			std::cout << "the method exists but is not callable.\n";
-		}
-	}
-	else {
-		std::cout << "the method does NOT exist.\n";
-	}
+	
 	
 	//============================================================
 	// Game loop
@@ -204,6 +188,46 @@ int main()
 
 	while (!glfwWindowShouldClose(window))
 	{
+		// Get the class
+		py::object MyClass = mymodule.attr("test");
+
+		// Create an instance
+		py::object instance = MyClass();
+		// check that the file both has the intended method name and that it is indeed a function
+		if (py::hasattr(instance, "step")) {
+			py::object method = instance.attr("step");
+
+			// Confirm it's actually callable
+			if (py::isinstance<py::function>(method)) {
+				std::cout << "the method exists and is callable.\n";
+				auto Trans = place.Instances[0];
+
+				auto casted = py::cast(Trans);
+				py::object hoi;
+				if (!casted) {
+					std::cerr << "py::cast returned null\n";
+					return 0;
+				}
+				std::cout << "Python sees:" << py::str(casted).cast<std::string>() << std::endl;
+				try {
+					hoi = method(casted);
+					auto no = casted.cast<game_object::Game_Object>();
+					std::cout << "py sees: " << no.Name << std::endl;
+
+				}
+				catch (py::cast_error e) {
+					std::cout << "fuck " << e.what() << std::endl;
+				}
+
+			}
+			else {
+				std::cout << "the method exists but is not callable.\n";
+			}
+		}
+		else {
+			std::cout << "the method does NOT exist.\n";
+		}
+
 		// clear screen
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 		glClear(GL_COLOR_BUFFER_BIT);

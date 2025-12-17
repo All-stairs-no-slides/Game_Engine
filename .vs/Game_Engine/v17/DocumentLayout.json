@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Game_Engine\\Project_Window.xaml.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml.cs",
               "RelativeToolTip": "Game_Engine\\Project_Window.xaml.cs",
-              "ViewState": "AgIAAOkAAAAAAAAAAAAUwAUBAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAkwFMAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T08:23:23.085Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "Game_Engine\\faux_obj_types\\Project.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T07:51:54.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T07:51:54.42Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "Game_Engine\\faux_obj_types\\Game_obj.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T07:51:51.504Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T07:51:51.504Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "Game_Engine\\ObjectViewWindow.xaml.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAQwHkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:53:53.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:53:53.859Z"
             },
             {
               "$type": "Document",
@@ -106,8 +103,7 @@
               "RelativeToolTip": "Game_Engine\\PlaceViewWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T13:39:01.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T13:39:01.646Z"
             },
             {
               "$type": "Document",

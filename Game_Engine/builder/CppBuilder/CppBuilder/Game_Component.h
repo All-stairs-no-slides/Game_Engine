@@ -57,15 +57,15 @@ namespace game_components {
 
     class script_component : public Game_Component {
     public:
-        std::string script_name;
-        std::string scope_exposure; // can be local, room, or global
+        std::string path;
+        std::string scope; // can be local, room, or global
 
         script_component() = default;
-        script_component(std::string type, std::string script_name, std::string scope_exposure) : Game_Component(type), script_name(script_name), scope_exposure(scope_exposure)
+        script_component(std::string type, std::string path, std::string scope_exposure) : Game_Component(type), path(path), scope(scope)
         {
         }
 
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(script_component, type, script_name, scope_exposure)
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(script_component, type, path, scope)
     };
 
     class transform_component : public Game_Component {
