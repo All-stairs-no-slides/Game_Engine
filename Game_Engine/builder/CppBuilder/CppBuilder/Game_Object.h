@@ -3,6 +3,19 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 #include "Game_Component.h"
+// pybind
+#include <Python.h>
+#include <pybind11/embed.h>
+#include <pybind11/stl.h>
+#include <pybind11/stl_bind.h>
+
+namespace py = pybind11;
+using namespace py::literals;
+
+namespace Place
+{
+    class Place;
+}
 
 namespace game_object {
 
@@ -67,10 +80,12 @@ namespace game_object {
             return obj;
         }
 
-        void Components_Loop() {
-            for (const auto& comp : components) {
-                game_components::transform_component current_transform;
+        void Components_Loop(Place::Place *global_context) {
+            // a backup in the case of a freak accident when there is a missing transform
+            game_components::transform_component current_transform = game_components::transform_component("Transform", 0, 0, 0, 1, 1, 0);
 
+            for (const auto& comp : components) {
+                
                 if (comp->type == "Transform") {
                     std::shared_ptr<game_components::transform_component> Transform = std::dynamic_pointer_cast<game_components::transform_component>(comp);
 
@@ -94,8 +109,24 @@ namespace game_object {
                     continue;
 
                 }
+                if (comp->type == "Script") {
+                    std::shared_ptr<game_components::script_component> script_comp = std::dynamic_pointer_cast<game_components::script_component>(comp);
+                    if (script_comp) {
+                        if (script_comp->scope == "Local") {
+                            script_comp->Event_Call("step", this);
+                        }
+                        else if (script_comp->scope == "Global") {
+                            script_comp->Event_Call("step", global_context);
+                        }
+                    }
+                    continue;
+                }
             }
+            return;
         }
+
+            
+
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(Game_Object, Name, components);
     };

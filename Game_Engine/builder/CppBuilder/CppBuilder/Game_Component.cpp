@@ -15,11 +15,115 @@
 // texture loading
 #include "stb_image.h"
 
+#include "Game_Object.h"
+#include "Place.h"
+
+
+
 using namespace game_components;
 using json = nlohmann::json;
 
+//-------------------------------------------------
+// SCRIPT COMPONENT OVERLOADS
+//-------------------------------------------------
+void script_component::Initialisation() 
+{
+    std::cout << "initialising script component" << std::endl;
+    std::string copied_path = this->path;
+    std::cout << copied_path << std::endl;
+    copied_path.erase(copied_path.find("."));
+    this->script_module = py::module_::import(copied_path.c_str());
+}
+
+void script_component::Event_Call(const char* event_name, game_object::Game_Object* parsed_item) {
+    py::module_ mymodule = this->script_module;
+    // remove the .py suffix from the file name
+    std::string script_name = this->path.substr(0, this->path.length() - 3);
+    
+    // Get the class
+    py::object MyClass = mymodule.attr(script_name.c_str());
+
+    // Create an instance
+    py::object instance = MyClass();
+    // check that the file both has the intended method name and that it is indeed a function
+    if (py::hasattr(instance, "step")) {
+        py::object method = instance.attr("step");
+
+        // Confirm it's actually callable
+        if (py::isinstance<py::function>(method)) {
+            //std::cout << "the method exists and is callable.\n";
+
+            auto casted = py::cast(parsed_item);
+            if (!casted) {
+                std::cerr << "py::cast returned null\n";
+                return;
+            }
+            try {
+                method(casted);
+
+            }
+            catch (py::cast_error e) {
+                std::cout << "fuck " << e.what() << std::endl;
+            }
+
+        }
+        else {
+            std::cout << "the method exists but is not callable.\n";
+        }
+    }
+    else {
+        std::cout << "the method does NOT exist.\n";
+    }
+}
+
+void script_component::Event_Call(const char* event_name, Place::Place* parsed_item) {
+    py::module_ mymodule = this->script_module;
+    // remove the .py suffix from the file name
+    std::string script_name = this->path.substr(0, this->path.length() - 3);
+
+    // Get the class
+    py::object MyClass = mymodule.attr(script_name.c_str());
+
+    // Create an instance
+    py::object instance = MyClass();
+    // check that the file both has the intended method name and that it is indeed a function
+    if (py::hasattr(instance, "step")) {
+        py::object method = instance.attr("step");
+
+        // Confirm it's actually callable
+        if (py::isinstance<py::function>(method)) {
+            //std::cout << "the method exists and is callable.\n";
+
+            auto casted = py::cast(parsed_item);
+            if (!casted) {
+                std::cerr << "py::cast returned null\n";
+                return;
+            }
+            try {
+                method(casted);
+
+            }
+            catch (py::cast_error e) {
+                std::cout << "fuck " << e.what() << std::endl;
+            }
+
+        }
+        else {
+            std::cout << "the method exists but is not callable.\n";
+        }
+    }
+    else {
+        std::cout << "the method does NOT exist.\n";
+    }
+}
+
+
+//-------------------------------------------------
+// SPRITE RENDERER OVERLOADS
+//-------------------------------------------------
 void sprite_renderer::Initialisation() 
 {
+    std::cout << "initialising sprite renderer component" << std::endl;
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(800),
         static_cast<float>(600), 0.0f, -1.0f, 1.0f);
     this->shader.use();

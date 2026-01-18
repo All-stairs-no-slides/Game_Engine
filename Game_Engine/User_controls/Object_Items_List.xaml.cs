@@ -111,6 +111,7 @@ namespace Game_Engine.User_controls
 
         private void Add_transform(object sender, RoutedEventArgs e)
         {
+            // there can only be 1 transform
             for (int i = 0; i < components.Length; i++) {
                 if (components[i].GetType() == typeof(transform_component)) {
                     return;
@@ -121,6 +122,7 @@ namespace Game_Engine.User_controls
 
         private void Add_Sprite_Renderer(object sender, RoutedEventArgs e)
         {
+            // there must be a trasmform
             for (int i = 0; i < components.Length; i++)
             {
                 if (components[i].GetType() == typeof(transform_component))

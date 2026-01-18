@@ -1,12 +1,13 @@
 ﻿  main.cpp
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Game_Object.h(91,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Game_Object.h(106,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'main.cpp')
   
+     Creating library C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Release\CppBuilder.lib and object C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Release\CppBuilder.exp
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  1479 of 7595 functions (19.5%) were compiled, the rest were copied from previous compilation.
-    1168 functions were new in current compilation
-    873 functions had inline decision re-evaluated but remain unchanged
+  11 of 6825 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    47 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CppBuilder.vcxproj -> C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Release\CppBuilder.exe
           1 file(s) copied.

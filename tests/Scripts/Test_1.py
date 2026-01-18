@@ -1,8 +1,9 @@
-class test:    
+class Test_1:    
     def step(self, hi):
         print("bools suck")
-        hi.__class__ = Game_Object 
-        hi.components[1].x_offset += 1
-
         
-        hi.Name = "yello"
+        try:
+            hi.instances[0].components[1].x_offset += 1
+        except Exception as e:
+            print("err:", e)
+                 

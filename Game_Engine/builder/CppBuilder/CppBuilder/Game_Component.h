@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <iostream>
 #include <nlohmann/json.hpp>
@@ -15,15 +15,22 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "Shader_Utilities.h"
 
 // texture loading
 #include "stb_image.h"
 
+
 namespace py = pybind11;
 
+namespace game_object
+{  // forward declaration
+    class Game_Object;
+}
 
-
+namespace Place
+{
+    class Place;
+}
 
 namespace game_components {
 
@@ -34,7 +41,7 @@ namespace game_components {
         std::string type;  // For polymorphic deserialization
         Game_Component(std::string type) : type(type) 
         {
-            std::cout << "yoyoyo" << std::endl;
+            //std::cout << "comp created" << std::endl;
         }
         Game_Component() = default;
 
@@ -65,7 +72,14 @@ namespace game_components {
         {
         }
 
+        void Initialisation();
+
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(script_component, type, path, scope)
+    
+        py::module_ script_module;
+
+        void Event_Call(const char* event_name, game_object::Game_Object* parsed_item);
+        void Event_Call(const char* event_name, Place::Place* parsed_item);
     };
 
     class transform_component : public Game_Component {

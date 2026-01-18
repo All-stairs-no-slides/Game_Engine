@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace Game_Engine.User_controls.Places_Window_conts
 
         private void Add_Instance(object sender, RoutedEventArgs e)
         {
-
+            Debug.WriteLine("adding");
         }
 
         private void Add_Asset(object sender, RoutedEventArgs e)
