@@ -22,14 +22,22 @@ namespace Game_Engine.User_controls.Places_Window_conts
     /// </summary>
     public partial class Place_Instances_List : UserControl
     {
+        public Game_obj[] Place_objs;
         public Place_Instances_List()
         {
             InitializeComponent();
         }
 
-        private void Add_Menu_control(Game_obj Instance, int index)
+        private void Add_obj_control(Game_obj Instance, int index)
         {
+            // create the base menu that will be populated
+            TreeViewItem The_menu = new TreeViewItem();
 
+            The_menu.Header = Instance.Name;
+            The_menu.Tag = index;
+
+            The_menu.Items.Add(Instance);
+            Tree_Parent.Items.Add(The_menu);
         }
 
         private void Add_Instance(object sender, RoutedEventArgs e)
