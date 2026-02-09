@@ -48,7 +48,7 @@ namespace Game_Engine
             return JsonConvert.DeserializeObject<Game_obj>(jsonString)!;
         }
 
-        private void Add_Instance_to_Visual_List(Game_obj inst, int index)
+        public void Add_Instance_to_Visual_List(Game_obj inst, int index)
         {
             // summary:
             // adds the visual indicator of the instance to the Place windows instance list
@@ -129,6 +129,11 @@ namespace Game_Engine
             {
                 win.project.Start_place = this.Place.Place_name;
             }
+        }
+
+        private void Instance_list_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

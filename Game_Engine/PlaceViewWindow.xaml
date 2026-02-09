@@ -19,7 +19,7 @@
 
         </Grid.ColumnDefinitions>
 
-        <Place_conts:Place_Instances_List x:Name="Instance_list" Grid.Column="0"/>
+        <Place_conts:Place_Instances_List x:Name="Instance_list" Grid.Column="0" Loaded="Instance_list_Loaded"/>
 
         <Button Content="set as starting place" Grid.Column="1" Width="110" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Click="set_as_start" />
     </Grid>

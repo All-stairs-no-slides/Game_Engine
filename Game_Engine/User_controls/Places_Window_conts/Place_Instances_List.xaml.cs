@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Game_Engine.faux_obj_types;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Game_Engine.faux_obj_types;
 
 namespace Game_Engine.User_controls.Places_Window_conts
 {
@@ -28,21 +29,22 @@ namespace Game_Engine.User_controls.Places_Window_conts
             InitializeComponent();
         }
 
-        private void Add_obj_control(Game_obj Instance, int index)
-        {
-            // create the base menu that will be populated
-            TreeViewItem The_menu = new TreeViewItem();
-
-            The_menu.Header = Instance.Name;
-            The_menu.Tag = index;
-
-            The_menu.Items.Add(Instance);
-            Tree_Parent.Items.Add(The_menu);
-        }
-
         private void Add_Instance(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("adding");
+            string Obj_name = Interaction.InputBox("Instance Name");
+
+            foreach (Window window in Application.Current.Windows.OfType<PlaceViewWindow>())
+            {
+                if (((PlaceViewWindow)window).Instance_list == this)
+                {
+                    ((PlaceViewWindow)window).Place.Instances = ((PlaceViewWindow)window).Place.Instances.Append(new Game_obj(Obj_name, [])).ToArray();
+                    ((PlaceViewWindow)window).Add_Instance_to_Visual_List(new Game_obj(Obj_name, []), ((PlaceViewWindow)window).Place.Instances.Length - 1);
+                    Debug.WriteLine("uouou");
+
+                    Debug.WriteLine(((PlaceViewWindow)window).Place.Instances[((PlaceViewWindow)window).Place.Instances.Length - 1].Name);
+                }
+            }
+           
         }
 
         private void Add_Asset(object sender, RoutedEventArgs e)

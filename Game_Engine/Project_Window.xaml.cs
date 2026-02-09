@@ -343,5 +343,10 @@ namespace Game_Engine
             Save_project();
 
         }
+        private void Run_project(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
     }
 }
