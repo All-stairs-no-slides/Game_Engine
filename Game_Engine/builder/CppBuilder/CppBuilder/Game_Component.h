@@ -41,7 +41,7 @@ namespace game_components {
         std::string type;  // For polymorphic deserialization
         Game_Component(std::string type) : type(type) 
         {
-            //std::cout << "comp created" << std::endl;
+            std::cout << "comp created" << std::endl;
         }
         Game_Component() = default;
 

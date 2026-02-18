@@ -1,5 +1,6 @@
 #include "Sprite_Asset.h"
 #include<string>
+#include <iostream>
 // texture loading
 #include "stb_image.h"
 void Sprite::Sprite::Initialise() {
@@ -15,7 +16,12 @@ void Sprite::Sprite::Initialise() {
 }
 
 Textures::Texture2D Sprite::Sprite::Get_Current_texture() {
-	return this->textures[this->current_texture];
+	try {
+		return this->textures[this->current_texture];
+	}
+	catch (int err) {
+		std::cout << "cant find the image for the sprite: " << err << std::endl;
+	}
 }
 
 void Sprite::Sprite::Iterate_texture() {

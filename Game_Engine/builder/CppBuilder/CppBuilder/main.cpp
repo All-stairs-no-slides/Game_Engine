@@ -65,6 +65,7 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 	py::class_<Place::Place>(m, "Place")
 		.def(py::init<>())
 		.def_readwrite("place_Name", &Place::Place::Place_name)
+		.def_readwrite("next_place", &Place::Place::Next_place_name)
 		.def_readwrite("instances", &Place::Place::Instances);
 }
 int main()
@@ -197,6 +198,14 @@ int main()
 		for (game_object::Game_Object g_obj : place.Instances) {
 			// includes transforms sprite renderers and scripts
 			g_obj.Components_Loop(&place);
+		}
+			
+		// change place if there has been a change
+		if (place.Next_place_name != "") {
+			std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\)" + place.Next_place_name + ".place");
+			json plain_json = json::parse(f);
+			std::cout << "Current path is: " << plain_json << std::endl;
+			place = place.from_json(plain_json);
 		}
 
 	

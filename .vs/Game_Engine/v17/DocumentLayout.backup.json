@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Game_Engine\\Project_Window.xaml.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml.cs",
               "RelativeToolTip": "Game_Engine\\Project_Window.xaml.cs",
-              "ViewState": "AgIAAEUBAAAAAAAAAAAYwFYBAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAEUBAAAAAAAAAAAYwF4BAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-28T11:54:29.105Z",
               "EditorCaption": ""
@@ -46,8 +46,7 @@
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\Project_Window.xaml",
               "RelativeToolTip": "Game_Engine\\Project_Window.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T11:53:56.301Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T11:53:56.301Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Game_Engine\\User_controls\\Places_Window_conts\\Place_Instances_List.xaml.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAQwCMAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-18T12:31:26.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-18T12:31:26.273Z"
             }
           ]
         }
