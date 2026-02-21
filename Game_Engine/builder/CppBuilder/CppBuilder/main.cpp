@@ -174,6 +174,10 @@ int main()
 	//============================================================
 	// load instances from initial place
 	//============================================================
+	if (project.Current_place == "") {
+		std::cerr << "initial place not set";
+		throw;
+	}
 
 	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\)" + project.Current_place + ".place");
 	json plain_json = json::parse(f);

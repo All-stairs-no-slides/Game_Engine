@@ -349,7 +349,7 @@ namespace Game_Engine
         }
         private void Run_project(object sender, RoutedEventArgs e)
         {
-            
+            Process.Start(path + "\\build\\" + (project.num_of_builds - 1) + "\\CppBuilder.exe");
 
         }
     }
