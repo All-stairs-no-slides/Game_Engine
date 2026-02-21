@@ -87,8 +87,8 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
     // Create an instance
     py::object instance = MyClass();
     // check that the file both has the intended method name and that it is indeed a function
-    if (py::hasattr(instance, "step")) {
-        py::object method = instance.attr("step");
+    if (py::hasattr(instance, event_name)) {
+        py::object method = instance.attr(event_name);
 
         // Confirm it's actually callable
         if (py::isinstance<py::function>(method)) {

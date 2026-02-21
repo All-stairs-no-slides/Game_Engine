@@ -144,6 +144,7 @@ namespace Game_Engine
                     if(index == Instance_path[0])
                     {
                         window.Place.Instances[Instance_path[1]] = the_object;
+                        window.Save_Place();
                         return;
                     }
                     index++;

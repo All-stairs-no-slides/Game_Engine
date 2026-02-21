@@ -56,6 +56,10 @@ namespace Game_Engine
 
         private void Save_project()
         {
+            foreach (PlaceViewWindow window in Application.Current.Windows.OfType<PlaceViewWindow>())
+            {
+                
+            }
             string json_string = JsonConvert.SerializeObject(project);
             File.WriteAllText(path + "\\" + project.Name, json_string);
         }

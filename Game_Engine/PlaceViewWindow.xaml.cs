@@ -86,7 +86,7 @@ namespace Game_Engine
             int window_index = 0;
             foreach (Window window in Application.Current.Windows.OfType<PlaceViewWindow>())
             {
-                window_index++;
+                
                 if (window == this)
                 {
                     TreeViewItem source_item = e.Source as TreeViewItem;
@@ -94,11 +94,12 @@ namespace Game_Engine
                     Instance_window.Show();
                     break;
                 }
+                window_index++;
             }
 
         }
 
-        private void Save_Place()
+        public void Save_Place()
         {
             string json_string = JsonConvert.SerializeObject(Place);
             File.WriteAllText(path, json_string);

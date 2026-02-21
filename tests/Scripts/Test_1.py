@@ -10,3 +10,5 @@ class Test_1:
         except Exception as e:
             print("err:", e)
                  
+    def create(self, hi):
+        print("first bby")

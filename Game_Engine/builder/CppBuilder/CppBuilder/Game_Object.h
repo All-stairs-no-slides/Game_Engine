@@ -112,6 +112,16 @@ namespace game_object {
                 if (comp->type == "Script") {
                     std::shared_ptr<game_components::script_component> script_comp = std::dynamic_pointer_cast<game_components::script_component>(comp);
                     if (script_comp) {
+                        if (script_comp->create_iter == true) {
+                            script_comp->create_iter = false;
+                            if (script_comp->scope == "Local") {
+                                script_comp->Event_Call("create", this);
+                            }
+                            else if (script_comp->scope == "Global") {
+                                script_comp->Event_Call("create", global_context);
+                            }
+                        }
+
                         if (script_comp->scope == "Local") {
                             script_comp->Event_Call("step", this);
                         }

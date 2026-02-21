@@ -41,7 +41,8 @@ namespace game_components {
         std::string type;  // For polymorphic deserialization
         Game_Component(std::string type) : type(type) 
         {
-            std::cout << "comp created" << std::endl;
+            Initialisation();
+            //std::cout << "comp created and initialised through constructor" << std::endl;
         }
         Game_Component() = default;
 
@@ -57,7 +58,7 @@ namespace game_components {
         // Object functions
         // ------------------------------------------------------------------
         void Initialisation() {
-            std::cout << "initialising component" << std::endl;
+            //std::cout << "initialising component" << std::endl;
         }
 
     };
@@ -66,6 +67,7 @@ namespace game_components {
     public:
         std::string path;
         std::string scope; // can be local, room, or global
+        bool create_iter = true;
 
         script_component() = default;
         script_component(std::string type, std::string path, std::string scope_exposure) : Game_Component(type), path(path), scope(scope)
