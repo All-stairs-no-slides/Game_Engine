@@ -81,7 +81,7 @@ namespace game_components {
         py::module_ script_module;
 
         void Event_Call(const char* event_name, game_object::Game_Object* parsed_item);
-        void Event_Call(const char* event_name, Place::Place* parsed_item);
+        void Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api);
     };
 
     class transform_component : public Game_Component {

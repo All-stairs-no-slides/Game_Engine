@@ -76,8 +76,9 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
     }
 }
 
-void script_component::Event_Call(const char* event_name, Place::Place* parsed_item) {
+void script_component::Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api) {
     py::module_ mymodule = this->script_module;
+    py::object place_api = engine_api.attr("Place");
     // remove the .py suffix from the file name
     std::string script_name = this->path.substr(0, this->path.length() - 3);
 
@@ -100,7 +101,8 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
                 return;
             }
             try {
-                method(casted);
+
+                method(place_api(casted));
 
             }
             catch (py::cast_error e) {

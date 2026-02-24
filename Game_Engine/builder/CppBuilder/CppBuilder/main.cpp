@@ -68,6 +68,8 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def_readwrite("next_place", &Place::Place::Next_place_name)
 		.def_readwrite("instances", &Place::Place::Instances);
 }
+
+
 int main()
 {
 
@@ -166,9 +168,10 @@ int main()
 
 	py::module_ sys = py::module_::import("sys");
 	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts)");
+	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\engine_api)");
 
 	py::module_ engine = py::module_::import("engine");
-
+	py::module_ engine_api = py::module_::import("engine_api");
 	py::module_ mymodule;
 	
 	//============================================================
@@ -201,7 +204,7 @@ int main()
 		// component loops (based on the order they show up)
 		for (game_object::Game_Object g_obj : place.Instances) {
 			// includes transforms sprite renderers and scripts
-			g_obj.Components_Loop(&place);
+			g_obj.Components_Loop(&place, engine_api);
 		}
 			
 		// change place if there has been a change

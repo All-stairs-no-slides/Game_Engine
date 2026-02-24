@@ -80,7 +80,7 @@ namespace game_object {
             return obj;
         }
 
-        void Components_Loop(Place::Place *global_context) {
+        void Components_Loop(Place::Place *global_context, py::module_ engine_api) {
             // a backup in the case of a freak accident when there is a missing transform
             game_components::transform_component current_transform = game_components::transform_component("Transform", 0, 0, 0, 1, 1, 0);
 
@@ -118,7 +118,7 @@ namespace game_object {
                                 script_comp->Event_Call("create", this);
                             }
                             else if (script_comp->scope == "Global") {
-                                script_comp->Event_Call("create", global_context);
+                                script_comp->Event_Call("create", global_context, engine_api);
                             }
                         }
 
@@ -126,7 +126,7 @@ namespace game_object {
                             script_comp->Event_Call("step", this);
                         }
                         else if (script_comp->scope == "Global") {
-                            script_comp->Event_Call("step", global_context);
+                            script_comp->Event_Call("step", global_context, engine_api);
                         }
                     }
                     continue;
