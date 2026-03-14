@@ -61,6 +61,13 @@ namespace game_object {
                 auto ret = std::make_shared<game_components::script_component>(comp);
                 return ret;
             }
+            else if (type == "Collider") {
+                game_components::Collider comp;
+                comp.from_json(j);
+                comp.Initialisation();
+                auto ret = std::make_shared<game_components::Collider>(comp);
+                return ret;
+            }
 
             throw std::runtime_error("Unknown component type: " + type);  // Error if type is unknown
         }
@@ -130,6 +137,16 @@ namespace game_object {
                         }
                     }
                     continue;
+                }
+
+                if (comp->type == "Collider") {
+                    std::shared_ptr<game_components::Collider> collider_comp = std::dynamic_pointer_cast<game_components::Collider>(comp);
+
+                    if (collider_comp->Collider_type == "Rect") {
+                        //origin for rect is top right
+                        // proportions for rect are [x_offsey, y_offset, width, height]
+                        global_context->collider_grid[]
+                    }
                 }
             }
             return;

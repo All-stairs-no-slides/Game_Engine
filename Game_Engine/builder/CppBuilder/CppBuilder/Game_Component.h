@@ -97,6 +97,27 @@ namespace game_components {
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(transform_component, type, x, y, z, x_scale, y_scale, rotation)
     };
 
+    class Collider : public Game_Component {
+    public:
+        std::string Collider_type;
+        std::vector<double> Proportions;
+
+
+        Collider() = default;
+        Collider(std::string type, std::string Collider_type, std::vector<double> Proportions) : Game_Component(type), Collider_type(Collider_type), Proportions(Proportions)
+        {
+        }
+
+        void from_json(const nlohmann::json& j) {
+            j.at("type").get_to(type);
+            j.at("Collider_type").get_to(Collider_type);
+            std::cout << j.at("Proportions") << std::endl;
+            j.at("Proportions").get_to(Proportions);
+        }
+
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Collider, type, Collider_type, Proportions);
+    };
+
     class sprite_renderer : public Game_Component {
     public:
         int x_offset, y_offset;
@@ -111,6 +132,9 @@ namespace game_components {
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(sprite_renderer, type, x_offset, y_offset, x_scale, y_scale, rotation, Sprite_dir, depth);
+
+
+        
 
         void Initialisation();
 

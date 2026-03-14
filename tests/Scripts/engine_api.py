@@ -7,7 +7,7 @@ class Place:
         return self._cpp_place.instances
     
     @property
-    def Get_Place_Name(self):
+    def Get_Name(self):
         return self._cpp_place.place_Name
     
     @property
@@ -17,6 +17,168 @@ class Place:
     def Get_Instance(self, name: str):
         for i in self._cpp_place.instances:
             if i.name == name:
-                return i
+                return Instance(i)
             
         
+class Instance:
+    def __init__(self, cpp_instance):
+        self._cpp_instance = cpp_instance
+
+    @property
+    def Name(self):
+        return self._cpp_instance.name
+    
+    @property
+    def Components(self):
+        return self._cpp_instance.components
+    
+    @property
+    def Transform(self):
+        for i in self._cpp_instance.components:
+            if i.type == "Transform":
+                return Transform(i)
+    
+    def Get_Component(self, index: int):
+        return self._cpp_instance.components[index]
+    
+    def Get_Sprite_Renderers(self):
+        ret = []
+        for i in self._cpp_instance.components:
+            if i.type == "Sprite_renderer":
+                ret.append(Sprite_Renderer(i))
+                
+
+        return ret
+
+
+
+class Component:
+    def __init__(self, cpp_component):
+        self._cpp_component = cpp_component
+
+    @property
+    def Type(self):
+        return self._cpp_component.type
+
+
+class Transform(Component):
+    def __init__(self, cpp_component):
+        self._cpp_component = cpp_component
+
+    @property
+    def x(self):
+        return self._cpp_component.x
+    
+    @x.setter
+    def x(self, value):
+        self._cpp_component.x = value
+
+    @property
+    def y(self):
+        return self._cpp_component.y
+    
+    @y.setter
+    def y(self, value):
+        self._cpp_component.y = value
+
+    @property
+    def z(self):
+        return self._cpp_component.z
+    
+    @z.setter
+    def z(self, value):
+        self._cpp_component.z = value
+
+    @property
+    def rotation(self):
+        return self._cpp_component.rotation
+    
+    @rotation.setter
+    def rotation(self, value):
+        self._cpp_component.rotation = value
+    
+    @property
+    def x_scale(self):
+        return self._cpp_component.x_scale
+    
+    @x_scale.setter
+    def x_scale(self, value):
+        self._cpp_component.x_scale = value
+
+    @property
+    def y_scale(self):
+        return self._cpp_component.y_scale
+    
+    @y_scale.setter
+    def y_scale(self, value):
+        self._cpp_component.y_scale = value
+
+
+class Sprite_Renderer(Component):
+    def __init__(self, cpp_component):
+        self._cpp_component = cpp_component
+
+    @property
+    def x_offset(self):
+        return self._cpp_component.x_offset
+    
+    @x_offset.setter
+    def x_offset(self, value):
+        self._cpp_component.x_offset = value
+
+    @property
+    def y_offset(self):
+        return self._cpp_component.y_offset
+    
+    @y_offset.setter
+    def y_offset(self, value):
+        self._cpp_component.y_offset = value
+
+    @property
+    def depth(self):
+        return self._cpp_component.depth
+    
+    @depth.setter
+    def depth(self, value):
+        self._cpp_component.depth = value
+
+    @property
+    def rotation(self):
+        return self._cpp_component.rotation
+    
+    @rotation.setter
+    def rotation(self, value):
+        self._cpp_component.rotation = value
+    
+    @property
+    def x_scale(self):
+        return self._cpp_component.x_scale
+    
+    @x_scale.setter
+    def x_scale(self, value):
+        self._cpp_component.x_scale = value
+
+    @property
+    def y_scale(self):
+        return self._cpp_component.y_scale
+    
+    @y_scale.setter
+    def y_scale(self, value):
+        self._cpp_component.y_scale = value
+
+    @property
+    def shader(self):
+        return self._cpp_component.shader
+    
+    @shader.setter
+    def shader(self, value):
+        self._cpp_component.shader = value
+
+    @property
+    def sprite_dir(self):
+        return self._cpp_component.sprite_dir
+    
+    @sprite_dir.setter
+    def sprite_dir(self, value):
+        self._cpp_component.sprite_dir = value
+    

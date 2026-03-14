@@ -8,6 +8,7 @@ namespace Place {
 	public:
 		std::string Place_name;
 		std::string Next_place_name;
+		std::vector<game_object::Game_Object*> collission_grid;
 		std::vector<game_object::Game_Object> Instances;
 		
 

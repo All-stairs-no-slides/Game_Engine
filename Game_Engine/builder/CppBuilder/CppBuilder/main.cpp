@@ -55,6 +55,22 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def_readwrite("shader", &gc::sprite_renderer::shader)
 		.def_readwrite("sprite_dir", &gc::sprite_renderer::Sprite_dir);
 
+	py::class_<gc::transform_component, gc::Game_Component, std::shared_ptr<gc::transform_component>>(m, "transform")
+		.def(py::init<>())
+		.def_readonly("type", &gc::transform_component::type)
+		.def_readwrite("x", &gc::transform_component::x)
+		.def_readwrite("y", &gc::transform_component::y)
+		.def_readwrite("z", &gc::transform_component::z)
+		.def_readwrite("x_scale", &gc::transform_component::x_scale)
+		.def_readwrite("y_scale", &gc::transform_component::y_scale)
+		.def_readwrite("rotation", &gc::transform_component::rotation);
+
+	py::class_<gc::Collider, gc::Game_Component, std::shared_ptr<gc::Collider>>(m, "Collider")
+		.def(py::init<>())
+		.def_readonly("type", &gc::Collider::type)
+		.def_readwrite("Collider_type", &gc::Collider::Collider_type)
+		.def_readwrite("Proportions", &gc::Collider::Proportions);
+
 	//py::bind_vector<std::vector<std::shared_ptr<gc::Game_Component>>>(m, "ComponentVector");
 
 	py::class_<game_object::Game_Object>(m, "Game_Object")
@@ -172,7 +188,7 @@ int main()
 
 	py::module_ engine = py::module_::import("engine");
 	py::module_ engine_api = py::module_::import("engine_api");
-	py::module_ mymodule;
+	//py::module_ mymodule;
 	
 	//============================================================
 	// load instances from initial place

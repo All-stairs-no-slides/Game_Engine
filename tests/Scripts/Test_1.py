@@ -6,10 +6,16 @@ class Test_1:
         #     print("changed")
         #     hi.next_place = "spp"
         try:
-            print("current_place is:", hi.Get_Place_Name)
-            hi._cpp_place.instances[0].components[1].x_offset += 1
+            print("moving obj_name is:", hi.Get_Instances[1].name)
+            engine_api.Sprite_Renderer(hi.Get_Instance("noice").Get_Sprite_Renderers()[0]).x_offset += 1
+            # hi.Get_Instance("noice").Transform.rotation += 1
+
+            
+
         except Exception as e:
             print("err:", e)
                  
     def create(self, hi):
-        print("first bby")
+        # hi.Get_Instance("noice").Transform.x_scale = 0.001
+        # hi.Get_Instance("noice").Transform.y_scale = 0.001
+        hi.Get_Instance("noice").Transform.rotation += 180
