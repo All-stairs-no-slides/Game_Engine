@@ -96,6 +96,10 @@
     <IncludePath>C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\include;C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13;C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\libs;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13;C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\libs;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\external_libraries\include;C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -128,11 +132,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "C:\Users\amcd1\Desktop\projects\Game_Engine\Python\Python3.13\python313.dll" "$(OutDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

@@ -35,8 +35,10 @@ void script_component::Initialisation()
     this->script_module = py::module_::import(copied_path.c_str());
 }
 
-void script_component::Event_Call(const char* event_name, game_object::Game_Object* parsed_item) {
+void script_component::Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api) {
     py::module_ mymodule = this->script_module;
+    py::object Instance_api = engine_api.attr("Instance");
+
     // remove the .py suffix from the file name
     std::string script_name = this->path.substr(0, this->path.length() - 3);
     
@@ -59,7 +61,53 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
                 return;
             }
             try {
-                method(casted);
+                method(Instance_api(casted));
+
+            }
+            catch (py::cast_error e) {
+                std::cout << "fuck " << e.what() << std::endl;
+            }
+
+        }
+        else {
+            std::cout << "the method exists but is not callable.\n";
+        }
+    }
+    else {
+        std::cout << "the method does NOT exist.\n";
+    }
+}
+
+void script_component::Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api) {
+    py::module_ mymodule = this->script_module;
+    py::object Contact_api = engine_api.attr("Contact");
+    py::object Instance_api = engine_api.attr("Instance");
+
+
+    // remove the .py suffix from the file name
+    std::string script_name = this->path.substr(0, this->path.length() - 3);
+
+    // Get the class
+    py::object MyClass = mymodule.attr(script_name.c_str());
+
+    // Create an instance
+    py::object instance = MyClass();
+    // check that the file both has the intended method name and that it is indeed a function
+    if (py::hasattr(instance, "on_collide")) {
+        py::object method = instance.attr("on_collide");
+
+        // Confirm it's actually callable
+        if (py::isinstance<py::function>(method)) {
+            //std::cout << "the method exists and is callable.\n";
+
+            auto this_casted = py::cast(this_obj);
+            auto collided_casted = py::cast(collsion);
+            if (!this_casted || !collided_casted) {
+                std::cerr << "py::cast returned null\n";
+                return;
+            }
+            try {
+                method(Instance_api(this_casted), Contact_api(collided_casted));
 
             }
             catch (py::cast_error e) {

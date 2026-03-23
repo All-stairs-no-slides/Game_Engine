@@ -51,6 +51,7 @@ class Instance:
         return ret
 
 
+    
 
 class Component:
     def __init__(self, cpp_component):
@@ -59,6 +60,22 @@ class Component:
     @property
     def Type(self):
         return self._cpp_component.type
+
+class Collider(Component):
+    def __init__(self, cpp_component):
+        self._cpp_component = cpp_component
+
+    @property
+    def Collider_type(self):
+        return self._cpp_component.Collider_type
+    
+    @property
+    def Collider_type(self):
+        return self._cpp_component.Collider_alias
+    
+    @property
+    def Collider_type(self):
+        return self._cpp_component.Proportions
 
 
 class Transform(Component):
@@ -182,3 +199,39 @@ class Sprite_Renderer(Component):
     def sprite_dir(self, value):
         self._cpp_component.sprite_dir = value
     
+
+class Contact:
+    def __init__(self, cpp_component):
+        self._cpp_component = cpp_component
+
+    @property
+    def obj_1(self):
+        return Instance(self._cpp_component.obj_1)
+
+    @property
+    def obj_2(self):
+        return Instance(self._cpp_component.obj_2)
+    
+    @property
+    def col_1(self):
+        return Collider(self._cpp_component.col_1)
+    
+    @property
+    def col_2(self):
+        return Collider(self._cpp_component.col_2)
+    
+    @obj_1.setter
+    def obj_1(self, value):
+        self._cpp_component.obj_1 = value
+
+    @obj_2.setter
+    def obj_2(self, value):
+        self._cpp_component.obj_2 = value
+
+    @col_1.setter
+    def col_1(self, value):
+        self._cpp_component.col_1 = value
+
+    @col_2.setter
+    def col_2(self, value):
+        self._cpp_component.col_2 = value

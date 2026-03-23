@@ -33,7 +33,8 @@ namespace Place
 }
 
 namespace game_components {
-
+    
+    struct Contact; // forward declaration 👍
     class Game_Component {
     public:
         // settup for deserialisation
@@ -80,8 +81,9 @@ namespace game_components {
     
         py::module_ script_module;
 
-        void Event_Call(const char* event_name, game_object::Game_Object* parsed_item);
+        void Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api);
         void Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api);
+        void Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api);
     };
 
     class transform_component : public Game_Component {
@@ -97,25 +99,28 @@ namespace game_components {
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(transform_component, type, x, y, z, x_scale, y_scale, rotation)
     };
 
+    
     class Collider : public Game_Component {
     public:
         std::string Collider_type;
+        std::string Collider_alias;
         std::vector<double> Proportions;
 
 
         Collider() = default;
-        Collider(std::string type, std::string Collider_type, std::vector<double> Proportions) : Game_Component(type), Collider_type(Collider_type), Proportions(Proportions)
+        Collider(std::string type, std::string Collider_type, std::string Collider_alias, std::vector<double> Proportions) : Game_Component(type), Collider_type(Collider_type), Collider_alias(Collider_alias), Proportions(Proportions)
         {
         }
 
         void from_json(const nlohmann::json& j) {
             j.at("type").get_to(type);
             j.at("Collider_type").get_to(Collider_type);
+            j.at("Collider_alias").get_to(Collider_alias);
             std::cout << j.at("Proportions") << std::endl;
             j.at("Proportions").get_to(Proportions);
         }
 
-        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Collider, type, Collider_type, Proportions);
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Collider, type, Collider_type, Collider_alias, Proportions);
     };
 
     class sprite_renderer : public Game_Component {
@@ -146,5 +151,18 @@ namespace game_components {
         Sprite::Sprite sprite;
         unsigned int VAO;
 
+    };
+
+    struct Contact {
+
+        game_components::Collider* col_1;
+        game_object::Game_Object* obj_1;
+        game_components::Collider* col_2;
+        game_object::Game_Object* obj_2;
+
+        bool operator<(const Contact& other) const {
+            if (obj_1 != other.obj_1) return obj_1 < other.obj_1;
+            return obj_2 < other.obj_2;
+        }
     };
 }

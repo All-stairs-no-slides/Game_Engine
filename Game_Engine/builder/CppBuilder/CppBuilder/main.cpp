@@ -69,6 +69,7 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def(py::init<>())
 		.def_readonly("type", &gc::Collider::type)
 		.def_readwrite("Collider_type", &gc::Collider::Collider_type)
+		.def_readwrite("Collider_alias", &gc::Collider::Collider_alias)
 		.def_readwrite("Proportions", &gc::Collider::Proportions);
 
 	//py::bind_vector<std::vector<std::shared_ptr<gc::Game_Component>>>(m, "ComponentVector");
@@ -83,6 +84,14 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def_readwrite("place_Name", &Place::Place::Place_name)
 		.def_readwrite("next_place", &Place::Place::Next_place_name)
 		.def_readwrite("instances", &Place::Place::Instances);
+
+	py::class_<game_components::Contact>(m, "Contact")
+		.def(py::init<>())
+		.def_readwrite("obj_1", &game_components::Contact::obj_1)
+		.def_readwrite("obj_2", &game_components::Contact::obj_2)
+		.def_readwrite("col_1", &game_components::Contact::col_1)
+		.def_readwrite("col_2", &game_components::Contact::col_2);
+
 }
 
 
@@ -209,7 +218,7 @@ int main()
 	//============================================================
 	// Game loop
 	//============================================================
-	
+	//int iters = 1;
 	while (!glfwWindowShouldClose(window))
 	{
 
@@ -217,10 +226,15 @@ int main()
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		// collision registration loop
+		place.Collider_Loop();
+		
+		//std::cout << iters << std::endl;
+		//iters += 1;
 		// component loops (based on the order they show up)
-		for (game_object::Game_Object g_obj : place.Instances) {
+		for (int i = 0; i < place.Instances.size(); i++) {
 			// includes transforms sprite renderers and scripts
-			g_obj.Components_Loop(&place, engine_api);
+			place.Instances[i].Components_Loop(&place, engine_api);
 		}
 			
 		// change place if there has been a change

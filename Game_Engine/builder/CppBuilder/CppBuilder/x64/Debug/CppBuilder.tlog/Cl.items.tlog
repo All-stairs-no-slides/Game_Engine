@@ -1,1 +1,8 @@
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Game_Component.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\Game_Component.obj
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Game_Object.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\Game_Object.obj
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\glad.c;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\glad.obj
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\main.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\main.obj
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Shader_utils.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\Shader_utils.obj
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Sprite.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\Sprite.obj
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\STB_image_implementation.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\STB_image_implementation.obj
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Textures.cpp;C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\x64\Debug\Textures.obj

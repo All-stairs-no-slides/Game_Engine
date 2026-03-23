@@ -18,11 +18,13 @@ namespace Place
 }
 
 namespace game_object {
-
+    
     class Game_Object {
     public:
         std::string Name;
         std::vector<std::shared_ptr<game_components::Game_Component>> components;
+        std::set<game_components::Contact> Collisions;
+
 
         Game_Object(std::string Name, std::vector<std::shared_ptr<game_components::Game_Component>> components) : Name(Name), components(components) 
         {
@@ -122,7 +124,7 @@ namespace game_object {
                         if (script_comp->create_iter == true) {
                             script_comp->create_iter = false;
                             if (script_comp->scope == "Local") {
-                                script_comp->Event_Call("create", this);
+                                script_comp->Event_Call("create", this, engine_api);
                             }
                             else if (script_comp->scope == "Global") {
                                 script_comp->Event_Call("create", global_context, engine_api);
@@ -130,25 +132,31 @@ namespace game_object {
                         }
 
                         if (script_comp->scope == "Local") {
-                            script_comp->Event_Call("step", this);
+                            script_comp->Event_Call("step", this, engine_api);
+                            if (Collisions.size() != 0) {
+                                for(game_components::Contact c_obj : Collisions) {
+                                    script_comp->Event_Call("collision", this,& c_obj, engine_api);
+                                };
+                            }
                         }
                         else if (script_comp->scope == "Global") {
                             script_comp->Event_Call("step", global_context, engine_api);
+                            if (Collisions.size() != 0) {
+                                for (game_components::Contact c_obj : Collisions) {
+                                    script_comp->Event_Call("collision", this, &c_obj, engine_api);
+                                };
+                            }
                         }
                     }
                     continue;
                 }
 
                 if (comp->type == "Collider") {
-                    std::shared_ptr<game_components::Collider> collider_comp = std::dynamic_pointer_cast<game_components::Collider>(comp);
-
-                    if (collider_comp->Collider_type == "Rect") {
-                        //origin for rect is top right
-                        // proportions for rect are [x_offsey, y_offset, width, height]
-                        global_context->collider_grid[]
-                    }
+                    continue;
                 }
             }
+            // set all collisions for this object back to 0 as they have been handled in the scripting components
+            Collisions.clear();
             return;
         }
 
