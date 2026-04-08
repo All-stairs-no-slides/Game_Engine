@@ -199,39 +199,66 @@ class Sprite_Renderer(Component):
     def sprite_dir(self, value):
         self._cpp_component.sprite_dir = value
     
+class User_Inputs:
+    def __init__(self, cpp_class):
+        self._cpp_class = cpp_class
+
+    @property
+    def L_mouse_pressed(self):
+        return self._cpp_class.L_mouse
+    
+    @property
+    def R_mouse_pressed(self):
+        return self._cpp_class.R_mouse
+    
+    @property
+    def mouse_x(self):
+        return self._cpp_class.mousex
+    
+    @property
+    def mouse_y(self):
+        return self._cpp_class.mousey
+    
+    @property
+    def pressed_keys(self):
+        return self._cpp_class.Keys_pressed
+    
+    
+
+    
 
 class Contact:
-    def __init__(self, cpp_component):
-        self._cpp_component = cpp_component
+    def __init__(self, cpp_contact):
+        self._cpp_component = cpp_contact
 
     @property
     def obj_1(self):
-        return Instance(self._cpp_component.obj_1)
+        return Instance(self.cpp_contact.obj_1)
 
     @property
     def obj_2(self):
-        return Instance(self._cpp_component.obj_2)
+        return Instance(self.cpp_contact.obj_2)
     
     @property
     def col_1(self):
-        return Collider(self._cpp_component.col_1)
+        return Collider(self.cpp_contact.col_1)
     
     @property
     def col_2(self):
-        return Collider(self._cpp_component.col_2)
+        return Collider(self.cpp_contact.col_2)
     
     @obj_1.setter
     def obj_1(self, value):
-        self._cpp_component.obj_1 = value
+        self.cpp_contact.obj_1 = value
 
     @obj_2.setter
     def obj_2(self, value):
-        self._cpp_component.obj_2 = value
+        self.cpp_contact.obj_2 = value
 
     @col_1.setter
     def col_1(self, value):
-        self._cpp_component.col_1 = value
+        self.cpp_contact.col_1 = value
 
     @col_2.setter
     def col_2(self, value):
-        self._cpp_component.col_2 = value
+        self.cpp_contact.col_2 = value

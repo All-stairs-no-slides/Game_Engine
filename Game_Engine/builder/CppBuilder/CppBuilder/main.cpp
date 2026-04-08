@@ -92,11 +92,81 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def_readwrite("col_1", &game_components::Contact::col_1)
 		.def_readwrite("col_2", &game_components::Contact::col_2);
 
-}
+	py::class_<Place::User_Inputs>(m, "User_Input")
+		.def(py::init<>())
+		.def_readwrite("mousex", &Place::User_Inputs::mousex)
+		.def_readwrite("mousey", &Place::User_Inputs::mousey)
+		.def_readwrite("L_mouse", &Place::User_Inputs::L_mouse_pressed)
+		.def_readwrite("R_mouse", &Place::User_Inputs::R_mouse_pressed)
+		.def_readwrite("Keys_pressed", &Place::User_Inputs::pressed_keys);
 
+}
+void Set_keys(GLFWwindow* window, Place::User_Inputs* In) {
+	// takes inputs for keys and mice and pipes them into the inputs variable
+
+	// reminde: expand keys checked later (to things like function and foreighn keys)
+	for (int i = 0; i < 32; i++) {
+		if (glfwGetKey(window, i) == GLFW_PRESS) {
+			In->pressed_keys.push_back(i);
+		}
+	}
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+		In->L_mouse_pressed = true;
+	}
+	else {
+		In->L_mouse_pressed = false;
+
+	}
+
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+		In->R_mouse_pressed = true;
+	}
+	else {
+		In->R_mouse_pressed = false;
+
+	}
+};
 
 int main()
 {
+
+	//============================================================
+	// load project
+	//============================================================
+
+	Game_project::Game_project project;
+	bool project_found = false;
+	std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
+	for (auto f : std::filesystem::directory_iterator(path)) {
+		//std::cout << f.path().filename().string() << std::endl;
+		// find final suffix
+		std::string p = f.path().filename().string();
+		int suffix_innit = -1;
+		for (int i = 0; i < p.length(); i++) {
+			if (p[i] == '.') {
+				suffix_innit = i;
+			}
+		}
+		//std::cout << p.substr(suffix_innit) << std::endl;
+		if (suffix_innit == -1) {
+			continue;
+		}
+		if (p.substr(suffix_innit) == ".proj") {
+			std::cout << f.path().string();
+			std::ifstream file(f.path().string());
+			json proj_json = json::parse(file);
+			std::cout << "proj: " << proj_json << std::endl;
+			project = project.from_json(proj_json);
+			project_found = true;
+			break;
+		}
+
+	}
+
+	if (project_found == false) {
+		std::cerr << "there is no project file";
+		throw;
+	}
 
 
 	//============================================================
@@ -145,43 +215,7 @@ int main()
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
-	//============================================================
-	// load project
-	//============================================================
-
-	Game_project::Game_project project;
-	bool project_found = false;
-	std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
-	for (auto f : std::filesystem::directory_iterator(path)) {
-		//std::cout << f.path().filename().string() << std::endl;
-		// find final suffix
-		std::string p = f.path().filename().string();
-		int suffix_innit = -1;
-		for (int i = 0; i < p.length(); i++) {
-			if (p[i] == '.') {
-				suffix_innit = i;
-			}
-		}
-		//std::cout << p.substr(suffix_innit) << std::endl;
-		if (suffix_innit == -1) {
-			continue;
-		}
-		if (p.substr(suffix_innit) == ".proj") {
-			std::cout << f.path().string();
-			std::ifstream file(f.path().string());
-			json proj_json = json::parse(file);
-			std::cout << "proj: " << proj_json << std::endl;
-			project = project.from_json(proj_json);
-			project_found = true;
-			break;
-		}
-		
-	 }
-
-	if (project_found == false) {
-		std::cerr << "there is no project file";
-		throw;
-	}
+	
 
 
 	
@@ -218,10 +252,18 @@ int main()
 	//============================================================
 	// Game loop
 	//============================================================
+	// 
 	//int iters = 1;
 	while (!glfwWindowShouldClose(window))
 	{
+		// maintain a local context so it refreshes per frame
+		Place::User_Inputs User_In;
+		// get user inputs
+		glfwGetCursorPos(window, &User_In.mousex, &User_In.mousey);
+		std::cout << User_In.mousex << ", " << User_In.mousey << std::endl;
 
+		Set_keys(window, &User_In);
+		
 		 //clear screen
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -234,7 +276,7 @@ int main()
 		// component loops (based on the order they show up)
 		for (int i = 0; i < place.Instances.size(); i++) {
 			// includes transforms sprite renderers and scripts
-			place.Instances[i].Components_Loop(&place, engine_api);
+			place.Instances[i].Components_Loop(&place, engine_api, &User_In);
 		}
 			
 		// change place if there has been a change

@@ -4,6 +4,15 @@
 #include <nlohmann/json.hpp>
 #include"Game_Object.h"
 namespace Place {
+	struct User_Inputs {
+		double mousex;
+		double mousey;
+		bool L_mouse_pressed;
+		bool R_mouse_pressed;
+		std::vector<int> pressed_keys;
+
+	};
+
 	
 	class Place {
 	public:

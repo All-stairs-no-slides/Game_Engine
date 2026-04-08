@@ -35,9 +35,11 @@ void script_component::Initialisation()
     this->script_module = py::module_::import(copied_path.c_str());
 }
 
-void script_component::Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api) {
+void script_component::Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
     py::module_ mymodule = this->script_module;
     py::object Instance_api = engine_api.attr("Instance");
+    py::object Inputs_api = engine_api.attr("User_Inputs");
+
 
     // remove the .py suffix from the file name
     std::string script_name = this->path.substr(0, this->path.length() - 3);
@@ -48,20 +50,21 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
     // Create an instance
     py::object instance = MyClass();
     // check that the file both has the intended method name and that it is indeed a function
-    if (py::hasattr(instance, "step")) {
-        py::object method = instance.attr("step");
+    if (py::hasattr(instance, event_name)) {
+        py::object method = instance.attr(event_name);
 
         // Confirm it's actually callable
         if (py::isinstance<py::function>(method)) {
             //std::cout << "the method exists and is callable.\n";
 
             auto casted = py::cast(parsed_item);
+            auto casted_inputs = py::cast(User_Inputs);
             if (!casted) {
                 std::cerr << "py::cast returned null\n";
                 return;
             }
             try {
-                method(Instance_api(casted));
+                method(Instance_api(casted), Inputs_api(casted_inputs));
 
             }
             catch (py::cast_error e) {
@@ -78,10 +81,12 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
     }
 }
 
-void script_component::Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api) {
+void script_component::Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
     py::module_ mymodule = this->script_module;
     py::object Contact_api = engine_api.attr("Contact");
     py::object Instance_api = engine_api.attr("Instance");
+    py::object Inputs_api = engine_api.attr("User_Inputs");
+
 
 
     // remove the .py suffix from the file name
@@ -93,8 +98,8 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
     // Create an instance
     py::object instance = MyClass();
     // check that the file both has the intended method name and that it is indeed a function
-    if (py::hasattr(instance, "on_collide")) {
-        py::object method = instance.attr("on_collide");
+    if (py::hasattr(instance, event_name)) {
+        py::object method = instance.attr(event_name);
 
         // Confirm it's actually callable
         if (py::isinstance<py::function>(method)) {
@@ -102,12 +107,14 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
 
             auto this_casted = py::cast(this_obj);
             auto collided_casted = py::cast(collsion);
+            auto casted_inputs = py::cast(User_Inputs);
+
             if (!this_casted || !collided_casted) {
                 std::cerr << "py::cast returned null\n";
                 return;
             }
             try {
-                method(Instance_api(this_casted), Contact_api(collided_casted));
+                method(Instance_api(this_casted), Contact_api(collided_casted), Inputs_api(casted_inputs));
 
             }
             catch (py::cast_error e) {
@@ -124,9 +131,11 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
     }
 }
 
-void script_component::Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api) {
+void script_component::Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
     py::module_ mymodule = this->script_module;
     py::object place_api = engine_api.attr("Place");
+    py::object Inputs_api = engine_api.attr("User_Inputs");
+
     // remove the .py suffix from the file name
     std::string script_name = this->path.substr(0, this->path.length() - 3);
 
@@ -144,13 +153,15 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
             //std::cout << "the method exists and is callable.\n";
 
             auto casted = py::cast(parsed_item);
+            auto casted_inputs = py::cast(User_Inputs);
+
             if (!casted) {
                 std::cerr << "py::cast returned null\n";
                 return;
             }
             try {
 
-                method(place_api(casted));
+                method(place_api(casted), Inputs_api(casted_inputs));
 
             }
             catch (py::cast_error e) {

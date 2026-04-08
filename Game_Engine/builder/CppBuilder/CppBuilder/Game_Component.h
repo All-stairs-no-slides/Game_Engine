@@ -25,11 +25,14 @@ namespace py = pybind11;
 namespace game_object
 {  // forward declaration
     class Game_Object;
+    
 }
 
 namespace Place
 {
+    
     class Place;
+    struct User_Inputs;
 }
 
 namespace game_components {
@@ -81,9 +84,9 @@ namespace game_components {
     
         py::module_ script_module;
 
-        void Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api);
-        void Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api);
-        void Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api);
+        void Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs);
+        void Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs);
+        void Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api, Place::User_Inputs* User_Inputs);
     };
 
     class transform_component : public Game_Component {
@@ -154,7 +157,8 @@ namespace game_components {
     };
 
     struct Contact {
-
+        // located here because in any other file it is slightly more difficult 2 make a forward declaration 4 
+            // idk just dont move it future me
         game_components::Collider* col_1;
         game_object::Game_Object* obj_1;
         game_components::Collider* col_2;

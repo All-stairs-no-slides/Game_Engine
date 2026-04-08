@@ -89,7 +89,7 @@ namespace game_object {
             return obj;
         }
 
-        void Components_Loop(Place::Place *global_context, py::module_ engine_api) {
+        void Components_Loop(Place::Place *global_context, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
             // a backup in the case of a freak accident when there is a missing transform
             game_components::transform_component current_transform = game_components::transform_component("Transform", 0, 0, 0, 1, 1, 0);
 
@@ -124,26 +124,26 @@ namespace game_object {
                         if (script_comp->create_iter == true) {
                             script_comp->create_iter = false;
                             if (script_comp->scope == "Local") {
-                                script_comp->Event_Call("create", this, engine_api);
+                                script_comp->Event_Call("create", this, engine_api, User_Inputs);
                             }
                             else if (script_comp->scope == "Global") {
-                                script_comp->Event_Call("create", global_context, engine_api);
+                                script_comp->Event_Call("create", global_context, engine_api, User_Inputs);
                             }
                         }
 
                         if (script_comp->scope == "Local") {
-                            script_comp->Event_Call("step", this, engine_api);
+                            script_comp->Event_Call("step", this, engine_api, User_Inputs);
                             if (Collisions.size() != 0) {
                                 for(game_components::Contact c_obj : Collisions) {
-                                    script_comp->Event_Call("collision", this,& c_obj, engine_api);
+                                    script_comp->Event_Call("on_collide", this,& c_obj, engine_api, User_Inputs);
                                 };
                             }
                         }
                         else if (script_comp->scope == "Global") {
-                            script_comp->Event_Call("step", global_context, engine_api);
+                            script_comp->Event_Call("step", global_context, engine_api, User_Inputs);
                             if (Collisions.size() != 0) {
                                 for (game_components::Contact c_obj : Collisions) {
-                                    script_comp->Event_Call("collision", this, &c_obj, engine_api);
+                                    script_comp->Event_Call("on_collide", this, &c_obj, engine_api, User_Inputs);
                                 };
                             }
                         }
