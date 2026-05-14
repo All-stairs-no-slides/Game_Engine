@@ -16,11 +16,15 @@
 #include "Textures.h"
 // texture loading
 #include "stb_image.h"
+// audio libraries
+#include <miniaudio/miniaudio.h>
 // python
 #include <Python.h>
 #include <pybind11/embed.h>
 #include <pybind11/stl.h>
 #include <pybind11/stl_bind.h>
+// dubugging
+#include <assert.h>
 
 
 namespace py = pybind11;
@@ -72,6 +76,15 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def_readwrite("Collider_alias", &gc::Collider::Collider_alias)
 		.def_readwrite("Proportions", &gc::Collider::Proportions);
 
+	py::class_<gc::audio_component, gc::Game_Component, std::shared_ptr<gc::audio_component>>(m, "Audio")
+		.def(py::init<>())
+		.def("Play", &gc::audio_component::Play)
+		.def("Get_time_mil", &gc::audio_component::Get_time_mil)
+		.def("Pause", &gc::audio_component::Pause)
+		.def("Set_pitch", &gc::audio_component::Set_pitch)
+		.def_readwrite("type", &gc::audio_component::type)
+		.def_readwrite("sound_alias", &gc::audio_component::sound_alias);
+
 	//py::bind_vector<std::vector<std::shared_ptr<gc::Game_Component>>>(m, "ComponentVector");
 
 	py::class_<game_object::Game_Object>(m, "Game_Object")
@@ -99,6 +112,10 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def_readwrite("L_mouse", &Place::User_Inputs::L_mouse_pressed)
 		.def_readwrite("R_mouse", &Place::User_Inputs::R_mouse_pressed)
 		.def_readwrite("Keys_pressed", &Place::User_Inputs::pressed_keys);
+
+	
+
+
 
 }
 void Set_keys(GLFWwindow* window, Place::User_Inputs* In) {
@@ -231,7 +248,6 @@ int main()
 
 	py::module_ engine = py::module_::import("engine");
 	py::module_ engine_api = py::module_::import("engine_api");
-	//py::module_ mymodule;
 	
 	//============================================================
 	// load instances from initial place
@@ -248,6 +264,24 @@ int main()
 	// IMPORTANT NOTE: initialisaion functions for individual components are performed upon initialisation inside their constructors
 	place = place.from_json(plain_json);
 
+	// ==========================================================
+	// init sound engine
+	// ==========================================================
+	/*ma_result result;
+	ma_engine sound_engine;
+
+	result = ma_engine_init(NULL, &sound_engine);
+	assert(result == MA_SUCCESS);
+
+	ma_engine S2;
+	result = ma_engine_init(NULL, &S2);
+	assert(result == MA_SUCCESS);
+
+	ma_engine_play_sound(&sound_engine, "C:\\Users\\amcd1\\Downloads\\piano.wav", NULL);
+	ma_engine_play_sound(&S2, "C:\\Users\\amcd1\\Downloads\\robo_fall.wav", NULL);
+
+	ma_engine_stop(&sound_engine);*/
+
 	
 	//============================================================
 	// Game loop
@@ -256,6 +290,7 @@ int main()
 	//int iters = 1;
 	while (!glfwWindowShouldClose(window))
 	{
+		
 		// maintain a local context so it refreshes per frame
 		Place::User_Inputs User_In;
 		// get user inputs

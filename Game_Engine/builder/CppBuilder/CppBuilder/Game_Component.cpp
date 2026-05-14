@@ -15,6 +15,10 @@
 // texture loading
 #include "stb_image.h"
 
+// audio libraries
+#include <miniaudio/miniaudio.h>
+
+// project libraries
 #include "Game_Object.h"
 #include "Place.h"
 
@@ -22,6 +26,52 @@
 
 using namespace game_components;
 using json = nlohmann::json;
+
+//-------------------------------------------------
+// AUDIO COMPONENT
+//-------------------------------------------------
+
+void audio_component::Play()
+{
+    ma_sound_start(this->sound.get());
+    ma_sound_set_pitch(this->sound.get(), 2.0);
+}
+
+void audio_component::Set_pitch(float pitch)
+{
+    ma_sound_set_pitch(this->sound.get(), pitch);
+}
+
+void audio_component::Pause()
+{
+    ma_sound_stop(this->sound.get());
+}
+
+void audio_component::Set_start_time_mill(ma_uint64 time) {
+    ma_sound_set_start_time_in_milliseconds(this->sound.get(), time);
+}
+
+ma_uint64 audio_component::Get_time_mil() {
+    return ma_engine_get_time_in_milliseconds(this->s_engine.get());
+}
+
+void audio_component::Initialisation()
+{
+    ma_result result;
+    ma_engine eng;
+    ma_sound s;
+
+    this->s_engine = std::make_shared<ma_engine>(eng);
+    this->sound = std::make_shared<ma_sound>(s);
+
+    result = ma_engine_init(NULL, this->s_engine.get());
+    assert(result == MA_SUCCESS);
+
+    result = ma_sound_init_from_file(this->s_engine.get(), this->path.c_str(), 0, NULL, NULL, this->sound.get());
+    assert(result == MA_SUCCESS);
+
+}
+
 
 //-------------------------------------------------
 // SCRIPT COMPONENT OVERLOADS

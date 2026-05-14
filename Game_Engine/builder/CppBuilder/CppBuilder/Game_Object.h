@@ -70,6 +70,12 @@ namespace game_object {
                 auto ret = std::make_shared<game_components::Collider>(comp);
                 return ret;
             }
+            else if (type == "Audio") {
+                game_components::audio_component comp = j.get<game_components::audio_component>();
+                comp.Initialisation();
+                auto ret = std::make_shared<game_components::audio_component>(comp);
+                return ret;
+            }
 
             throw std::runtime_error("Unknown component type: " + type);  // Error if type is unknown
         }
@@ -83,7 +89,8 @@ namespace game_object {
 
             // Deserialize the components array
             for (const auto& comp : j.at("components")) {
-                obj.components.push_back(deserialize_component(comp));
+                std::shared_ptr<game_components::Game_Component> temp_c = deserialize_component(comp);
+                obj.components.push_back(temp_c);
             }
 
             return obj;
@@ -152,6 +159,9 @@ namespace game_object {
                 }
 
                 if (comp->type == "Collider") {
+                    continue;
+                }
+                if (comp->type == "Audio") {
                     continue;
                 }
             }

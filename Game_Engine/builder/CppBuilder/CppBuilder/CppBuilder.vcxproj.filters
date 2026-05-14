@@ -45,6 +45,9 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\game classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\external_libraries\include\miniaudio\miniaudio.c">
+      <Filter>Source Files\utility_files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

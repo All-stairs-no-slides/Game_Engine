@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\external_libraries\include\miniaudio\miniaudio.c" />
     <ClCompile Include="Game_Component.cpp" />
     <ClCompile Include="Game_Object.cpp" />
     <ClCompile Include="glad.c" />

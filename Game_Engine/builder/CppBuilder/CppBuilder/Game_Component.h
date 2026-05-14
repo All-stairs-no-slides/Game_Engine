@@ -18,6 +18,8 @@
 
 // texture loading
 #include "stb_image.h"
+// audio libraries
+#include <miniaudio/miniaudio.h>
 
 
 namespace py = pybind11;
@@ -64,6 +66,31 @@ namespace game_components {
         void Initialisation() {
             //std::cout << "initialising component" << std::endl;
         }
+
+    };
+    class audio_component : public Game_Component {
+    public:
+        std::string path;
+        std::string sound_alias;
+        
+
+        audio_component() = default;
+        audio_component(std::string type, std::string path, std::string sound_alias) 
+        {
+        }
+
+        void Initialisation();
+        void Play();
+        void Set_pitch(float pitch);
+        void Set_start_time_mill(ma_uint64 time);
+        ma_uint64 Get_time_mil();
+        void Pause();
+
+
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(audio_component, path, sound_alias)
+
+        std::shared_ptr<ma_sound> sound;
+        std::shared_ptr<ma_engine> s_engine;
 
     };
 
@@ -119,7 +146,6 @@ namespace game_components {
             j.at("type").get_to(type);
             j.at("Collider_type").get_to(Collider_type);
             j.at("Collider_alias").get_to(Collider_alias);
-            std::cout << j.at("Proportions") << std::endl;
             j.at("Proportions").get_to(Proportions);
         }
 
