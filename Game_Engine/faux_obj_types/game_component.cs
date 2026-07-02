@@ -43,13 +43,23 @@ namespace Game_Engine.faux_obj_types
 
                     return script_temp;
 
+                case "Audio":
+                    audio_component audio_temp = new audio_component("Audio", "", "");
+                    serializer.Populate(jsonObject.CreateReader(), audio_temp);
+                    return audio_temp;
+
+                case "Collider":
+                    collider_component coll_temp = new collider_component("Collider", "", "", [0, 0, 0, 0]);
+                    serializer.Populate(jsonObject.CreateReader(), coll_temp);
+                    return coll_temp;
+
                 case null:
                 case "":
                     throw new JsonSerializationException("Missing or empty 'type' field in component.");
 
                 default:
-                    Console.WriteLine($"Warning: Unknown component type '{type}'. Falling back to base type.");
-                    return jsonObject.ToObject<game_component>(serializer);
+                    Debug.WriteLine($"Warning: Unknown component type '{type}'.");
+                    throw new Exception($"an unknown component type: '{type}' was parsed via json");
             }
 
 
@@ -93,6 +103,20 @@ namespace Game_Engine.faux_obj_types
                     jo.Add("scope", script_val.scope);
                     break;
 
+                case "Audio":
+                    audio_component audio_val = (audio_component)value;
+                    jo.Add("path", audio_val.path);
+                    jo.Add("sound_alias", audio_val.sound_alias);
+                    break;
+
+                case "Collider":
+                    collider_component coll_val = (collider_component)value;
+                    jo.Add("Collider_type", coll_val.Collider_type);
+                    jo.Add("Collider_alias", coll_val.Collider_alias);
+                    JToken json_prop = JsonConvert.SerializeObject(coll_val.Proportions, coll_val.Proportions.GetType(), null);
+                    jo.Add("Proportions", json_prop);
+                    break;
+
 
 
             }
@@ -105,6 +129,34 @@ namespace Game_Engine.faux_obj_types
     {
         public string type { get; set; }
         
+    }
+
+    public class collider_component : game_component
+    {
+        public string Collider_type;
+        public string Collider_alias;
+        public int[] Proportions;
+
+        public collider_component(string type, string collider_type, string collider_alias, int[] proportions)
+        {
+            this.type = type;
+            this.Collider_type = collider_type;
+            this.Collider_alias = collider_alias;
+            this.Proportions = proportions;
+        }
+    }
+
+    public class audio_component : game_component
+    {
+        public string path { get; set; }
+        public string sound_alias { get; set; }
+
+        public audio_component(string type,  string path, string sound_alias)
+        {
+            this.type = type;
+            this.path = path;
+            this.sound_alias = sound_alias;
+        }
     }
 
     public class script_component : game_component {

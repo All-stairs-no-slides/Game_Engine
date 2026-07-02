@@ -24,6 +24,7 @@ namespace game_object {
         std::string Name;
         std::vector<std::shared_ptr<game_components::Game_Component>> components;
         std::set<game_components::Contact> Collisions;
+        py::dict Locals;
 
 
         Game_Object(std::string Name, std::vector<std::shared_ptr<game_components::Game_Component>> components) : Name(Name), components(components) 
@@ -34,8 +35,9 @@ namespace game_object {
         Game_Object() = default;
 
         // Deserialize a single component based on its type field
-        static std::shared_ptr<game_components::Game_Component> deserialize_component(const nlohmann::json& j) {
+        static std::shared_ptr<game_components::Game_Component> deserialize_component(const nlohmann::json& j, std::string path) {
             std::string type;
+			
 
             if (!(j.contains("type"))) {
                 throw std::runtime_error("Unknown component type: " + type);  // Error if type is unknown
@@ -53,7 +55,7 @@ namespace game_object {
             }
             else if (type == "Sprite_renderer") {
                 game_components::sprite_renderer comp = j.get<game_components::sprite_renderer>();
-                comp.Initialisation();
+                comp.Initialisation(path);
                 auto ret = std::make_shared<game_components::sprite_renderer>(comp);
                 return ret;
             }
@@ -72,7 +74,7 @@ namespace game_object {
             }
             else if (type == "Audio") {
                 game_components::audio_component comp = j.get<game_components::audio_component>();
-                comp.Initialisation();
+                comp.Initialisation(path + "\\Assets\\");
                 auto ret = std::make_shared<game_components::audio_component>(comp);
                 return ret;
             }
@@ -81,7 +83,7 @@ namespace game_object {
         }
 
         // Deserialize the entire Game_Object
-        static Game_Object from_json(const nlohmann::json& j) {
+        static Game_Object from_json(const nlohmann::json& j, const std::string path) {
             Game_Object obj;
 
             // Deserialize the Name field
@@ -89,7 +91,7 @@ namespace game_object {
 
             // Deserialize the components array
             for (const auto& comp : j.at("components")) {
-                std::shared_ptr<game_components::Game_Component> temp_c = deserialize_component(comp);
+                std::shared_ptr<game_components::Game_Component> temp_c = deserialize_component(comp, path);
                 obj.components.push_back(temp_c);
             }
 

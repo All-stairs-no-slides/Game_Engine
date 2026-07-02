@@ -35,11 +35,13 @@ namespace Game_Engine.User_controls
         public void Reload_components()
         {
             foreach (Window window in Application.Current.Windows.OfType<ObjectViewWindow>())
+            {
                 if (((ObjectViewWindow)window).Components_list == this)
                 {
                     components = ((ObjectViewWindow)window).the_object.components;
                     break;
                 }
+            }
             int index = 0;
             Tree_Parent.Items.Clear();
             foreach (game_component comp in components)
@@ -84,6 +86,21 @@ namespace Game_Engine.User_controls
                     // populate menu
                     Script_Menu script_content = new Script_Menu(index, script_component.path, script_component.scope);
                     The_menu.Items.Add(script_content);
+                    Tree_Parent.Items.Add(The_menu);
+                    break;
+                case "Collider":
+                    collider_component coll_component = (collider_component)comp;
+                    // populate menu
+                    Collision_Menu coll_content = new Collision_Menu(index, coll_component.Proportions, coll_component.Collider_alias, coll_component.Collider_type);
+                    The_menu.Items.Add(coll_content);
+                    Tree_Parent.Items.Add(The_menu);
+                    break;
+
+                case "Audio":
+                    audio_component audio_component = (audio_component)comp;
+                    // populate menu
+                    Audio_Menu audio_content = new Audio_Menu(index, audio_component.path, audio_component.sound_alias);
+                    The_menu.Items.Add(audio_content);
                     Tree_Parent.Items.Add(The_menu);
                     break;
             }
@@ -138,6 +155,18 @@ namespace Game_Engine.User_controls
         private void Add_Script(object sender, RoutedEventArgs e)
         {
             add_blank_component(new script_component("Script", "", "Local"));
+            return;
+        }
+
+        private void Add_Collider(object sender, RoutedEventArgs e)
+        {
+            add_blank_component(new collider_component("Collider", "Rect", "", [1, 1, 10, 10]));
+            return;
+        }
+
+        private void Add_Audio(object sender, RoutedEventArgs e)
+        {
+            add_blank_component(new audio_component("Audio", "", ""));
             return;
         }
     }

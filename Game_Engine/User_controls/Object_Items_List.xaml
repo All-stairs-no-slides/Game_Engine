@@ -19,6 +19,8 @@
                         <MenuItem Header="Transform" Click="Add_transform"/>
                         <MenuItem Header="Sprite Renderer" Click="Add_Sprite_Renderer"/>
                         <MenuItem Header="Script" Click="Add_Script"/>
+                        <MenuItem Header="Collider" Click="Add_Collider"/>
+                        <MenuItem Header="Audio" Click="Add_Audio"/>
 
 
                     </MenuItem>

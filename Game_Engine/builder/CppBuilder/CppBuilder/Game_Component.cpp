@@ -47,16 +47,19 @@ void audio_component::Pause()
     ma_sound_stop(this->sound.get());
 }
 
-void audio_component::Set_start_time_mill(ma_uint64 time) {
-    ma_sound_set_start_time_in_milliseconds(this->sound.get(), time);
+void audio_component::Set_time_sec(float time) {
+    ma_sound_seek_to_second(this->sound.get(), time);
 }
 
 ma_uint64 audio_component::Get_time_mil() {
+    // this gets the global time since the engine was created not a time since the sound was played
     return ma_engine_get_time_in_milliseconds(this->s_engine.get());
 }
 
-void audio_component::Initialisation()
+void audio_component::Initialisation(std::string Asset_path)
 {
+
+    
     ma_result result;
     ma_engine eng;
     ma_sound s;
@@ -67,8 +70,13 @@ void audio_component::Initialisation()
     result = ma_engine_init(NULL, this->s_engine.get());
     assert(result == MA_SUCCESS);
 
-    result = ma_sound_init_from_file(this->s_engine.get(), this->path.c_str(), 0, NULL, NULL, this->sound.get());
+    std::string path_cpy = Asset_path + this->path;
+
+    result = ma_sound_init_from_file(this->s_engine.get(), path_cpy.c_str(), 0, NULL, NULL, this->sound.get());
     assert(result == MA_SUCCESS);
+	path_cpy.clear();
+
+    //this->Play();
 
 }
 
@@ -232,23 +240,26 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
 //-------------------------------------------------
 // SPRITE RENDERER OVERLOADS
 //-------------------------------------------------
-void sprite_renderer::Initialisation() 
+void sprite_renderer::Initialisation(std::string proj_path) 
 {
+
+    this->shader = new Shader_utils::Shader((proj_path + R"(\Shaders\Basic_Shader\Basic.vsh)").c_str(), (proj_path + R"(\Shaders\Basic_Shader\Basic.fsh)").c_str());
+
     std::cout << "initialising sprite renderer component" << std::endl;
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(800),
         static_cast<float>(600), 0.0f, -1.0f, 1.0f);
-    this->shader.use();
-    this->shader.setInt("image", 0);
-    this->shader.setMatrix4("projection", projection);
+    this->shader->use();
+    this->shader->setInt("image", 0);
+    this->shader->setMatrix4("projection", projection);
 	// load sprites json
-	std::ifstream f(this->Sprite_dir);
+	std::ifstream f(proj_path + "\\Assets\\" + this->Sprite_dir);
 	json plain_json = json::parse(f);
 	// deserialize sprite
 	Sprite::Sprite spr;
 	plain_json.at("name").get_to(spr.Name);
 	plain_json.at("durations").get_to(spr.durations);
 	plain_json.at("Images_location").get_to(spr.Image_location);
-    spr.Initialise();
+    spr.Initialise(proj_path);
 	this->sprite = spr;
 
 	// initialise render data
@@ -292,7 +303,7 @@ void sprite_renderer::DrawSelf(glm::vec2 position,
 
     //std::cout << tex.Width << std::endl << tex.Height << std::endl;
     // prepare transformations
-    this->shader.use();
+    this->shader->use();
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(position, 0.0f));
 
@@ -302,8 +313,8 @@ void sprite_renderer::DrawSelf(glm::vec2 position,
 
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
-    this->shader.setMatrix4("model", model);
-    this->shader.SetVector3f("spriteColor", color);
+    this->shader->setMatrix4("model", model);
+    this->shader->SetVector3f("spriteColor", color);
 
     
 

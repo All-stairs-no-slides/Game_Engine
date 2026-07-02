@@ -3,16 +3,20 @@ class Place:
         self._cpp_place = cpp_place
         
     @property
-    def Get_Instances(self):
+    def Instances(self):
         return self._cpp_place.instances
     
     @property
-    def Get_Name(self):
+    def Name(self):
         return self._cpp_place.place_Name
     
     @property
-    def Get_Next_Place(self):
+    def Next_Place(self):
         return self._cpp_place.next_place
+    
+    @property
+    def Globals(self):
+        return self._cpp_place.Globals
     
     def Get_Instance(self, name: str):
         for i in self._cpp_place.instances:
@@ -31,6 +35,10 @@ class Instance:
     @property
     def Components(self):
         return self._cpp_instance.components
+    
+    @property
+    def Locals(self):
+        return self._cpp_instance.Locals
     
     @property
     def Transform(self):

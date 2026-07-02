@@ -102,6 +102,8 @@ namespace Game_Engine
         public void Save_Place()
         {
             string json_string = JsonConvert.SerializeObject(Place);
+            json_string = json_string.Replace("\"[", "[");
+            json_string = json_string.Replace("]\"", "]");
             File.WriteAllText(path, json_string);
 
         }

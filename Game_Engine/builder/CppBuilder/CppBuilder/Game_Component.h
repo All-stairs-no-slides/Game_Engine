@@ -79,10 +79,10 @@ namespace game_components {
         {
         }
 
-        void Initialisation();
+        void Initialisation(std::string Asset_path);
         void Play();
         void Set_pitch(float pitch);
-        void Set_start_time_mill(ma_uint64 time);
+        void Set_time_sec(float time);
         ma_uint64 Get_time_mil();
         void Pause();
 
@@ -158,7 +158,9 @@ namespace game_components {
         double x_scale, y_scale, rotation;
         std::string Sprite_dir;
         int depth;
-        Shader_utils::Shader shader = Shader_utils::Shader(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Shaders\Basic_Shader\Basic.vsh)", R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Shaders\Basic_Shader\Basic.fsh)");
+        //Shader_utils::Shader shader = Shader_utils::Shader((std::filesystem::current_path().string() + "\\Shaders\\Basic_Shader\\Basic.vsh").c_str(), (std::filesystem::current_path().string() + "\\Shaders\\Basic_Shader\\Basic.fsh").c_str());
+
+        Shader_utils::Shader* shader;
 
         sprite_renderer() = default;
         sprite_renderer(std::string type, int x_offset, int y_offset, double x_scale, double y_scale, double rotation, std::string Sprite_dir, int depth) : Game_Component(type), x_offset(x_offset), y_offset(y_offset), x_scale(x_scale), y_scale(y_scale), rotation(rotation), Sprite_dir(Sprite_dir), depth(depth) 
@@ -170,7 +172,7 @@ namespace game_components {
 
         
 
-        void Initialisation();
+        void Initialisation(std::string Proj_path);
 
         void DrawSelf(glm::vec2 position,
             glm::vec2 size = glm::vec2(10.0f, 10.0f), float rotate = 0.0f,

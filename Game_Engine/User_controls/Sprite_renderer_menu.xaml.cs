@@ -52,6 +52,14 @@ namespace Game_Engine.User_controls
             if (openFileDialog.FileName != "")
             {
                 System.IO.FileStream fs = (System.IO.FileStream)openFileDialog.OpenFile();
+                string full_path = fs.Name;
+                if(full_path.Split("Assets\\").Length != 2)
+                {
+                    MessageBox.Show("Sprite must be in the Assets folder of the project and should not be within a subfolder of Assets named Assets");
+                    return;
+                }
+                string relative_path = full_path.Split("Assets\\")[1];
+
                 this.Sprite_path_prop = fs.Name;
             }
         }

@@ -3,11 +3,11 @@
 #include <iostream>
 // texture loading
 #include "stb_image.h"
-void Sprite::Sprite::Initialise() {
+void Sprite::Sprite::Initialise(std::string proj_path) {
 	for (std::string path : this->Image_location) {
 		// width height and colour channels
 		int width, height, nrChannels;
-		unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load((proj_path + "\\Assets\\" + path).c_str(), &width, &height, &nrChannels, 0);
 		Textures::Texture2D texture = Textures::Texture2D();
 		texture.Generate(width, height, data);
 		this->textures.push_back(texture);

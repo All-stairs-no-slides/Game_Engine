@@ -3,6 +3,7 @@ using Game_Engine.User_controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -64,6 +65,15 @@ namespace Game_Engine
 
         private void Load_obj_visuals(object sender, RoutedEventArgs e)
         {
+
+            // Find the Project_Window to get the project path
+            string Asset_Path = "";
+            foreach (Project_Window win in Application.Current.Windows.OfType<Project_Window>())
+            {
+                // thre will only be one project window open at a time so this will always get the correct path
+                Asset_Path = win.path + "Assets\\";
+            }
+
             // for converting from piels to dots per inch
             PresentationSource psource = PresentationSource.FromVisual(Object_display);
             double x_dpi_scale;
@@ -91,7 +101,7 @@ namespace Game_Engine
                         index++;
                         continue;
                     }
-                    string json_string = File.ReadAllText(((Sprite_renderer)component).Sprite_dir);
+                    string json_string = File.ReadAllText(Asset_Path + ((Sprite_renderer)component).Sprite_dir);
                     Game_Sprite the_sprite = JsonConvert.DeserializeObject<Game_Sprite>(json_string);
 
                     if (the_sprite.Images_location.Count == 0) {
@@ -107,7 +117,7 @@ namespace Game_Engine
 
                     // BitmapImage.UriSource must be in a BeginInit/EndInit block
                     myBitmapImage.BeginInit();
-                    myBitmapImage.UriSource = new Uri(the_sprite.Images_location[0]);
+                    myBitmapImage.UriSource = new Uri(Asset_Path + the_sprite.Images_location[0]);
                     myBitmapImage.EndInit();
 
                     
@@ -122,6 +132,26 @@ namespace Game_Engine
                     image_render_display.Tag = index;
                     Object_display.Children.Add(image_render_display);
                 }
+
+                // display a collider
+                if (component.GetType() == typeof(collider_component))
+                {
+                    collider_component coll = (collider_component)component;
+                    if (coll.Collider_type == "Rect")
+                    {
+                        Collider_obj_display coll_display = new Collider_obj_display();
+                        // Set position and size using same DPI/zoom scaling as sprite
+                        coll_display.Width = (coll.Proportions[2] / x_dpi_scale) * zoom;
+                        coll_display.Height = (coll.Proportions[3] / y_dpi_scale) * zoom;
+                        Canvas.SetLeft(coll_display, (coll.Proportions[0] / x_dpi_scale) * zoom);
+                        Canvas.SetTop(coll_display, (coll.Proportions[1] / y_dpi_scale) * zoom);
+                        Canvas.SetZIndex(coll_display, 9999);
+                        coll_display.Tag = index;
+                        Object_display.Children.Add(coll_display);
+                    }
+                }
+
+
                 index++;
 
             }
@@ -132,6 +162,7 @@ namespace Game_Engine
             if (Instance_path == null)
             {
                 string json_string = JsonConvert.SerializeObject(the_object);
+                json_string.Replace("\"Proportions\":\"[", "\"Proportions\":[");
                 File.WriteAllText(path, json_string);
                 return;
             } else
@@ -174,6 +205,171 @@ namespace Game_Engine
                 }
             }
         }
+
+        private void Expanding_collider(object[] data, Point move_to)
+        {
+            // this is for resizing the collider boxes, it works in a similar way to the image resizing but with different checks to make sure the collider proportions are valid (eg no negative width or height)
+            if (data[1] is not Collider_obj_display || data[0] is not string)
+            {
+                Debug.WriteLine("invalid selection entered image_scaling");
+                return;
+            }
+
+            string expand_type = (string)data[0];
+            //state just before this one
+            Collider_obj_display the_col_obj = (Collider_obj_display)data[1];
+
+
+            //Debug.WriteLine(e.Source);
+
+            foreach (UIElement child in Object_display.Children)
+            {
+                if (child == data[1])
+                {
+                    // this is the prior state of the image before the stretching
+                    collider_component element = (collider_component)Components_list.components[(int)the_col_obj.Tag];
+
+
+                    double x_offset = Canvas.GetLeft(child);
+                    double y_offset = Canvas.GetTop(child);
+                    double currWidth = ((Collider_obj_display)child).Width;
+                    double currHeight = ((Collider_obj_display)child).Height;
+
+
+                    switch (expand_type)
+                    {
+                        case "SW_Thumb":
+
+
+                            // check that you arent inverting the image (with a negative height)
+                            if (move_to.Y - y_offset < 0)
+                            {
+                                break;
+                            }
+
+                            // check that you arent inverting the image (with a negative width)
+                            if (((((Collider_obj_display)child).Width) + x_offset) - move_to.X < 0)
+                            {
+                                break;
+                            }
+
+                            Canvas.SetLeft(child, move_to.X);
+
+                            ((Collider_obj_display)child).Height = move_to.Y - y_offset;
+                            ((Collider_obj_display)child).Width = ((((Collider_obj_display)child).Width) + x_offset) - move_to.X;
+
+                            break;
+
+                        case "SE_Thumb":
+                            // check that you arent inverting the image (with a negative height)
+                            if (move_to.Y - y_offset < 0)
+                            {
+                                break;
+                            }
+
+                            // check that you arent inverting the image (with a negative width)
+                            if (move_to.X - x_offset < 0)
+                            {
+                                break;
+                            }
+
+                            ((Collider_obj_display)child).Height = move_to.Y - y_offset;
+                            ((Collider_obj_display)child).Width = move_to.X - x_offset;
+                            break;
+
+                        case "NW_Thumb":
+
+                            // check that you arent inverting the image (with a negative height)
+                            if (((((Collider_obj_display)child).Height) + y_offset) - move_to.Y < 0)
+                            {
+                                break;
+                            }
+
+                            // check that you arent inverting the image (with a negative width)
+                            if (((((Collider_obj_display)child).Width) + x_offset) - move_to.X < 0)
+                            {
+                                break;
+                            }
+
+                            Canvas.SetLeft(child, move_to.X);
+                            Canvas.SetTop(child, move_to.Y);
+
+                            ((Collider_obj_display)child).Height = ((((Collider_obj_display)child).Height) + y_offset) - move_to.Y;
+                            ((Collider_obj_display)child).Width = ((((Collider_obj_display)child).Width) + x_offset) - move_to.X;
+                            break;
+
+                        case "NE_Thumb":
+
+                            // check that you arent inverting the image (with a negative height)
+                            if (((((Collider_obj_display)child).Height) + y_offset) - move_to.Y < 0)
+                            {
+                                break;
+                            }
+
+                            // check that you arent inverting the image (with a negative width)
+                            if (move_to.X - x_offset < 0)
+                            {
+                                break;
+                            }
+
+                            Canvas.SetTop(child, move_to.Y);
+
+                            ((Collider_obj_display)child).Height = ((((Collider_obj_display)child).Height) + y_offset) - move_to.Y;
+                            ((Collider_obj_display)child).Width = move_to.X - x_offset;
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void Finalise_collider_expansion(object[] data)
+        {
+            // similar to the finalise image resize but for colliders, it changes the actual data values of the collider after its been resized and moves it back to the correct position if its been resized from the top or left side
+            if (data[1] is not Collider_obj_display)
+            {
+                return;
+            }
+
+
+            //state just before this one
+            Collider_obj_display the_col_obj = (Collider_obj_display)data[1];
+
+
+            //Debug.WriteLine(e.Source);
+
+            foreach (UIElement child in Object_display.Children)
+            {
+                if (child == data[1])
+                {
+                    PresentationSource psource = PresentationSource.FromVisual(Object_display);
+                    double x_dpi_scale;
+                    double y_dpi_scale;
+                    if (psource != null)
+                    {
+                        Matrix dpi_trans = psource.CompositionTarget.TransformToDevice;
+                        x_dpi_scale = dpi_trans.M11;
+                        y_dpi_scale = dpi_trans.M22;
+                    }
+                    else
+                    {
+                        Debug.Write("an issue with dpi source (not found)");
+                        return;
+                    }
+
+
+
+                    // change the actual data values that get saved
+                    ((collider_component)Components_list.components[(int)the_col_obj.Tag]).Proportions[0] = (int)((Canvas.GetLeft((Collider_obj_display)child) * x_dpi_scale) / zoom);
+                    ((collider_component)Components_list.components[(int)the_col_obj.Tag]).Proportions[1] = (int)((Canvas.GetTop((Collider_obj_display)child) * y_dpi_scale) / zoom);
+
+                    ((collider_component)Components_list.components[(int)the_col_obj.Tag]).Proportions[2] = (int)((((Collider_obj_display)child).Width * x_dpi_scale) / zoom);
+                    ((collider_component)Components_list.components[(int)the_col_obj.Tag]).Proportions[3] = (int)((((Collider_obj_display)child).Height * y_dpi_scale) / zoom);
+                    Components_list.Reload_components();
+
+                }
+            }
+        }
+        
 
         private void Expanding_image(object[] data, Point move_to)
         {
@@ -326,6 +522,10 @@ namespace Game_Engine
                 case "Image_move":
                     image_move(data, move_to);
                     break;
+
+                case "Collider_scale":
+                    Expanding_collider(data, move_to);
+                    break;
             }
         }
 
@@ -377,7 +577,21 @@ namespace Game_Engine
             }
             //state just before this one
             Image_render_obj_display the_image_obj = (Image_render_obj_display)data[1];
+            // for converting from piels to dots per inch
+            PresentationSource psource = PresentationSource.FromVisual(Object_display);
+            double x_dpi_scale, y_dpi_scale;
 
+            if (psource != null)
+            {
+                Matrix dpi_trans = psource.CompositionTarget.TransformToDevice;
+                x_dpi_scale = dpi_trans.M11;
+                y_dpi_scale = dpi_trans.M22;
+            }
+            else
+            {
+                Debug.Write("an issue with dpi source (not found)");
+                return;
+            }
 
             //Debug.WriteLine(e.Source);
 
@@ -385,11 +599,15 @@ namespace Game_Engine
             {
                 if (child == data[1])
                 {
-                    
+
+
+
+                    //Canvas.SetLeft(image_render_display, ((((Sprite_renderer)component).x_offset / x_dpi_scale) * zoom));
+                    //Canvas.SetTop(image_render_display, ((((Sprite_renderer)component).y_offset / y_dpi_scale) * zoom));
 
                     // change the actual data values that get saved
-                    ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).x_offset = (int)Canvas.GetLeft((Image_render_obj_display)child);
-                    ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).y_offset = (int)Canvas.GetTop((Image_render_obj_display)child);
+                    ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).x_offset = (int)((Canvas.GetLeft((Image_render_obj_display)child) * x_dpi_scale) / zoom);
+                    ((Sprite_renderer)Components_list.components[(int)the_image_obj.Tag]).y_offset = (int)((Canvas.GetTop((Image_render_obj_display)child) * y_dpi_scale) / zoom);
                     Components_list.Reload_components();
 
                 }
@@ -408,6 +626,9 @@ namespace Game_Engine
                         break;
                     case "Image_move":
                         Finalise_image_move(data);
+                        break;
+                    case "Collider_scale":
+                        Finalise_collider_expansion(data);
                         break;
                 }
             }

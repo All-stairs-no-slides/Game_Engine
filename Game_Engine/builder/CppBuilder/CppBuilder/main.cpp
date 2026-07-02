@@ -80,6 +80,7 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 		.def(py::init<>())
 		.def("Play", &gc::audio_component::Play)
 		.def("Get_time_mil", &gc::audio_component::Get_time_mil)
+		.def("Set_time_sec", &gc::audio_component::Set_time_sec)
 		.def("Pause", &gc::audio_component::Pause)
 		.def("Set_pitch", &gc::audio_component::Set_pitch)
 		.def_readwrite("type", &gc::audio_component::type)
@@ -90,13 +91,16 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 	py::class_<game_object::Game_Object>(m, "Game_Object")
 		.def(py::init<>())
 		.def_readwrite("name", &game_object::Game_Object::Name)
-		.def_readwrite("components", &game_object::Game_Object::components);
+		.def_readwrite("components", &game_object::Game_Object::components)
+		.def_readwrite("Locals", &game_object::Game_Object::Locals);
 
 	py::class_<Place::Place>(m, "Place")
 		.def(py::init<>())
 		.def_readwrite("place_Name", &Place::Place::Place_name)
 		.def_readwrite("next_place", &Place::Place::Next_place_name)
-		.def_readwrite("instances", &Place::Place::Instances);
+		.def_readwrite("instances", &Place::Place::Instances)
+		.def_readwrite("Globals", &Place::Place::Globals);
+
 
 	py::class_<game_components::Contact>(m, "Contact")
 		.def(py::init<>())
@@ -153,7 +157,8 @@ int main()
 
 	Game_project::Game_project project;
 	bool project_found = false;
-	std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
+	//std::string path = std::filesystem::current_path().string();
+	const std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
 	for (auto f : std::filesystem::directory_iterator(path)) {
 		//std::cout << f.path().filename().string() << std::endl;
 		// find final suffix
@@ -243,8 +248,9 @@ int main()
 	py::scoped_interpreter guard{}; // start the interpreter and keep it alive
 
 	py::module_ sys = py::module_::import("sys");
-	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Scripts)");
-	sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\engine_api)");
+
+	sys.attr("path").attr("append")(path + "\\Scripts");
+	//sys.attr("path").attr("append")(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\engine_api)");
 
 	py::module_ engine = py::module_::import("engine");
 	py::module_ engine_api = py::module_::import("engine_api");
@@ -257,30 +263,12 @@ int main()
 		throw;
 	}
 
-	std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\)" + project.Current_place + ".place");
+	std::ifstream f(path + "\\Places\\" + project.Current_place + ".place");
 	json plain_json = json::parse(f);
 	std::cout << "Current path is: " << plain_json << std::endl;
 	Place::Place place;
 	// IMPORTANT NOTE: initialisaion functions for individual components are performed upon initialisation inside their constructors
-	place = place.from_json(plain_json);
-
-	// ==========================================================
-	// init sound engine
-	// ==========================================================
-	/*ma_result result;
-	ma_engine sound_engine;
-
-	result = ma_engine_init(NULL, &sound_engine);
-	assert(result == MA_SUCCESS);
-
-	ma_engine S2;
-	result = ma_engine_init(NULL, &S2);
-	assert(result == MA_SUCCESS);
-
-	ma_engine_play_sound(&sound_engine, "C:\\Users\\amcd1\\Downloads\\piano.wav", NULL);
-	ma_engine_play_sound(&S2, "C:\\Users\\amcd1\\Downloads\\robo_fall.wav", NULL);
-
-	ma_engine_stop(&sound_engine);*/
+	place = place.from_json(plain_json, path);
 
 	
 	//============================================================
@@ -316,10 +304,10 @@ int main()
 			
 		// change place if there has been a change
 		if (place.Next_place_name != "") {
-			std::ifstream f(R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests\Places\)" + place.Next_place_name + ".place");
+			std::ifstream f(path + "\\Places\\" + place.Next_place_name + ".place");
 			json plain_json = json::parse(f);
 			std::cout << "Current path is: " << plain_json << std::endl;
-			place = place.from_json(plain_json);
+			place = place.from_json(plain_json, path);
 		}
 
 	

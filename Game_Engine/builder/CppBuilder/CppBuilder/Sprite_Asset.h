@@ -16,7 +16,7 @@ namespace Sprite {
 		}
 		NLOHMANN_DEFINE_TYPE_INTRUSIVE(Sprite, Name, Image_location, durations);
 
-		void Initialise();
+		void Initialise(std::string proj_path);
 		void Iterate_texture();
 		Textures::Texture2D Get_Current_texture();
 		

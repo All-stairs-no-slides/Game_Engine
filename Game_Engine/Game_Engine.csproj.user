@@ -14,6 +14,15 @@
     <Compile Update="SpriteViewWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="User_controls\Audio_Menu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="User_controls\Collider_obj_display.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="User_controls\Collision_Menu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="User_controls\Image_render_obj_display.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
