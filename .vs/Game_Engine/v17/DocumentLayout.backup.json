@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\objectviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\objectviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\placeviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\placeviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\faux_obj_types\\game_component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\faux_obj_types\\game_component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\objectviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|solutionrelative:game_engine\\objectviewwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{346A5FBF-732B-44A2-83A6-9DE2DE35EF00}|Game_Engine\\Game_Engine.csproj|c:\\users\\amcd1\\desktop\\projects\\game_engine\\game_engine\\user_controls\\collider_obj_display.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -42,17 +42,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlaceViewWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml.cs",
               "RelativeDocumentMoniker": "Game_Engine\\PlaceViewWindow.xaml.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\PlaceViewWindow.xaml.cs",
               "RelativeToolTip": "Game_Engine\\PlaceViewWindow.xaml.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAvwGgAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAvwHIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-01T22:53:51.636Z",
               "EditorCaption": ""
@@ -72,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "game_component.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\faux_obj_types\\game_component.cs",
               "RelativeDocumentMoniker": "Game_Engine\\faux_obj_types\\game_component.cs",
@@ -132,13 +132,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ObjectViewWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\ObjectViewWindow.xaml.cs",
               "RelativeDocumentMoniker": "Game_Engine\\ObjectViewWindow.xaml.cs",
               "ToolTip": "C:\\Users\\amcd1\\Desktop\\projects\\Game_Engine\\Game_Engine\\ObjectViewWindow.xaml.cs",
               "RelativeToolTip": "Game_Engine\\ObjectViewWindow.xaml.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAArwLEAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAFABAAAAAAAAAAASwGgBAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-10T02:02:37.609Z",
               "EditorCaption": ""
