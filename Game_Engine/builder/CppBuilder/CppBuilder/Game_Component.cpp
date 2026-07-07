@@ -218,7 +218,7 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
                 return;
             }
             try {
-
+                //parsed_item->Instantiate("hhh");
                 method(place_api(casted), Inputs_api(casted_inputs));
 
             }

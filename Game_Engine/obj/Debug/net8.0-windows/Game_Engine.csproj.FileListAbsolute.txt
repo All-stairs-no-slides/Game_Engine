@@ -90,3 +90,5 @@ C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Audio_Menu.baml
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Collider_obj_display.g.cs
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Collider_obj_display.baml
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Instance_obj_display.g.cs
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\obj\Debug\net8.0-windows\User_controls\Instance_obj_display.baml

@@ -96,6 +96,7 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 
 	py::class_<Place::Place>(m, "Place")
 		.def(py::init<>())
+		.def("Instantiate", &Place::Place::Instantiate)
 		.def_readwrite("place_Name", &Place::Place::Place_name)
 		.def_readwrite("next_place", &Place::Place::Next_place_name)
 		.def_readwrite("instances", &Place::Place::Instances)
@@ -270,6 +271,33 @@ int main()
 	// IMPORTANT NOTE: initialisaion functions for individual components are performed upon initialisation inside their constructors
 	place = place.from_json(plain_json, path);
 
+
+
+	// ==========================================================
+	// Initialise Instantiable objects
+	// ==========================================================
+
+	std::vector<game_object::Game_Object> Instantiables;
+
+	if (!std::filesystem::is_directory(path + "\\Objects"))
+	{
+		std::cerr << "no objects dir" << std::endl;
+		return 0;
+	}
+
+	std::filesystem::directory_iterator di = std::filesystem::directory_iterator(path + "\\Objects");
+	for (std::filesystem::path p : di) {
+		std::string str_p = p.string();
+		int last_p = str_p.find_last_of("\\");
+		std::string file_name = str_p.substr(last_p, str_p.length());
+		p = std::filesystem::path(str_p + file_name + ".obj");
+		game_object::Game_Object obj;
+		std::ifstream f(p.string());
+		json plain_json = json::parse(f);
+		obj = obj.from_json(plain_json, path);
+		Instantiables.push_back(obj);
+	}
+	;
 	
 	//============================================================
 	// Game loop
@@ -283,7 +311,7 @@ int main()
 		Place::User_Inputs User_In;
 		// get user inputs
 		glfwGetCursorPos(window, &User_In.mousex, &User_In.mousey);
-		std::cout << User_In.mousex << ", " << User_In.mousey << std::endl;
+		//std::cout << User_In.mousex << ", " << User_In.mousey << std::endl;
 
 		Set_keys(window, &User_In);
 		
@@ -301,6 +329,9 @@ int main()
 			// includes transforms sprite renderers and scripts
 			place.Instances[i].Components_Loop(&place, engine_api, &User_In);
 		}
+
+		// process the instantiated objects
+		place.Process_Instantiation_Queue(&Instantiables);
 			
 		// change place if there has been a change
 		if (place.Next_place_name != "") {
@@ -308,6 +339,7 @@ int main()
 			json plain_json = json::parse(f);
 			std::cout << "Current path is: " << plain_json << std::endl;
 			place = place.from_json(plain_json, path);
+			
 		}
 
 	

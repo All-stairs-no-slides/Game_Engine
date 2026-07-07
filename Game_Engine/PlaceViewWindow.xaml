@@ -9,18 +9,25 @@
         Title="PlaceViewWindow" Height="450" Width="800"
         AllowDrop="True"
         Drop="Place_Window_Drop"
-        KeyDown="Key_pressed">
+        KeyDown="Key_pressed"
+        Loaded="Place_Window_Loaded">
         
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="75*"/>
-
-
         </Grid.ColumnDefinitions>
 
         <Place_conts:Place_Instances_List x:Name="Instance_list" Grid.Column="0" Loaded="Instance_list_Loaded"/>
 
-        <Button Content="set as starting place" Grid.Column="1" Width="110" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Click="set_as_start" />
+        <!-- Place visual display canvas -->
+        <Canvas x:Name="Place_display" Grid.Column="1"
+                AllowDrop="True"
+                Drop="Place_display_Drop"
+                DragOver="Place_display_DragOver"
+                Background="Transparent"
+                ClipToBounds="True" />
+
+        <Button Content="set as starting place" Grid.Column="1" Width="110" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Click="set_as_start" Panel.ZIndex="10" />
     </Grid>
 </Window>

@@ -1,7 +1,10 @@
 class Place:
     def __init__(self, cpp_place):
         self._cpp_place = cpp_place
-        
+
+    def Instantiate(self, obj_name: str):
+        self._cpp_place.Instantiate(obj_name)    
+    
     @property
     def Instances(self):
         return self._cpp_place.instances

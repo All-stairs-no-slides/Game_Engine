@@ -40,6 +40,21 @@ namespace Place {
 		}
 
 
+		void Instantiate(std::string obj_name) {
+			instantiation_queue.push_back(obj_name);					
+		}
+
+		void Process_Instantiation_Queue(std::vector<game_object::Game_Object>* Instantiables) {
+			for (const auto& obj_name : instantiation_queue) {
+				for (const auto& ob : *Instantiables) {
+					if (ob.Name == obj_name) {
+						Instances.push_back(ob);
+					}
+				}
+			}
+			instantiation_queue.clear();
+		}
+
 		void Collider_Loop() {
 			// the collider loop will return all collisions as a vector of pairs of game object pointers
 			std::map<std::pair<int, int>, std::vector<std::pair<std::pair<std::shared_ptr<game_components::transform_component>, std::shared_ptr<game_components::Collider>> ,game_object::Game_Object*>>> collider_grid;
@@ -126,10 +141,13 @@ namespace Place {
 			//std::cout << Global_Collisions.size() << std::endl;
 		}
 
+		
+
 		NLOHMANN_DEFINE_TYPE_INTRUSIVE(Place, Place_name, Instances);
 
 		private:
 			std::string path;
+			std::vector<std::string> instantiation_queue;
 
 	};
 }
