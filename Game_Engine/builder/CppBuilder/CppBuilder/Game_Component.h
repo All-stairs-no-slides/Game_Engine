@@ -67,6 +67,8 @@ namespace game_components {
             //std::cout << "initialising component" << std::endl;
         }
 
+        virtual std::shared_ptr<Game_Component> clone() const { return nullptr; }
+
     };
     class audio_component : public Game_Component {
     public:
@@ -86,12 +88,27 @@ namespace game_components {
         ma_uint64 Get_time_mil();
         void Pause();
 
+        std::shared_ptr<Game_Component> clone() const override {
+            // Construct a fresh audio_component with the same data fields,
+            // then re-run Initialisation so it gets its own ma_engine and ma_sound.
+            audio_component copy;
+            copy.type         = type;
+            copy.path         = path;
+            copy.sound_alias  = sound_alias;
+            copy.stored_asset_path = stored_asset_path;
+            if (!stored_asset_path.empty()) {
+                copy.Initialisation(stored_asset_path);
+            }
+            return std::make_shared<audio_component>(std::move(copy));
+        }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(audio_component, path, sound_alias)
 
         std::shared_ptr<ma_sound> sound;
         std::shared_ptr<ma_engine> s_engine;
 
+        // Stored so clone() can re-initialise with the correct path
+        std::string stored_asset_path;
     };
 
     class script_component : public Game_Component {
@@ -106,6 +123,18 @@ namespace game_components {
         }
 
         void Initialisation();
+
+        std::shared_ptr<Game_Component> clone() const override {
+            // Each instance needs its own script_component with create_iter reset
+            // so the "create" event fires for every new instance.
+            script_component copy;
+            copy.type         = type;
+            copy.path         = path;
+            copy.scope        = scope;
+            copy.create_iter  = true;   // reset so "create" fires on the new instance
+            copy.Initialisation();
+            return std::make_shared<script_component>(std::move(copy));
+        }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(script_component, type, path, scope)
     
@@ -127,6 +156,10 @@ namespace game_components {
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(transform_component, type, x, y, z, x_scale, y_scale, rotation)
+
+        std::shared_ptr<Game_Component> clone() const override {
+            return std::make_shared<transform_component>(*this);
+        }
     };
 
     
@@ -150,6 +183,10 @@ namespace game_components {
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(Collider, type, Collider_type, Collider_alias, Proportions);
+
+        std::shared_ptr<Game_Component> clone() const override {
+            return std::make_shared<Collider>(*this);
+        }
     };
 
     class sprite_renderer : public Game_Component {
@@ -169,8 +206,26 @@ namespace game_components {
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(sprite_renderer, type, x_offset, y_offset, x_scale, y_scale, rotation, Sprite_dir, depth);
 
+        std::shared_ptr<Game_Component> clone() const override {
+            // Re-run Initialisation so the clone gets its own shader and VAO.
+            sprite_renderer copy;
+            copy.type       = type;
+            copy.x_offset   = x_offset;
+            copy.y_offset   = y_offset;
+            copy.x_scale    = x_scale;
+            copy.y_scale    = y_scale;
+            copy.rotation   = rotation;
+            copy.Sprite_dir = Sprite_dir;
+            copy.depth      = depth;
+            copy.stored_proj_path = stored_proj_path;
+            if (!stored_proj_path.empty()) {
+                copy.Initialisation(stored_proj_path);
+            }
+            return std::make_shared<sprite_renderer>(std::move(copy));
+        }
 
-        
+        // Stored so clone() can re-initialise with the correct project path
+        std::string stored_proj_path;
 
         void Initialisation(std::string Proj_path);
 

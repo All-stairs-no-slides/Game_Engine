@@ -48,7 +48,10 @@ namespace Place {
 			for (const auto& obj_name : instantiation_queue) {
 				for (const auto& ob : *Instantiables) {
 					if (ob.Name == obj_name) {
-						Instances.push_back(ob);
+						// deep_copy ensures every new instance owns its own components,
+						// so shared_ptr mutations (e.g. create_iter = false) on one
+						// instance do not affect the template or any other instance.
+						Instances.push_back(ob.deep_copy());
 					}
 				}
 			}

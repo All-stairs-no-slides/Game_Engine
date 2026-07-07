@@ -13,8 +13,10 @@ class Test_1:
 
             if(inputs.R_mouse_pressed):
                 hi.Instantiate("nnn")
-
-            # print("type is:", hi.Get_Instance("olla").Locals["bobo"])
+            hi.Name = "nonononono"
+            if(hi.Get_Instance("olla") != None):
+                hi.Get_Instance("olla").Name = "nonononono"
+            # print("type is:", hi.Get_Instance("olla").Name)
 
 
 

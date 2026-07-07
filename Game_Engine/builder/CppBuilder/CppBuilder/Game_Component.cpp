@@ -58,8 +58,9 @@ ma_uint64 audio_component::Get_time_mil() {
 
 void audio_component::Initialisation(std::string Asset_path)
 {
+    // Store so clone() can re-initialise independently
+    this->stored_asset_path = Asset_path;
 
-    
     ma_result result;
     ma_engine eng;
     ma_sound s;
@@ -242,6 +243,8 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
 //-------------------------------------------------
 void sprite_renderer::Initialisation(std::string proj_path) 
 {
+    // Store so clone() can re-initialise independently
+    this->stored_proj_path = proj_path;
 
     this->shader = new Shader_utils::Shader((proj_path + R"(\Shaders\Basic_Shader\Basic.vsh)").c_str(), (proj_path + R"(\Shaders\Basic_Shader\Basic.fsh)").c_str());
 

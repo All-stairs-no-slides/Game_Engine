@@ -12,6 +12,10 @@ class Place:
     @property
     def Name(self):
         return self._cpp_place.place_Name
+        
+    @Name.setter
+    def Name(self, value):  
+        self._cpp_place.place_Name = value
     
     @property
     def Next_Place(self):
@@ -34,6 +38,10 @@ class Instance:
     @property
     def Name(self):
         return self._cpp_instance.name
+    
+    @Name.setter
+    def Name(self, value):
+        self._cpp_instance.name = value
     
     @property
     def Components(self):

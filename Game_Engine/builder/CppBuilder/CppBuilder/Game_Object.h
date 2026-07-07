@@ -175,6 +175,18 @@ namespace game_object {
             
 
 
+        /// Returns a deep copy of this Game_Object where every component is an
+        /// independently owned object (each shared_ptr points to a fresh clone).
+        Game_Object deep_copy() const {
+            Game_Object copy;
+            copy.Name = Name;
+            for (const auto& comp : components) {
+                copy.components.push_back(comp->clone());
+            }
+            // Collisions are per-frame and intentionally NOT copied
+            return copy;
+        }
+
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(Game_Object, Name, components);
     };
 

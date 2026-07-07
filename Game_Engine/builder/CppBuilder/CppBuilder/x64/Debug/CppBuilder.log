@@ -1,38 +1,68 @@
-﻿  main.cpp
+﻿  Game_Component.cpp
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Game_Object.h(124,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(85,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(86,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(87,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(88,24): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:         ]
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244:         ]
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:         ]
+  (compiling source file 'Game_Component.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:         ]
+  (compiling source file 'Game_Component.cpp')
+  
+  main.cpp
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Game_Object.h(124,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'main.cpp')
   
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(82,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(85,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'main.cpp')
   
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(83,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(86,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'main.cpp')
   
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(84,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(87,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'main.cpp')
   
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(85,24): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(88,24): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'main.cpp')
   
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(102,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(102,23): warning C4244:         with
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(102,23): warning C4244:         [
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(102,23): warning C4244:             _Ty=double
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(102,23): warning C4244:         ]
-  (compiling source file 'main.cpp')
-  
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(103,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(103,23): warning C4244:         with
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(103,23): warning C4244:         [
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(103,23): warning C4244:             _Ty=double
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(103,23): warning C4244:         ]
-  (compiling source file 'main.cpp')
-  
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,22): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,22): warning C4244:         with
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,22): warning C4244:         [
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,22): warning C4244:             _Ty=double
-C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,22): warning C4244:         ]
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(105,23): warning C4244:         ]
   (compiling source file 'main.cpp')
   
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
@@ -42,6 +72,22 @@ C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBu
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(106,23): warning C4244:         ]
   (compiling source file 'main.cpp')
   
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(108,22): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244: 'initializing': conversion from '_Ty' to 'int', possible loss of data
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:         with
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:         [
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:             _Ty=double
+C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\Place.h(109,23): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
 C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\CppBuilder\main.cpp(291,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+     Creating library C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Debug\CppBuilder.lib and object C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Debug\CppBuilder.exp
   CppBuilder.vcxproj -> C:\Users\amcd1\Desktop\projects\Game_Engine\Game_Engine\builder\CppBuilder\x64\Debug\CppBuilder.exe
           1 file(s) copied.
