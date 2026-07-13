@@ -59,7 +59,7 @@ public partial class StartWindow : Window
 
             string[] split_path = saveFileDialog1.FileName.Split("\\");
 
-            Project empty_proj = new Project(split_path.Last(), "");
+            Project empty_proj = new Project(split_path.Last(), "", 1000, 500, 1000, 500);
             string json_string = JsonConvert.SerializeObject(empty_proj);
             File.WriteAllText(saveFileDialog1.FileName, json_string);
 

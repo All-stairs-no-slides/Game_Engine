@@ -244,13 +244,18 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
 void sprite_renderer::Initialisation(std::string proj_path) 
 {
     // Store so clone() can re-initialise independently
+    int win_width, win_height;
+
+    GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+
     this->stored_proj_path = proj_path;
 
     this->shader = new Shader_utils::Shader((proj_path + R"(\Shaders\Basic_Shader\Basic.vsh)").c_str(), (proj_path + R"(\Shaders\Basic_Shader\Basic.fsh)").c_str());
 
     std::cout << "initialising sprite renderer component" << std::endl;
-    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(800),
-        static_cast<float>(600), 0.0f, -1.0f, 1.0f);
+    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(viewport[2]),
+        static_cast<float>(viewport[3]), 0.0f, -1.0f, 1.0f);
     this->shader->use();
     this->shader->setInt("image", 0);
     this->shader->setMatrix4("projection", projection);

@@ -205,7 +205,7 @@ int main()
 
 	
 	// start window
-	GLFWwindow* window = glfwCreateWindow(800, 600, "placeholder, remember to fix dumbass", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(project.Window_width, project.Window_height, project.Name.c_str(), NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -225,7 +225,7 @@ int main()
 	
 
 	// set viewport
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, project.Viewport_width, project.Viewport_height);
 
 	// transparency
 	glEnable(GL_BLEND);
@@ -235,7 +235,7 @@ int main()
 	//glm::mat4 norm_vec = glm::ortho(0.0f, 800.0f, 600.0f, 0.0f, -1.0f, 1.0f);
 
 	// allow for window resizing
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	//glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
 	
@@ -297,7 +297,7 @@ int main()
 		obj = obj.from_json(plain_json, path);
 		Instantiables.push_back(obj);
 	}
-	;
+	
 	
 	//============================================================
 	// Game loop

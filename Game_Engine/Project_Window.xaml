@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Game_Engine"
+        xmlns:User_conts="clr-namespace:Game_Engine.User_controls"
         
         mc:Ignorable="d"
-        Title="Project_Window" Height="450" Width="200"
+        Title="Project_Window" Height="450" Width="{Binding Window_width, Mode=TwoWay}"
         KeyDown="Key_pressed"
         >
     <Grid >
@@ -24,6 +25,10 @@
             <Button Content="reload" Click="Reload_Project_sol" />
             <Button Content="build" Click="Build_project" HorizontalAlignment="Left" Canvas.Left="43" VerticalAlignment="Center" />
             <Button Content="run" Click="Run_project" HorizontalAlignment="Left" Canvas.Left="79" VerticalAlignment="Center" />
+            <Button Content="settings" Click="Open_Settings" HorizontalAlignment="Left" Canvas.Left="106" VerticalAlignment="Center" />
+
+            <User_conts:Project_settings_Menu x:Name="project_settings" Canvas.Left="200" Canvas.Top="0" Loaded="OnLoad"/>
+
         </Canvas>
 
 

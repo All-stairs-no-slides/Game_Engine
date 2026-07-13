@@ -4,6 +4,7 @@ using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -25,14 +26,41 @@ namespace Game_Engine
     /// <summary>
     /// Interaction logic for Project_Window.xaml
     /// </summary>
-    public partial class Project_Window : Window
+    public partial class Project_Window : Window, INotifyPropertyChanged
     {
         public Project project;
         public string path;
+
+        private double _width;
+
+        
+
+        public double Window_width
+        {
+            get { return _width; }
+            set
+            {
+                if (value != _width)
+                {
+                    _width = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("Window_width"));
+                    }
+
+                };
+                
+            }
+        }
+
+
+
         public Project_Window(string path)
         {
             InitializeComponent();
-
+            this.DataContext = this;
+            _width = 0;
+            Window_width = 200;
             this.path = path;
             string jsonString = File.ReadAllText(path);
 
@@ -43,7 +71,7 @@ namespace Game_Engine
             {
                 Debug.WriteLine("Broken project file");
                 Debug.WriteLine(e);
-                project = new Project("", "");
+                project = new Project("", "", 1000, 500, 1000, 500);
 
             }
 
@@ -197,6 +225,8 @@ namespace Game_Engine
             start_place_view(path + "Places\\" + place_name);
         }
 
+
+
         private void Reload_Project_sol(object sender, RoutedEventArgs e)
         {
             sol_exp_tree.Items.Clear();
@@ -282,6 +312,7 @@ namespace Game_Engine
             
         }
 
+
         private void start_place_view(string Place_path)
         {
             PlaceViewWindow Place_window = new PlaceViewWindow(Place_path);
@@ -350,6 +381,31 @@ namespace Game_Engine
         private void Run_project(object sender, RoutedEventArgs e)
         {
             Process.Start(path + "\\build\\" + (project.num_of_builds - 1) + "\\CppBuilder.exe");
+
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void Open_Settings(object sender, RoutedEventArgs e)
+        {
+            if (Window_width == 500)
+            {
+                Window_width = 200;
+                return;
+            }
+            Window_width = 500;
+        }
+
+        
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            Project_settings_Menu n_sender;
+            n_sender = (Project_settings_Menu)sender;
+            n_sender.Viewport_Height_prop = project.Viewport_Height;
+            n_sender.Viewport_Width_prop = project.Viewport_Width;
+            n_sender.Window_Height_prop = project.Window_Height;
+            n_sender.Window_Width_prop = project.Window_Width;
+            n_sender.Alias_prop = project.Name;
 
         }
     }
