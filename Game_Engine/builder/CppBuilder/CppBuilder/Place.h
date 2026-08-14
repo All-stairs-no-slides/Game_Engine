@@ -58,6 +58,16 @@ namespace Place {
 			instantiation_queue.clear();
 		}
 
+		void Process_Object_deletion() {
+			Instances.erase(
+				std::remove_if(Instances.begin(), Instances.end(),
+					[](const game_object::Game_Object& obj) {
+						return obj.tobedestroyed();
+					}),
+				Instances.end()
+			);
+		}
+
 		void Collider_Loop() {
 			// the collider loop will return all collisions as a vector of pairs of game object pointers
 			std::map<std::pair<int, int>, std::vector<std::pair<std::pair<std::shared_ptr<game_components::transform_component>, std::shared_ptr<game_components::Collider>> ,game_object::Game_Object*>>> collider_grid;

@@ -35,6 +35,9 @@ class Instance:
     def __init__(self, cpp_instance):
         self._cpp_instance = cpp_instance
 
+    def destroy(self):
+        self._cpp_instance.destroy()
+
     @property
     def Name(self):
         return self._cpp_instance.name
@@ -65,8 +68,14 @@ class Instance:
         for i in self._cpp_instance.components:
             if i.type == "Sprite_renderer":
                 ret.append(Sprite_Renderer(i))
-                
+        return ret
 
+    def Get_Audio_Components(self):
+        ret = []
+        for i in self._cpp_instance.components:
+            print("type is:", i.type)
+            if i.type == "Audio":
+                ret.append(Audio_Component(i))
         return ret
 
 
@@ -95,6 +104,31 @@ class Collider(Component):
     @property
     def Collider_type(self):
         return self._cpp_component.Proportions
+
+
+class Audio_Component(Component):
+    def __init__(self, cpp_component):
+        self._cpp_component = cpp_component
+    
+    @property
+    def Audio_alias(self):
+        return self._cpp_component.sound_alias
+    
+    def Play(self):
+        self._cpp_component.Play()
+    
+    def Get_time_mil(self):
+        return self._cpp_component.Get_time_mil()
+    
+    def Set_time_seconds(self, seconds: float):
+        self._cpp_component.Set_time_sec(seconds)
+    
+    def Pause(self):
+        self._cpp_component.Pause()
+
+    def Set_Pitch(self, pitch: float):
+        self._cpp_component.Set_Pitch(pitch)
+    
 
 
 class Transform(Component):
@@ -248,7 +282,7 @@ class User_Inputs:
 
 class Contact:
     def __init__(self, cpp_contact):
-        self._cpp_component = cpp_contact
+        self._cpp_contact = cpp_contact
 
     @property
     def obj_1(self):

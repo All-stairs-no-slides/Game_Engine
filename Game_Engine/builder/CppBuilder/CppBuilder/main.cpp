@@ -90,6 +90,7 @@ PYBIND11_EMBEDDED_MODULE(engine, m) {
 
 	py::class_<game_object::Game_Object>(m, "Game_Object")
 		.def(py::init<>())
+		.def("destroy", &game_object::Game_Object::destroy_object)
 		.def_readwrite("name", &game_object::Game_Object::Name)
 		.def_readwrite("components", &game_object::Game_Object::components)
 		.def_readwrite("Locals", &game_object::Game_Object::Locals);
@@ -158,8 +159,8 @@ int main()
 
 	Game_project::Game_project project;
 	bool project_found = false;
-	//std::string path = std::filesystem::current_path().string();
-	const std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
+	const std::string path = std::filesystem::current_path().string();
+	//const std::string path = R"(C:\Users\amcd1\Desktop\projects\Game_Engine\tests)";
 	for (auto f : std::filesystem::directory_iterator(path)) {
 		//std::cout << f.path().filename().string() << std::endl;
 		// find final suffix
@@ -306,45 +307,55 @@ int main()
 	//int iters = 1;
 	while (!glfwWindowShouldClose(window))
 	{
-		
-		// maintain a local context so it refreshes per frame
-		Place::User_Inputs User_In;
-		// get user inputs
-		glfwGetCursorPos(window, &User_In.mousex, &User_In.mousey);
-		//std::cout << User_In.mousex << ", " << User_In.mousey << std::endl;
+		try {
 
-		Set_keys(window, &User_In);
-		
-		 //clear screen
-		glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
-		glClear(GL_COLOR_BUFFER_BIT);
+			// maintain a local context so it refreshes per frame
+			Place::User_Inputs User_In;
+			// get user inputs
+			glfwGetCursorPos(window, &User_In.mousex, &User_In.mousey);
+			//std::cout << User_In.mousex << ", " << User_In.mousey << std::endl;
 
-		// collision registration loop
-		place.Collider_Loop();
-		
-		//std::cout << iters << std::endl;
-		//iters += 1;
-		// component loops (based on the order they show up)
-		for (int i = 0; i < place.Instances.size(); i++) {
-			// includes transforms sprite renderers and scripts
-			place.Instances[i].Components_Loop(&place, engine_api, &User_In);
+			Set_keys(window, &User_In);
+
+			//clear screen
+			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
+
+			// collision registration loop
+			place.Collider_Loop();
+
+			//std::cout << iters << std::endl;
+			//iters += 1;
+			// component loops (based on the order they show up)
+			for (int i = 0; i < place.Instances.size(); i++) {
+				// includes transforms sprite renderers and scripts
+				place.Instances[i].Components_Loop(&place, engine_api, &User_In);
+			}
+
+			// process the instantiated objects
+			place.Process_Instantiation_Queue(&Instantiables);
+			place.Process_Object_deletion();
+
+			// change place if there has been a change
+			if (place.Next_place_name != "") {
+				std::ifstream f(path + "\\Places\\" + place.Next_place_name + ".place");
+				json plain_json = json::parse(f);
+				std::cout << "Current path is: " << plain_json << std::endl;
+				place = place.from_json(plain_json, path);
+
+			}
+
+
+			glfwSwapBuffers(window);
+			glfwPollEvents();
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exception caught in game loop: " << e.what() << std::endl;
+			// exit app
+			glfwTerminate();
+			return -1;
 		}
 
-		// process the instantiated objects
-		place.Process_Instantiation_Queue(&Instantiables);
-			
-		// change place if there has been a change
-		if (place.Next_place_name != "") {
-			std::ifstream f(path + "\\Places\\" + place.Next_place_name + ".place");
-			json plain_json = json::parse(f);
-			std::cout << "Current path is: " << plain_json << std::endl;
-			place = place.from_json(plain_json, path);
-			
-		}
-
-	
-		glfwSwapBuffers(window);
-		glfwPollEvents();
 	}
 	
 	// exit app

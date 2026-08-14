@@ -81,6 +81,19 @@ namespace game_components {
         {
         }
 
+        ~audio_component() {
+
+            if (sound) {
+                ma_sound_stop(sound.get());
+                ma_sound_uninit(sound.get());
+            }
+
+            if (s_engine) {
+                ma_engine_uninit(s_engine.get());
+            }
+            
+		}
+
         void Initialisation(std::string Asset_path);
         void Play();
         void Set_pitch(float pitch);
@@ -91,15 +104,15 @@ namespace game_components {
         std::shared_ptr<Game_Component> clone() const override {
             // Construct a fresh audio_component with the same data fields,
             // then re-run Initialisation so it gets its own ma_engine and ma_sound.
-            audio_component copy;
-            copy.type         = type;
-            copy.path         = path;
-            copy.sound_alias  = sound_alias;
-            copy.stored_asset_path = stored_asset_path;
+            auto ret = std::make_shared<audio_component>();
+            ret->type = type;
+            ret->path = path;
+            ret->sound_alias = sound_alias;
+            ret->stored_asset_path = stored_asset_path;
             if (!stored_asset_path.empty()) {
-                copy.Initialisation(stored_asset_path);
+                ret->Initialisation(stored_asset_path);
             }
-            return std::make_shared<audio_component>(std::move(copy));
+            return ret;
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(audio_component, path, sound_alias)
@@ -128,10 +141,10 @@ namespace game_components {
             // Each instance needs its own script_component with create_iter reset
             // so the "create" event fires for every new instance.
             script_component copy;
-            copy.type         = type;
-            copy.path         = path;
-            copy.scope        = scope;
-            copy.create_iter  = true;   // reset so "create" fires on the new instance
+            copy.type = type;
+            copy.path = path;
+            copy.scope = scope;
+            copy.create_iter = true;   // reset so "create" fires on the new instance
             copy.Initialisation();
             return std::make_shared<script_component>(std::move(copy));
         }
@@ -141,7 +154,7 @@ namespace game_components {
         py::module_ script_module;
 
         void Event_Call(const char* event_name, game_object::Game_Object* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs);
-        void Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs);
+        void Event_Call(const char* event_name, game_object::Game_Object* this_obj, Place::Place* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs);
         void Event_Call(const char* event_name, game_object::Game_Object* this_obj, game_components::Contact* collsion, py::module_ engine_api, Place::User_Inputs* User_Inputs);
     };
 
@@ -194,8 +207,12 @@ namespace game_components {
         int x_offset, y_offset;
         double x_scale, y_scale, rotation;
         std::string Sprite_dir;
+        std::string vshader = R"(Basic_Shader\Basic.vsh)";
+        std::string fshader = R"(Basic_Shader\Basic.fsh)";
         int depth;
-        //Shader_utils::Shader shader = Shader_utils::Shader((std::filesystem::current_path().string() + "\\Shaders\\Basic_Shader\\Basic.vsh").c_str(), (std::filesystem::current_path().string() + "\\Shaders\\Basic_Shader\\Basic.fsh").c_str());
+        // Stored so clone() can re-initialise with the correct project path
+        std::string stored_proj_path = std::filesystem::current_path().string();
+        //Shader_utils::Shader* shader = new Shader_utils::Shader((stored_proj_path + R"(\Shaders\Basic_Shader\Basic.vsh)").c_str(), (stored_proj_path + R"(\Shaders\Basic_Shader\Basic.fsh)").c_str());
 
         Shader_utils::Shader* shader;
 
@@ -209,14 +226,16 @@ namespace game_components {
         std::shared_ptr<Game_Component> clone() const override {
             // Re-run Initialisation so the clone gets its own shader and VAO.
             sprite_renderer copy;
-            copy.type       = type;
-            copy.x_offset   = x_offset;
-            copy.y_offset   = y_offset;
-            copy.x_scale    = x_scale;
-            copy.y_scale    = y_scale;
-            copy.rotation   = rotation;
+            copy.type = type;
+            copy.x_offset = x_offset;
+            copy.y_offset = y_offset;
+            copy.vshader = vshader;
+            copy.fshader = fshader;
+            copy.x_scale = x_scale;
+            copy.y_scale = y_scale;
+            copy.rotation = rotation;
             copy.Sprite_dir = Sprite_dir;
-            copy.depth      = depth;
+            copy.depth = depth;
             copy.stored_proj_path = stored_proj_path;
             if (!stored_proj_path.empty()) {
                 copy.Initialisation(stored_proj_path);
@@ -224,8 +243,7 @@ namespace game_components {
             return std::make_shared<sprite_renderer>(std::move(copy));
         }
 
-        // Stored so clone() can re-initialise with the correct project path
-        std::string stored_proj_path;
+        
 
         void Initialisation(std::string Proj_path);
 

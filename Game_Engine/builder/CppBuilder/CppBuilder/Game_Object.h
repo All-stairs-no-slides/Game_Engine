@@ -74,8 +74,11 @@ namespace game_object {
             }
             else if (type == "Audio") {
                 game_components::audio_component comp = j.get<game_components::audio_component>();
-                comp.Initialisation(path + "\\Assets\\");
+                // for some reason nholmans doesnt assign the type for audio so i do it here
+				
                 auto ret = std::make_shared<game_components::audio_component>(comp);
+                ret->type = "Audio";
+                ret->Initialisation(path + "\\Assets\\");
                 return ret;
             }
 
@@ -97,6 +100,14 @@ namespace game_object {
 
             return obj;
         }
+
+        void destroy_object() {
+            destroy = true;
+		}
+
+        bool tobedestroyed() const {
+            return destroy;
+		}
 
         void Components_Loop(Place::Place *global_context, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
             // a backup in the case of a freak accident when there is a missing transform
@@ -136,7 +147,7 @@ namespace game_object {
                                 script_comp->Event_Call("create", this, engine_api, User_Inputs);
                             }
                             else if (script_comp->scope == "Global") {
-                                script_comp->Event_Call("create", global_context, engine_api, User_Inputs);
+                                script_comp->Event_Call("create", this, global_context, engine_api, User_Inputs);
                             }
                         }
 
@@ -149,7 +160,7 @@ namespace game_object {
                             }
                         }
                         else if (script_comp->scope == "Global") {
-                            script_comp->Event_Call("step", global_context, engine_api, User_Inputs);
+                            script_comp->Event_Call("step", this, global_context, engine_api, User_Inputs);
                             if (Collisions.size() != 0) {
                                 for (game_components::Contact c_obj : Collisions) {
                                     script_comp->Event_Call("on_collide", this, &c_obj, engine_api, User_Inputs);
@@ -188,6 +199,8 @@ namespace game_object {
         }
 
         NLOHMANN_DEFINE_TYPE_INTRUSIVE(Game_Object, Name, components);
-    };
 
+    private:
+		bool destroy = false;  // Flag to indicate if the object should be destroyed after the 
+    };
 }

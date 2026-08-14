@@ -34,7 +34,7 @@ using json = nlohmann::json;
 void audio_component::Play()
 {
     ma_sound_start(this->sound.get());
-    ma_sound_set_pitch(this->sound.get(), 2.0);
+    //ma_sound_set_pitch(this->sound.get(), 2.0);
 }
 
 void audio_component::Set_pitch(float pitch)
@@ -49,6 +49,7 @@ void audio_component::Pause()
 
 void audio_component::Set_time_sec(float time) {
     ma_sound_seek_to_second(this->sound.get(), time);
+    
 }
 
 ma_uint64 audio_component::Get_time_mil() {
@@ -62,11 +63,10 @@ void audio_component::Initialisation(std::string Asset_path)
     this->stored_asset_path = Asset_path;
 
     ma_result result;
-    ma_engine eng;
-    ma_sound s;
 
-    this->s_engine = std::make_shared<ma_engine>(eng);
-    this->sound = std::make_shared<ma_sound>(s);
+
+    this->s_engine = std::make_shared<ma_engine>();
+    this->sound = std::make_shared<ma_sound>();
 
     result = ma_engine_init(NULL, this->s_engine.get());
     assert(result == MA_SUCCESS);
@@ -118,7 +118,7 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
 
             auto casted = py::cast(parsed_item);
             auto casted_inputs = py::cast(User_Inputs);
-            if (!casted) {
+            if (!casted || !casted_inputs) {
                 std::cerr << "py::cast returned null\n";
                 return;
             }
@@ -168,7 +168,7 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
             auto collided_casted = py::cast(collsion);
             auto casted_inputs = py::cast(User_Inputs);
 
-            if (!this_casted || !collided_casted) {
+            if (!this_casted || !collided_casted || !casted_inputs) {
                 std::cerr << "py::cast returned null\n";
                 return;
             }
@@ -190,9 +190,10 @@ void script_component::Event_Call(const char* event_name, game_object::Game_Obje
     }
 }
 
-void script_component::Event_Call(const char* event_name, Place::Place* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
+void script_component::Event_Call(const char* event_name, game_object::Game_Object* this_obj, Place::Place* parsed_item, py::module_ engine_api, Place::User_Inputs* User_Inputs) {
     py::module_ mymodule = this->script_module;
     py::object place_api = engine_api.attr("Place");
+    py::object Instance_api = engine_api.attr("Instance");
     py::object Inputs_api = engine_api.attr("User_Inputs");
 
     // remove the .py suffix from the file name
@@ -211,16 +212,17 @@ void script_component::Event_Call(const char* event_name, Place::Place* parsed_i
         if (py::isinstance<py::function>(method)) {
             //std::cout << "the method exists and is callable.\n";
 
+			auto casted_obj = py::cast(this_obj);
             auto casted = py::cast(parsed_item);
             auto casted_inputs = py::cast(User_Inputs);
 
-            if (!casted) {
+            if (!casted || !casted_obj || !casted_inputs) {
                 std::cerr << "py::cast returned null\n";
                 return;
             }
             try {
                 //parsed_item->Instantiate("hhh");
-                method(place_api(casted), Inputs_api(casted_inputs));
+                method(Instance_api(casted_obj), place_api(casted), Inputs_api(casted_inputs));
 
             }
             catch (py::cast_error e) {
@@ -251,7 +253,8 @@ void sprite_renderer::Initialisation(std::string proj_path)
 
     this->stored_proj_path = proj_path;
 
-    this->shader = new Shader_utils::Shader((proj_path + R"(\Shaders\Basic_Shader\Basic.vsh)").c_str(), (proj_path + R"(\Shaders\Basic_Shader\Basic.fsh)").c_str());
+    this->shader = new Shader_utils::Shader((proj_path + "\\Shaders\\" +  this->vshader).c_str(), (proj_path + "\\Shaders\\" + this->fshader).c_str());
+
 
     std::cout << "initialising sprite renderer component" << std::endl;
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(viewport[2]),
